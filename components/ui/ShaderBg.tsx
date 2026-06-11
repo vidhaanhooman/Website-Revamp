@@ -1,14 +1,19 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import type { ComponentType, PropsWithChildren } from "react";
 
 /**
  * Lazy-loaded shader-gradient surface (Three.js under the hood, ~400kB).
  * Loaded client-side only — the Canvas needs the DOM.
+ *
+ * The package's TS declarations are missing several runtime-supported
+ * props (axesHelper, envPreset, lightType, etc.), so we cast the lazy
+ * components to a permissive prop type before using them.
  */
 // next.config.mjs aliases @shadergradient/react to its dist entry,
 // so the resolver bypass happens once for both imports here.
-const ShaderGradientCanvas = dynamic(
+const ShaderGradientCanvasRaw = dynamic(
   () =>
     import("@shadergradient/react").then((m) => ({
       default: m.ShaderGradientCanvas
@@ -16,13 +21,20 @@ const ShaderGradientCanvas = dynamic(
   { ssr: false }
 );
 
-const ShaderGradient = dynamic(
+const ShaderGradientRaw = dynamic(
   () =>
     import("@shadergradient/react").then((m) => ({
       default: m.ShaderGradient
     })),
   { ssr: false }
 );
+
+const ShaderGradientCanvas = ShaderGradientCanvasRaw as ComponentType<
+  PropsWithChildren<Record<string, unknown>>
+>;
+const ShaderGradient = ShaderGradientRaw as ComponentType<
+  Record<string, unknown>
+>;
 
 export interface ShaderBgPreset {
   color1: string;
@@ -148,9 +160,6 @@ export function ShaderBg({
           width: "100%",
           height: "100%"
         }}
-        // @ts-expect-error — react-three/fiber typing is loose for these props
-        pixelDensity={1}
-        fov={45}
       >
         <ShaderGradient
           animate={animate ? "on" : "off"}
