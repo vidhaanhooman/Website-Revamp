@@ -52,10 +52,12 @@ export const metadata: Metadata = {
   }
 };
 
-/**
- * Runs in <head> before hydration to apply the saved theme. Prevents
- * a flash of the wrong colour scheme on first paint.
- */
+// Dark mode is shipped behind a feature flag — every dark: Tailwind variant
+// stays in the codebase but the .dark class never lands on <html>, so the
+// site always renders in light mode for now. Flip ENABLE_DARK_MODE back on
+// (and restore the bootstrap script in <head>) when ready.
+const ENABLE_DARK_MODE = false;
+
 const themeBootstrap = `
 (function() {
   try {
@@ -78,11 +80,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
+        {ENABLE_DARK_MODE ? (
+          <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
+        ) : null}
       </head>
-      <body className="bg-bg text-ink dark:bg-dark dark:text-dark-text">
-        {children}
-      </body>
+      <body className="bg-bg text-ink">{children}</body>
     </html>
   );
 }

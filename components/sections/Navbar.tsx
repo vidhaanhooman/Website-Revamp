@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { Button } from "@/components/ui/Button";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
+// import { ThemeToggle } from "@/components/ui/ThemeToggle";
+// Theme toggle hidden while dark mode ships behind a flag — see app/layout.tsx.
 import { navLinks, industries } from "@/content/nav";
 import { cn } from "@/lib/cn";
 
@@ -85,7 +86,6 @@ export function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-1.5 lg:flex">
-          <ThemeToggle />
           <a href="#demo">
             <Button variant="outline" size="sm">
               Book a Demo
@@ -105,7 +105,6 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
           <button
             className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline bg-white dark:border-dark-edge dark:bg-dark-soft dark:text-dark-text"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
