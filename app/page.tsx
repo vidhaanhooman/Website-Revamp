@@ -1,9 +1,8 @@
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
-import { CustomerCarousel } from "@/components/sections/CustomerCarousel";
-import { Categories } from "@/components/sections/Categories";
-import { ProductReveal } from "@/components/sections/ProductReveal";
-import { ProductShowcase } from "@/components/sections/ProductShowcase";
+import { AgentDemo } from "@/components/sections/AgentDemo";
+import { CallsCounter } from "@/components/sections/CallsCounter";
+import { FeatureBento } from "@/components/sections/FeatureBento";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { FaqAndCall } from "@/components/sections/FaqAndCall";
@@ -14,13 +13,17 @@ export default function Home() {
     <main className="relative min-h-screen overflow-x-hidden bg-bg text-ink dark:bg-dark dark:text-dark-text">
       <Navbar />
       <Hero />
-      <CustomerCarousel />
-      <Categories />
-      <ProductReveal />
-      <ProductShowcase />
-      <Testimonials />
-      <CtaBanner />
-      <FaqAndCall />
+      <AgentDemo />
+      {/* Dark band — calls counter + features */}
+      <div className="relative bg-dark text-dark-text">
+        <CallsCounter />
+        <FeatureBento />
+      </div>
+      <div className="relative bg-bg-warm text-ink">
+        <Testimonials />
+        <CtaBanner />
+        <FaqAndCall />
+      </div>
       <Footer />
     </main>
   );

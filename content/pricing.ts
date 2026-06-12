@@ -1,26 +1,35 @@
-export interface PricingRow {
+export interface AgentRate {
+  /** Agent tier name (e.g. "Standard agent"). */
   label: string;
-  value: string;
+  /** Per-minute rate (e.g. "₹7.5"). */
+  rate: string;
 }
 
-export interface Plan {
+export interface PricingTier {
+  id: "pay-as-you-go" | "enterprise";
   name: string;
-  description: string;
-  pricing: PricingRow[];
-  /** Optional small footnote rendered under the pricing block. */
-  pricingNote?: string;
+  /** Short summary of who the tier is for. */
+  blurb: string;
+  /** Dual rate display — Standard + Premium per minute. */
+  rates: AgentRate[];
+  /** Optional small footnote under the rates (e.g. discount note). */
+  rateNote?: string;
+  /** Feature list. */
   features: string[];
+  /** CTA button. */
   cta: { label: string; href: string };
-  tint: "neutral" | "violet";
+  /** Whether this tier is the highlighted/recommended one. */
+  highlight?: boolean;
 }
 
-export const plans: Plan[] = [
+export const tiers: PricingTier[] = [
   {
+    id: "pay-as-you-go",
     name: "Pay as you go",
-    description: "No commitment. Pay only for the minutes you use.",
-    pricing: [
-      { label: "Standard Agent", value: "₹7.5/min" },
-      { label: "Premium Agent", value: "₹10/min" }
+    blurb: "No commitment. Pay only for the minutes you actually use.",
+    rates: [
+      { label: "Standard agent", rate: "₹7.5" },
+      { label: "Premium agent", rate: "₹10" }
     ],
     features: [
       "No commitment required",
@@ -30,17 +39,17 @@ export const plans: Plan[] = [
       "5 concurrent call slots",
       "5K batch campaign limit"
     ],
-    cta: { label: "Get Started", href: "/signup" },
-    tint: "neutral"
+    cta: { label: "Get started", href: "/signup" }
   },
   {
+    id: "enterprise",
     name: "Enterprise",
-    description: "Lower per-minute rate, dedicated support, annual commit.",
-    pricing: [
-      { label: "Standard Agent", value: "₹5/min" },
-      { label: "Premium Agent", value: "₹6.75/min" }
+    blurb: "Lower per-minute rate, dedicated support, annual commitment.",
+    rates: [
+      { label: "Standard agent", rate: "₹5" },
+      { label: "Premium agent", rate: "₹6.75" }
     ],
-    pricingNote: "Price drops further with higher commitment.",
+    rateNote: "Price drops further with higher commitment.",
     features: [
       "Min ₹50K monthly spend",
       "Annual commitment",
@@ -49,8 +58,8 @@ export const plans: Plan[] = [
       "QA & Simulation access",
       "50K batch campaign limit"
     ],
-    cta: { label: "Contact Sales", href: "#demo" },
-    tint: "violet"
+    cta: { label: "Talk to sales", href: "/#agent-demo" },
+    highlight: true
   }
 ];
 
@@ -63,5 +72,5 @@ export const stats: Stat[] = [
   { value: "3.2×", label: "After-hours pickup" },
   { value: "+38%", label: "Completed bookings" },
   { value: "96.2%", label: "CSAT, last 30 days" },
-  { value: "₹0.40", label: "Per-minute, all-in" }
+  { value: "₹5", label: "Per-minute, Enterprise" }
 ];

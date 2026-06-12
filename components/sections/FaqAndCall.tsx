@@ -16,19 +16,19 @@ export function FaqAndCall() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="rounded-3xl border border-hairline bg-bg-warm p-6 dark:border-dark-edge dark:bg-dark-soft"
+            className="rounded-3xl border border-hairline bg-white p-6 shadow-[0_20px_50px_-30px_rgba(20,15,10,0.18)]"
           >
-            <div className="text-[14px] font-medium text-ink dark:text-dark-text">
+            <div className="text-[14px] font-medium text-ink">
               We believe in meaningful conversations.
             </div>
-            <p className="mt-3 text-[14px] leading-[1.55] text-muted dark:text-dark-muted">
+            <p className="mt-3 text-[14px] leading-[1.55] text-muted">
               To help you out, we provide a free{" "}
-              <span className="font-medium text-ink dark:text-dark-text">20-minute call</span> to
+              <span className="font-medium text-ink">20-minute call</span> to
               answer your questions.
             </p>
             <a
               href="#demo"
-              className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2.5 text-[13.5px] font-medium text-white transition-colors hover:bg-ink-soft dark:bg-white dark:text-ink dark:hover:bg-dark-text"
+              className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2.5 text-[13.5px] font-medium text-white transition-colors hover:bg-ink-soft"
             >
               <Calendar size={13} strokeWidth={1.75} />
               Book a free call

@@ -1,23 +1,19 @@
 import { Navbar } from "@/components/sections/Navbar";
-import { PricingHero } from "@/components/sections/PricingHero";
-import { PricingPlans } from "@/components/sections/PricingPlans";
-import { PricingSocial } from "@/components/sections/PricingSocial";
+import { PricingTiers } from "@/components/sections/PricingTiers";
 import { FaqAndCall } from "@/components/sections/FaqAndCall";
 import { Footer } from "@/components/sections/Footer";
 
 export const metadata = {
   title: "Pricing — HoomanLabs",
   description:
-    "Usage-based pricing for AI voice agents. Start at ₹7,999 / month, scale per call volume, contact us for enterprise."
+    "Usage-based pricing for AI voice agents. Launch from ₹3.50/min, Grow at ₹2.50/min with QA + simulation, Scale on volume contracts."
 };
 
 export default function PricingPage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-bg text-ink dark:bg-dark dark:text-dark-text">
+    <main className="relative min-h-screen overflow-x-hidden bg-dark text-dark-text">
       <Navbar />
-      <PricingHero />
-      <PricingPlans />
-      <PricingSocial />
+      <PricingTiers />
       <FaqAndCall />
       <Footer />
     </main>

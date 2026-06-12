@@ -44,9 +44,9 @@ const config: Config = {
           deep: "#D45A82"
         },
         dark: {
-          DEFAULT: "#0F0D12",
-          soft: "#1A1720",
-          edge: "#2A2630",
+          DEFAULT: "#000000",
+          soft: "#000000",
+          edge: "#1F1B24",
           text: "#F4F1EC",
           muted: "#9A9499"
         },

@@ -52,22 +52,6 @@ export const metadata: Metadata = {
   }
 };
 
-// Dark mode is shipped behind a feature flag — every dark: Tailwind variant
-// stays in the codebase but the .dark class never lands on <html>, so the
-// site always renders in light mode for now. Flip ENABLE_DARK_MODE back on
-// (and restore the bootstrap script in <head>) when ready.
-const ENABLE_DARK_MODE = false;
-
-const themeBootstrap = `
-(function() {
-  try {
-    var s = localStorage.getItem('theme');
-    var dark = s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    if (dark) document.documentElement.classList.add('dark');
-  } catch (e) {}
-})();
-`;
-
 export default function RootLayout({
   children
 }: {
@@ -76,15 +60,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sans.variable} ${mono.variable} ${serif.variable} ${gilroy.variable}`}
+      // Dark theme is the default — every dark: Tailwind variant fires.
+      className={`dark ${sans.variable} ${mono.variable} ${serif.variable} ${gilroy.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        {ENABLE_DARK_MODE ? (
-          <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
-        ) : null}
-      </head>
-      <body className="bg-bg text-ink">{children}</body>
+      <body className="bg-dark text-dark-text">{children}</body>
     </html>
   );
 }

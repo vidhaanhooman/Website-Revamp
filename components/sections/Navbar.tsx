@@ -2,17 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { Button } from "@/components/ui/Button";
-// import { ThemeToggle } from "@/components/ui/ThemeToggle";
-// Theme toggle hidden while dark mode ships behind a flag — see app/layout.tsx.
-import { navLinks, industries } from "@/content/nav";
+import { navLinks } from "@/content/nav";
 import { cn } from "@/lib/cn";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [openDD, setOpenDD] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
@@ -22,142 +19,108 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Two separate floating pills, Giga-style — left holds brand + links,
+  // right holds the CTAs. On scroll both deepen their glass slightly.
+  const pillBase =
+    "flex items-center rounded-full border backdrop-blur-md transition-all duration-300 ease-out";
+  const pillSurface = scrolled
+    ? "border-dark-edge bg-dark-soft/85 shadow-nav backdrop-blur-xl"
+    : "border-white/15 bg-black/35";
+
   return (
-    <div className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-      <motion.nav
-        aria-label="Primary"
-        initial={{ y: -16, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
-        className={cn(
-          "flex w-full max-w-[1180px] items-center justify-between gap-4 rounded-full border border-hairline bg-white/85 shadow-nav backdrop-blur-xl transition-all duration-300 ease-out",
-          "dark:border-dark-edge dark:bg-dark-soft/85",
-          scrolled ? "px-3 py-2 md:px-4 md:py-2" : "px-4 py-2.5 md:px-5 md:py-3"
-        )}
-      >
-        <a href="#" className="flex shrink-0 items-center pl-1.5">
-          <Wordmark />
-        </a>
-
-        <ul className="hidden items-center gap-2 lg:flex">
-          {navLinks.map((l) => (
-            <li key={l.label}>
-              <a
-                href={l.href}
-                className="rounded-full px-3.5 py-2 text-[14px] font-medium text-ink/85 transition-colors hover:text-ink dark:text-dark-text/85 dark:hover:text-white"
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
-          <li
-            className="relative"
-            onMouseEnter={() => setOpenDD(true)}
-            onMouseLeave={() => setOpenDD(false)}
-          >
-            <button
-              className="inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[14px] font-medium text-ink/85 transition-colors hover:text-ink dark:text-dark-text/85 dark:hover:text-white"
-              aria-expanded={openDD}
-            >
-              Industries
-              <ChevronDown size={13} strokeWidth={2.25} className="opacity-60" />
-            </button>
-            {openDD ? (
-              <div className="absolute left-1/2 top-full z-50 min-w-[300px] -translate-x-1/2 pt-3">
-                <div className="rounded-2xl border border-hairline bg-white p-1.5 shadow-lift dark:border-dark-edge dark:bg-dark-soft">
-                  {industries.map((it) => (
-                    <a
-                      key={it.label}
-                      href={it.href}
-                      className="block rounded-xl px-3 py-2.5 transition-colors hover:bg-bg-soft dark:hover:bg-dark-edge"
-                    >
-                      <div className="text-[13.5px] font-medium text-ink dark:text-dark-text">
-                        {it.label}
-                      </div>
-                      <div className="mt-0.5 text-[12.5px] text-muted dark:text-dark-muted">
-                        {it.description}
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-          </li>
-        </ul>
-
-        <div className="hidden items-center gap-1.5 lg:flex">
-          <a href="#demo">
-            <Button variant="outline" size="sm">
-              Book a Demo
-            </Button>
+    <div className="fixed inset-x-0 top-4 z-50 px-4">
+      <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between gap-3">
+        {/* LEFT PILL — brand + primary nav */}
+        <motion.nav
+          aria-label="Primary"
+          initial={{ y: -16, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
+          className={cn(pillBase, pillSurface, "gap-2 pl-3 pr-2 py-2 md:pl-4 md:py-2")}
+        >
+          <a href="#" className="flex shrink-0 items-center pr-1">
+            <Wordmark tone="dark" />
           </a>
-          <span className="mx-1 h-5 w-px bg-hairline dark:bg-dark-edge" aria-hidden />
-          <a href="/dashboard">
-            <Button variant="outline" size="sm">
-              Dashboard
-            </Button>
-          </a>
-          <a href="/signup">
-            <Button variant="primary" size="sm">
-              Sign Up
-            </Button>
-          </a>
-        </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
+          <ul className="hidden items-center gap-1 lg:flex">
+            {navLinks.map((l) => (
+              <li key={l.label}>
+                <a
+                  href={l.href}
+                  className="rounded-full px-3.5 py-1.5 text-[14px] font-medium text-white/80 transition-colors hover:text-white"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {/* Mobile hamburger lives in the left pill so the right pill stays clean */}
           <button
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline bg-white dark:border-dark-edge dark:bg-dark-soft dark:text-dark-text"
+            className="ml-1 flex h-8 w-8 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 lg:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
           >
             {mobileOpen ? <X size={16} /> : <Menu size={16} />}
           </button>
-        </div>
-      </motion.nav>
+        </motion.nav>
+
+        {/* RIGHT PILL — CTAs (hidden on mobile, mobile uses drawer) */}
+        <motion.div
+          initial={{ y: -16, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          className={cn(
+            pillBase,
+            pillSurface,
+            "hidden gap-1 p-1.5 lg:flex"
+          )}
+        >
+          <a href="#demo">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="rounded-full bg-transparent text-white hover:bg-white/10"
+            >
+              Book a Demo
+            </Button>
+          </a>
+          <a href="/signup">
+            <Button
+              variant="primary"
+              size="sm"
+              className="rounded-full bg-white text-ink hover:bg-white/90"
+            >
+              Sign Up
+            </Button>
+          </a>
+        </motion.div>
+      </div>
 
       {mobileOpen ? (
-        <div className="absolute inset-x-4 top-[68px] rounded-3xl border border-hairline bg-white p-4 shadow-lift lg:hidden dark:border-dark-edge dark:bg-dark-soft">
+        <div className="absolute inset-x-4 top-[68px] rounded-3xl border border-dark-edge bg-dark-soft p-4 shadow-lift lg:hidden">
           <div className="flex flex-col gap-1">
             {navLinks.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
-                className="rounded-xl px-3 py-2.5 text-[15px] font-medium text-ink hover:bg-bg-soft dark:text-dark-text dark:hover:bg-dark-edge"
+                className="rounded-xl px-3 py-2.5 text-[15px] font-medium text-dark-text hover:bg-dark-edge"
               >
                 {l.label}
               </a>
             ))}
-            <details className="group">
-              <summary className="flex cursor-pointer list-none items-center justify-between rounded-xl px-3 py-2.5 text-[15px] font-medium text-ink hover:bg-bg-soft dark:text-dark-text dark:hover:bg-dark-edge">
-                Industries
-                <ChevronDown
-                  size={14}
-                  className="transition-transform group-open:rotate-180"
-                />
-              </summary>
-              <div className="space-y-1 pb-1 pl-2">
-                {industries.map((it) => (
-                  <a
-                    key={it.label}
-                    href={it.href}
-                    className="block rounded-lg px-3 py-2 text-[14px] text-muted hover:bg-bg-soft dark:text-dark-muted dark:hover:bg-dark-edge"
-                  >
-                    {it.label}
-                  </a>
-                ))}
-              </div>
-            </details>
             <div className="mt-3 grid gap-2">
-              <Button variant="outline" size="sm">
-                Book a Demo
-              </Button>
-              <Button variant="outline" size="sm">
-                Dashboard
-              </Button>
-              <Button variant="primary" size="sm">
-                Sign Up
-              </Button>
+              <a href="#demo">
+                <Button variant="outline" size="sm" className="w-full">
+                  Book a Demo
+                </Button>
+              </a>
+              <a href="/signup">
+                <Button variant="primary" size="sm" className="w-full">
+                  Sign Up
+                </Button>
+              </a>
             </div>
           </div>
         </div>
