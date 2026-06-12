@@ -7,7 +7,10 @@ import { faqs } from "@/content/faqs";
 
 export function FaqAndCall() {
   return (
-    <section className="relative py-20 md:py-28">
+    <section
+      className="relative bg-bg-warm py-20 md:py-28"
+      style={{ backgroundColor: "#FBF6F0", color: "#15131A" }}
+    >
       <div className="container">
         <div className="grid items-start gap-10 md:grid-cols-[300px_1fr] md:gap-14">
           {/* Left: book-a-call card */}
@@ -18,13 +21,21 @@ export function FaqAndCall() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="rounded-3xl border border-hairline bg-white p-6 shadow-[0_20px_50px_-30px_rgba(20,15,10,0.18)]"
           >
-            <div className="text-[14px] font-medium text-ink">
+            <div
+              className="text-[14px] font-medium"
+              style={{ color: "#15131A" }}
+            >
               We believe in meaningful conversations.
             </div>
-            <p className="mt-3 text-[14px] leading-[1.55] text-muted">
+            <p
+              className="mt-3 text-[14px] leading-[1.55]"
+              style={{ color: "rgba(21,19,26,0.6)" }}
+            >
               To help you out, we provide a free{" "}
-              <span className="font-medium text-ink">20-minute call</span> to
-              answer your questions.
+              <span className="font-medium" style={{ color: "#15131A" }}>
+                20-minute call
+              </span>{" "}
+              to answer your questions.
             </p>
             <a
               href="#demo"
