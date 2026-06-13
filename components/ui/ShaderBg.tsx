@@ -139,6 +139,24 @@ export const VIOLET_PRESET: ShaderBgPreset = {
   brightness: 1.15
 };
 
+/** Retro — saturated orange / cream / lavender, the shadergradient.co
+    "Retro" customize endpoint, retuned for full-bleed hero backdrops. */
+export const RETRO_PRESET: ShaderBgPreset = {
+  color1: "#ff5005",
+  color2: "#dbba95",
+  color3: "#d0bce1",
+  cAzimuthAngle: 180,
+  cPolarAngle: 80,
+  cDistance: 2.8,
+  uDensity: 1.5,
+  uStrength: 2.4,
+  uSpeed: 0.4,
+  positionY: 0,
+  positionZ: 0,
+  rotationX: 0,
+  brightness: 1.2
+};
+
 export function ShaderBg({
   preset,
   className,

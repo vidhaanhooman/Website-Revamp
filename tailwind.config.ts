@@ -60,7 +60,9 @@ const config: Config = {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
         serif: ["var(--font-serif)", "ui-serif", "Georgia", "serif"],
-        gilroy: ["var(--font-gilroy)", "var(--font-sans)", "system-ui", "sans-serif"]
+        gilroy: ["var(--font-gilroy)", "var(--font-sans)", "system-ui", "sans-serif"],
+        anton: ["var(--font-anton)", "Impact", "sans-serif"],
+        pixel: ["var(--font-pixel)", "Courier New", "monospace"]
       },
       letterSpacing: {
         snug: "-0.02em",

@@ -1,10 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
+  Check,
   Mic,
   Phone,
+  PhoneCall,
   MessageSquare,
   Smartphone,
   Globe
@@ -245,22 +248,18 @@ function MockBuild() {
 /* ─── 2. SIMULATION — minimal waveform lanes ──────────────────── */
 type TestLane = {
   label: string;
-  lang: string;
   status: "pass" | "fail" | "run";
   progress?: number; // 0-1, only for running tests
-  markers: { x: number; tone: "interrupt" | "switch" | "fail" | "redact" | "noise" }[];
 };
 
 function Wave({
   idx,
   status,
-  progress,
-  markers
+  progress
 }: {
   idx: number;
   status: TestLane["status"];
   progress?: number;
-  markers: TestLane["markers"];
 }) {
   const W = 100;
   const H = 22;
@@ -294,22 +293,6 @@ function Wave({
     status === "fail"
       ? "rgba(229,65,59,0.08)"
       : "rgba(255,255,255,0.04)";
-
-  const markerColor = (t: TestLane["markers"][number]["tone"]) => {
-    switch (t) {
-      case "fail":
-        return "#E5413B";
-      case "switch":
-        return "#7AB6F0";
-      case "interrupt":
-        return "#F59E0B";
-      case "redact":
-        return "#34D399";
-      case "noise":
-      default:
-        return "rgba(255,255,255,0.55)";
-    }
-  };
 
   const playhead = progress !== undefined ? progress * W : null;
 
@@ -366,21 +349,6 @@ function Wave({
         />
       ) : null}
 
-      {/* Markers — sit on the waveform */}
-      {markers.map((m, i) => {
-        const x = (m.x / 100) * W;
-        const sIdx = Math.round((m.x / 100) * (SAMPLES - 1));
-        const y = points[sIdx]?.y ?? H / 2;
-        return (
-          <circle
-            key={i}
-            cx={x}
-            cy={y}
-            r="0.75"
-            fill={markerColor(m.tone)}
-          />
-        );
-      })}
     </svg>
   );
 }
@@ -409,43 +377,9 @@ function StatusLabel({ status }: { status: TestLane["status"] }) {
 
 function MockSimulation() {
   const tests: TestLane[] = [
-    {
-      label: "Patient interrupts mid-sentence",
-      lang: "HI",
-      status: "pass",
-      markers: [
-        { x: 38, tone: "interrupt" },
-        { x: 64, tone: "interrupt" }
-      ]
-    },
-    {
-      label: "Code-switch Hindi → English",
-      lang: "HI · EN",
-      status: "pass",
-      markers: [{ x: 48, tone: "switch" }]
-    },
-    {
-      label: "Insurance verification timeout",
-      lang: "EN",
-      status: "fail",
-      markers: [{ x: 78, tone: "fail" }]
-    },
-    {
-      label: "Tamil speaker over noisy line",
-      lang: "TA",
-      status: "run",
-      progress: 0.55,
-      markers: [{ x: 22, tone: "noise" }]
-    },
-    {
-      label: "PHI redaction live trace",
-      lang: "EN",
-      status: "pass",
-      markers: [
-        { x: 33, tone: "redact" },
-        { x: 71, tone: "redact" }
-      ]
-    }
+    { label: "Patient interrupts mid-sentence", status: "pass" },
+    { label: "Insurance verification timeout", status: "fail" },
+    { label: "Tamil speaker over noisy line", status: "run", progress: 0.55 }
   ];
 
   return (
@@ -462,26 +396,16 @@ function MockSimulation() {
       </div>
 
       {/* Waveform lanes */}
-      <div className="space-y-4">
+      <div className="space-y-5">
         {tests.map((t, i) => (
-          <div key={t.label} className="space-y-1.5">
+          <div key={t.label} className="space-y-2">
             <div className="flex items-center justify-between gap-3">
-              <div className="flex min-w-0 items-baseline gap-2">
-                <span className="truncate font-sans text-[12.5px] font-medium text-white/90">
-                  {t.label}
-                </span>
-                <span className="shrink-0 font-sans text-[9.5px] uppercase tracking-[0.22em] text-white/30">
-                  {t.lang}
-                </span>
-              </div>
+              <span className="truncate font-sans text-[12.5px] font-medium text-white/90">
+                {t.label}
+              </span>
               <StatusLabel status={t.status} />
             </div>
-            <Wave
-              idx={i}
-              status={t.status}
-              progress={t.progress}
-              markers={t.markers}
-            />
+            <Wave idx={i} status={t.status} progress={t.progress} />
           </div>
         ))}
       </div>
@@ -491,8 +415,29 @@ function MockSimulation() {
 
 /* ─── OBSERVABILITY — compact event log ───────────────────────── */
 function MockObservability() {
+  // Deterministic 24-step sparkline data — call volume across last 24h.
+  const SPARK = Array.from({ length: 24 }, (_, i) => {
+    const s = i;
+    const v =
+      0.45 +
+      0.35 * Math.abs(Math.sin(s * 0.38)) +
+      0.25 * Math.abs(Math.cos(s * 0.71 + 1)) +
+      (i > 14 && i < 19 ? 0.18 : 0); // afternoon peak
+    return Math.min(1, v);
+  });
+  const SPARK_W = 100;
+  const SPARK_H = 22;
+  const points = SPARK.map((v, i) => ({
+    x: (i / (SPARK.length - 1)) * SPARK_W,
+    y: SPARK_H - v * (SPARK_H - 2) - 1
+  }));
+  const linePath = points
+    .map((p, i) => (i === 0 ? "M" : "L") + ` ${p.x.toFixed(2)} ${p.y.toFixed(2)}`)
+    .join(" ");
+  const fillPath = `${linePath} L ${SPARK_W} ${SPARK_H} L 0 ${SPARK_H} Z`;
+
   return (
-    <div className="relative">
+    <div className="relative space-y-3">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 rounded-2xl"
@@ -503,6 +448,7 @@ function MockObservability() {
         }}
       />
 
+      {/* Event log */}
       <div className="relative space-y-3 rounded-2xl border border-white/[0.06] bg-white/[0.015] p-4">
         <div className="flex items-center justify-between">
           <span className="font-sans text-[10px] uppercase tracking-[0.22em] tabular-nums text-white/45">
@@ -539,6 +485,233 @@ function MockObservability() {
             </li>
           ))}
         </ul>
+      </div>
+
+      {/* Metrics summary — fills the space below the log */}
+      <div className="relative rounded-2xl border border-white/[0.06] bg-white/[0.015] p-4">
+        <div className="flex items-center justify-between">
+          <span className="font-sans text-[10px] uppercase tracking-[0.22em] text-white/45">
+            Calls · last 24h
+          </span>
+          <span className="font-sans text-[10px] uppercase tracking-[0.22em] tabular-nums text-emerald-300/75">
+            ↑ 12.4%
+          </span>
+        </div>
+        <div className="mt-1.5 flex items-end justify-between gap-3">
+          <span className="font-sans text-[22px] font-semibold tabular-nums tracking-tight text-white">
+            1,284
+          </span>
+          <svg
+            viewBox={`0 0 ${SPARK_W} ${SPARK_H}`}
+            preserveAspectRatio="none"
+            className="block h-8 w-[68%]"
+            aria-hidden
+          >
+            <path d={fillPath} fill="rgba(255,255,255,0.06)" />
+            <path
+              d={linePath}
+              stroke="rgba(255,255,255,0.55)"
+              strokeWidth="0.45"
+              fill="none"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
+
+        <div className="mt-3 grid grid-cols-3 gap-3 border-t border-white/[0.06] pt-3">
+          <div>
+            <div className="font-sans text-[13px] font-semibold tabular-nums text-white">
+              96.2%
+            </div>
+            <div className="font-sans text-[9.5px] uppercase tracking-[0.18em] text-white/40">
+              CSAT
+            </div>
+          </div>
+          <div>
+            <div className="font-sans text-[13px] font-semibold tabular-nums text-white">
+              248ms
+            </div>
+            <div className="font-sans text-[9.5px] uppercase tracking-[0.18em] text-white/40">
+              Latency
+            </div>
+          </div>
+          <div>
+            <div className="font-sans text-[13px] font-semibold tabular-nums text-white">
+              98.1%
+            </div>
+            <div className="font-sans text-[9.5px] uppercase tracking-[0.18em] text-white/40">
+              Resolved
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── DEPLOY — two telephony paths: HoomanLabs or BYO ─────────── */
+function HoomanMarkChip({ size = "md" }: { size?: "sm" | "md" }) {
+  const px = size === "sm" ? 5 : 6;
+  const iconPx = size === "sm" ? 8 : 9;
+  return (
+    <span
+      className={`flex h-${px} w-${px} items-center justify-center rounded-md bg-white text-ink`}
+      style={{
+        height: `${px * 4}px`,
+        width: `${px * 4}px`
+      }}
+    >
+      <svg
+        width={iconPx}
+        height={iconPx + 1}
+        viewBox="0 0 86 95"
+        fill="currentColor"
+        aria-hidden
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M85.2106 7.55578V94.6962H52.1341C50.1303 94.6962 48.2085 93.9002 46.7916 92.4833C45.3746 91.0663 44.5786 89.1446 44.5786 87.1407V53.3927C44.5786 52.0568 44.0479 50.7756 43.1033 49.831C42.1587 48.8863 40.8775 48.3556 39.5416 48.3556H7.13675C6.69145 48.3556 6.26439 48.5325 5.94951 48.8474C5.63464 49.1623 5.45774 49.5894 5.45774 50.0347C5.45774 50.48 5.63464 50.907 5.94951 51.2219C6.26439 51.5368 6.69145 51.7137 7.13675 51.7137H38.5342C39.2467 51.7137 39.93 51.9967 40.4338 52.5005C40.9376 53.0043 41.2206 53.6876 41.2206 54.4001V94.6962H8.14416C6.1403 94.6962 4.21853 93.9002 2.80159 92.4833C1.38465 91.0663 0.588623 89.1446 0.588623 87.1407V0.000244141H33.6651C35.6689 0.000244141 37.5907 0.796273 39.0076 2.21321C40.4246 3.63015 41.2206 5.55192 41.2206 7.55578V41.1359C41.2206 42.4718 41.7513 43.753 42.6959 44.6976C43.6405 45.6423 44.9217 46.1729 46.2576 46.1729H78.6625C79.1078 46.1729 79.5348 45.996 79.8497 45.6812C80.1646 45.3663 80.3415 44.9392 80.3415 44.4939C80.3415 44.0486 80.1646 43.6216 79.8497 43.3067C79.5348 42.9918 79.1078 42.8149 78.6625 42.8149H47.265C46.5525 42.8149 45.8692 42.5319 45.3654 42.0281C44.8616 41.5243 44.5786 40.841 44.5786 40.1285V0.000244141H77.655C79.6589 0.000244141 81.5807 0.796273 82.9976 2.21321C84.4146 3.63015 85.2106 5.55192 85.2106 7.55578Z"
+        />
+      </svg>
+    </span>
+  );
+}
+
+function MockDeploy() {
+  const carriers = [
+    { label: "Plivo", short: "P", color: "#7B6AE5" },
+    { label: "Exotel", short: "E", color: "#3FA8E3" },
+    { label: "Tata Tele", short: "T", color: "#4076CB" },
+    { label: "Twilio", short: "T", color: "#F0354A" }
+  ];
+
+  return (
+    <div className="space-y-4">
+      {/* Header — speed indicator */}
+      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+        <span className="flex items-center gap-1.5 font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/60">
+          <span className="h-1 w-1 animate-pulse rounded-full bg-white" />
+          Routed & live
+        </span>
+        <span className="font-sans text-[10px] uppercase tracking-[0.22em] text-white/55">
+          Ready in{" "}
+          <span className="font-semibold tracking-tight text-white">
+            ~2 min
+          </span>
+        </span>
+      </div>
+
+      {/* PREFERRED — HoomanLabs Telephony at the top of the list */}
+      <div className="relative overflow-hidden rounded-xl border-[1.5px] border-white/25 bg-white/[0.05] p-3.5 shadow-[0_10px_30px_-15px_rgba(255,255,255,0.18)]">
+        {/* Subtle neutral glow from corner */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.08), transparent 55%)"
+          }}
+        />
+
+        <div className="relative">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex items-center gap-2.5">
+              <HoomanMarkChip />
+              <div>
+                <div className="font-sans text-[13px] font-semibold text-white">
+                  HoomanLabs Telephony
+                </div>
+                <div className="font-sans text-[10.5px] text-white/60">
+                  Managed Indian numbers · 50+ circles
+                </div>
+              </div>
+            </div>
+            <span className="flex shrink-0 items-center gap-1 rounded-full border border-white/35 bg-white/10 px-2 py-[3px] font-sans text-[9.5px] font-semibold uppercase tracking-[0.18em] text-white">
+              <Check size={9} strokeWidth={3} />
+              Preferred
+            </span>
+          </div>
+
+          {/* Active call mini-display */}
+          <div className="mt-3 flex items-center justify-between rounded-lg border border-white/10 bg-black/40 px-3 py-2">
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5 font-sans text-[9px] font-medium uppercase tracking-[0.22em] text-white/60">
+                <PhoneCall size={9} strokeWidth={2.5} />
+                Active call
+              </div>
+              <div className="mt-0.5 font-sans text-[14px] font-semibold tabular-nums tracking-tight text-white">
+                +91 98765 43210
+              </div>
+              <div className="font-sans text-[10px] text-white/55">
+                Mumbai · Brightside Dental
+              </div>
+            </div>
+            <div className="flex items-end gap-[2px]">
+              {[3, 5, 7, 9].map((h, i) => (
+                <span
+                  key={i}
+                  className="w-[2px] rounded-sm bg-white/70"
+                  style={{ height: `${h}px` }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* OR section header */}
+      <div className="flex items-center gap-3 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-white/45">
+        <span>Or bring your own</span>
+        <span className="h-px flex-1 bg-white/[0.07]" />
+      </div>
+
+      {/* Carrier list — vertical, divided, BYO options */}
+      <ul className="divide-y divide-white/[0.06] overflow-hidden rounded-xl border border-white/10 bg-white/[0.02]">
+        {carriers.map((c) => (
+          <li
+            key={c.label}
+            className="flex items-center gap-3 px-3.5 py-2.5"
+          >
+            <span
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/[0.04]"
+              style={{
+                boxShadow: `inset 0 -8px 14px -10px ${c.color}88`
+              }}
+            >
+              <span
+                className="font-sans text-[13px] font-bold leading-none"
+                style={{ color: c.color }}
+              >
+                {c.short}
+              </span>
+            </span>
+            <span className="font-sans text-[12.5px] font-medium text-white/90">
+              {c.label}
+            </span>
+            <span className="ml-auto flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.18em] text-white/50">
+              <span className="h-1 w-1 rounded-full bg-white/50" />
+              Plug in
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      {/* Benefits row */}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-[10.5px] text-white/55">
+        <span className="flex items-center gap-1">
+          <Check size={10} strokeWidth={2.5} className="text-white/70" />
+          Keep DIDs
+        </span>
+        <span className="flex items-center gap-1">
+          <Check size={10} strokeWidth={2.5} className="text-white/70" />
+          Keep pricing
+        </span>
+        <span className="flex items-center gap-1">
+          <Check size={10} strokeWidth={2.5} className="text-white/70" />
+          No migration
+        </span>
       </div>
     </div>
   );
@@ -960,11 +1133,12 @@ export function FeatureBento() {
               [01] &nbsp; Features
             </p>
             <h1 className="mt-5 max-w-4xl font-serif text-[clamp(2.25rem,4.6vw,3.5rem)] font-normal leading-[1.02] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
-              Everything you need to ship a voice agent that picks up.
+              Conversations without borders.
             </h1>
             <p className="mt-5 max-w-xl text-[15px] font-medium leading-[1.6] text-white/85 drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
-              Voice, languages, telephony, transcripts, audit trail — one
-              platform built for India-first care and service teams.
+              Real-time voice AI engineered for global scale: 100+ languages,
+              sub-second latency, 99.99% uptime. Wherever your customers are,
+              we&apos;re already there.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-2">
               <a
@@ -984,165 +1158,79 @@ export function FeatureBento() {
           </div>
         </motion.div>
 
-        {/* ASYMMETRIC BENTO — Paraform-style 12-col */}
-        <div className="mt-4 grid gap-4 md:grid-cols-12 md:grid-rows-2 md:auto-rows-fr">
-          {/* Card 1 — BUILD (large left, spans 2 rows) */}
-          <article className="relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] md:col-span-7 md:row-span-2">
-            {/* Background image */}
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-cover bg-center"
-              style={{
-                backgroundImage: "url('/BackgroundImage.jpg')",
-                opacity: 0.4
-              }}
-            />
-            {/* Dark scrim — stronger at top/bottom so text reads clearly on the image */}
-            <div
-              aria-hidden
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 25%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.6) 75%, rgba(0,0,0,0.88) 100%)"
-              }}
-            />
-            <div className="relative p-7 md:p-10">
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/65">
-                Build
-              </p>
-              <h3 className="mt-4 max-w-xl font-gilroy text-[28px] font-semibold leading-[1.1] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:text-[34px]">
-                Build production-ready agents with no experience.
-              </h3>
-            </div>
-            <div className="relative flex flex-1 items-center justify-center px-6 pb-6 md:px-10">
-              <MockBuild />
-            </div>
-            <div className="relative p-7 pt-0 md:p-10 md:pt-0">
-              <p className="max-w-lg text-[15.5px] font-medium leading-[1.55] text-white/85 drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)] md:text-[16px]">
-                Tell Hooman what you want to build. No voice-AI experience
-                needed — describe the use case in plain English (or Hindi),
-                pick the voice, ship in minutes.
-              </p>
-            </div>
-          </article>
-
-          {/* Card 2 — SIMULATION (large right, spans 2 rows) */}
-          <article className="relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] md:col-span-5 md:row-span-2">
-            <div className="p-7 md:p-8">
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/55">
-                Simulation
-              </p>
-              <h3 className="mt-3 max-w-md font-gilroy text-[22px] font-semibold leading-[1.15] tracking-tight text-white md:text-[26px]">
-                Stress-test every conversation before it ships.
-              </h3>
-              <p className="mt-3 max-w-md text-[14px] leading-[1.55] text-white/65">
-                Run thousands of edge cases against your agent on every
-                change — interruptions, code-switches, noisy lines, off-script
-                asks. Promote to production only when every scenario passes.
-              </p>
-            </div>
-            <div className="relative flex-1 px-7 pb-7">
-              <MockSimulation />
-            </div>
-          </article>
-        </div>
-
-        {/* Bottom 3-up — OBSERVABILITY + BYOT (wider, highlighted) + INTEGRATIONS */}
-        <div className="mt-4 grid gap-4 md:grid-cols-[1fr_1.6fr_1fr]">
-          {/* OBSERVABILITY */}
-          <article className="relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025]">
-            <div className="p-6">
-              <p className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/55">
-                Observability
-              </p>
-              <h3 className="mt-3 font-sans text-[18px] font-semibold leading-[1.2] tracking-tight text-white md:text-[20px]">
-                See exactly what happens.
-              </h3>
-              <p className="mt-2 text-[13px] leading-[1.5] text-white/60">
-                Live event log for every call — flagged moments, tool calls,
-                full audit trail.
-              </p>
-            </div>
-            <div className="relative flex-1 px-6 pb-6">
-              <MockObservability />
-            </div>
-          </article>
-
-          {/* BYOT — Bring Your Own Telephony (marquee card, coral wash only) */}
-          <article className="relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.5)]">
-            {/* Subtle coral wash backdrop */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(ellipse at 50% 0%, rgba(247,126,92,0.18), transparent 55%)"
-              }}
-            />
-            <div className="relative p-6 md:p-7">
-              <div className="flex items-center gap-2">
-                <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-[#F77E5C]">
-                  Telephony
-                </p>
-                <span className="rounded-sm border border-[#F77E5C]/40 bg-[#F77E5C]/10 px-1.5 py-[2px] font-sans text-[9.5px] font-medium uppercase tracking-[0.18em] text-[#FFB58F]">
-                  India-first
+        {/* 2 × 2 grid — Build, Simulate, Deploy, Observability.
+            Each card is a Link to its dedicated detail page. Same typography
+            and same spacing across all four for clean visual hierarchy. */}
+        <div className="mt-4 grid gap-4 md:grid-cols-2 md:auto-rows-fr">
+          {[
+            {
+              eyebrow: "Build",
+              title: "Ship a production-ready agent in an afternoon.",
+              description:
+                "Describe what you want in plain English or Hindi. Drop in your knowledge base, pick a voice. HoomanLabs writes the prompts, wires up the tools, and remembers every caller across every call — your ops team launches it the same day, no engineers.",
+              href: "/features/details#build",
+              mock: <MockBuild />,
+              visualClassName:
+                "relative flex flex-1 items-end justify-center px-6 pb-7 md:px-8"
+            },
+            {
+              eyebrow: "Simulate",
+              title: "Run every scenario. Vibe-check the tone. Ship with confidence.",
+              description:
+                "Every change runs through 16,000+ conversational scenarios — interruptions, code-switches, noisy lines, off-script asks. Then a side-by-side vibe-check so you hear the difference, not just read the diff. Promote only when the numbers and the vibe both pass.",
+              href: "/features/details#simulate",
+              mock: <MockSimulation />,
+              visualClassName: "relative flex-1 px-7 pb-7"
+            },
+            {
+              eyebrow: "Deploy",
+              title: "Live in minutes. Our telephony or yours.",
+              description:
+                "Pick a HoomanLabs number and you're routing calls in minutes. Bringing your own line? Plug Plivo, Exotel, Tata, or Twilio straight in — same agent, same SIP, no migration, no procurement.",
+              href: "/features/details#deploy",
+              mock: <MockDeploy />,
+              visualClassName: "relative flex-1 px-7 pb-7"
+            },
+            {
+              eyebrow: "Observability",
+              title: "See exactly what happens, every time.",
+              description:
+                "Watch every call in real time — flagged moments, tool calls, audit-grade event log for enterprise QA.",
+              href: "/features/details#observability",
+              mock: <MockObservability />,
+              visualClassName: "relative flex-1 px-7 pb-7"
+            }
+          ].map((card) => (
+            <Link
+              key={card.eyebrow}
+              href={card.href}
+              className="group relative block h-full"
+            >
+              <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] transition-all duration-300 group-hover:border-white/25 group-hover:bg-white/[0.035]">
+                {/* Arrow chip — subtle by default, lights up on hover */}
+                <span className="absolute right-5 top-5 z-10 flex h-7 w-7 items-center justify-center rounded-md border border-white/10 bg-black/30 text-white/45 transition-all duration-300 group-hover:border-white/35 group-hover:bg-black/55 group-hover:text-white">
+                  <ArrowUpRight size={13} strokeWidth={2.2} />
                 </span>
-              </div>
-              <h3 className="mt-3 font-sans text-[22px] font-semibold leading-[1.15] tracking-tight text-white md:text-[26px]">
-                Bring your own telephony.
-              </h3>
-              <p className="mt-3 max-w-md text-[14px] leading-[1.55] text-white/70">
-                Plug in your existing Plivo, Exotel, Tata, or Twilio numbers.
-                Keep your pricing, keep your DIDs — we just route the calls.
-              </p>
-            </div>
-            <div className="relative flex-1 px-6 pb-6 md:px-7 md:pb-7">
-              <MockBYOT />
-            </div>
-          </article>
 
-          {/* INTEGRATIONS */}
-          <article className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025]">
-            <div className="relative p-6">
-              <span className="absolute right-5 top-5 flex h-7 w-7 items-center justify-center rounded-md border border-white/15 text-white/70 transition-colors group-hover:border-white/40 group-hover:text-white">
-                <ArrowUpRight size={13} strokeWidth={2.2} />
-              </span>
-              <p className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/55">
-                Integrations
-              </p>
-              <h3 className="mt-3 font-sans text-[18px] font-semibold leading-[1.2] tracking-tight text-white md:text-[20px]">
-                Plugs into your stack.
-              </h3>
-              <p className="mt-2 text-[13px] leading-[1.5] text-white/60">
-                Works with your current CRM, scheduling, and messaging — zero
-                friction.
-              </p>
-            </div>
-            <div className="relative flex-1 px-6 pb-6">
-              <MockIntegrations />
-            </div>
-          </article>
+                {/* Text block — identical structure on every card */}
+                <div className="p-7 md:p-8">
+                  <p className="font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
+                    {card.eyebrow}
+                  </p>
+                  <h3 className="mt-3 max-w-md pr-10 font-sans text-[22px] font-semibold leading-[1.15] tracking-tight text-white md:text-[26px]">
+                    {card.title}
+                  </h3>
+                  <p className="mt-3 max-w-md text-[14px] leading-[1.55] text-white/65">
+                    {card.description}
+                  </p>
+                </div>
+
+                {/* Visual block */}
+                <div className={card.visualClassName}>{card.mock}</div>
+              </article>
+            </Link>
+          ))}
         </div>
-
-        {/* CONTEXT & MEMORY — full-width card with 3 internal columns */}
-        <article className="relative mt-4 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025]">
-          <div className="grid items-start gap-6 p-7 md:grid-cols-[1fr_2fr] md:gap-10 md:p-9">
-            <div>
-              <p className="font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
-                Context &amp; Memory
-              </p>
-              <h3 className="mt-3 font-sans text-[22px] font-semibold leading-[1.15] tracking-tight text-white md:text-[26px]">
-                Tools, history, and a real knowledge base.
-              </h3>
-              <p className="mt-3 max-w-md text-[14px] leading-[1.55] text-white/65">
-                The agent reaches for the right tool, remembers what the
-                caller said last week, and answers from your indexed docs —
-                not a stale prompt.
-              </p>
-            </div>
-            <MockContextMemory />
-          </div>
-        </article>
       </div>
     </section>
   );

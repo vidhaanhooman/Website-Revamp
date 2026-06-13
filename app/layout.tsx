@@ -3,7 +3,9 @@ import {
   Inter,
   JetBrains_Mono,
   Instrument_Serif,
-  Manrope
+  Manrope,
+  Anton,
+  VT323
 } from "next/font/google";
 import "./globals.css";
 
@@ -38,6 +40,22 @@ const gilroy = Manrope({
   display: "swap"
 });
 
+// Anton — condensed bold display sans, used for retro 90s headlines.
+const anton = Anton({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-anton",
+  display: "swap"
+});
+
+// VT323 — pixel-mono terminal font, used for retro subtitles + chrome.
+const vt323 = VT323({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-pixel",
+  display: "swap"
+});
+
 export const metadata: Metadata = {
   title: "HoomanLabs — One platform for all your voice agents",
   description:
@@ -61,7 +79,7 @@ export default function RootLayout({
     <html
       lang="en"
       // Dark theme is the default — every dark: Tailwind variant fires.
-      className={`dark ${sans.variable} ${mono.variable} ${serif.variable} ${gilroy.variable}`}
+      className={`dark ${sans.variable} ${mono.variable} ${serif.variable} ${gilroy.variable} ${anton.variable} ${vt323.variable}`}
       suppressHydrationWarning
     >
       <body className="bg-dark text-dark-text">{children}</body>

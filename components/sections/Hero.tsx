@@ -35,11 +35,19 @@ export function Hero() {
         {/* Spacer that drives the section height */}
         <div className="h-[100svh] min-h-[640px] w-full" aria-hidden />
 
-        {/* Very soft bottom fade — just enough to anchor the buttons on the
-            grass without making the image read as dark */}
+        {/* Left-side scrim — keeps the left-aligned headline legible */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[40%] bg-gradient-to-t from-black/30 via-black/10 to-transparent"
+          className="pointer-events-none absolute inset-0 z-10"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.45) 25%, rgba(0,0,0,0.22) 50%, rgba(0,0,0,0.05) 75%, transparent 100%)"
+          }}
+        />
+        {/* Bottom fade — anchors the marquee and CTAs */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[40%] bg-gradient-to-t from-black/45 via-black/15 to-transparent"
         />
 
         {/* Customer marquee — floats over the bottom of the image */}
@@ -76,25 +84,25 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Centered content stack — sits over the image */}
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center">
+        {/* Left-aligned content stack — sits over the image */}
+        <div className="absolute inset-0 z-20 flex flex-col items-start justify-center px-6 md:px-12 lg:px-16">
           <motion.h1
             {...fadeUp(0.05)}
-            className="max-w-5xl font-serif text-[clamp(2.75rem,7vw,5.5rem)] font-normal leading-[0.98] tracking-tight text-white"
+            className="max-w-5xl font-serif text-[clamp(2.75rem,7vw,5.5rem)] font-normal leading-[0.98] tracking-tight text-white drop-shadow-[0_2px_22px_rgba(0,0,0,0.55)]"
           >
             {c.headline}
           </motion.h1>
 
           <motion.p
             {...fadeUp(0.15)}
-            className="mt-6 max-w-xl text-[15.5px] font-medium leading-[1.55] text-white sm:text-[16px]"
+            className="mt-6 max-w-xl text-[15.5px] font-medium leading-[1.55] text-white drop-shadow-[0_1px_10px_rgba(0,0,0,0.5)] sm:text-[16px]"
           >
             {c.description}
           </motion.p>
 
           <motion.div
             {...fadeUp(0.25)}
-            className="mt-8 flex flex-wrap items-center justify-center gap-2.5"
+            className="mt-8 flex flex-wrap items-center gap-2.5"
           >
             <a href={c.primary.href}>
               <button className="inline-flex items-center gap-1.5 rounded-full bg-ink px-5 py-2.5 text-[14px] font-medium text-white shadow-[0_8px_24px_-8px_rgba(0,0,0,0.4)] transition-colors hover:bg-ink-soft">

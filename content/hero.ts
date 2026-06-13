@@ -5,9 +5,9 @@ export const heroContent = {
     alt: "Aurora gradient — voice AI without borders",
     caption: "HeroNew.png"
   },
-  headline: "Conversations without borders",
+  headline: "Everything you need to ship a voice agent that picks up.",
   description:
-    "Real-time voice AI engineered for global scale: 100+ languages, sub-second latency, 99.99% uptime. Wherever your customers are, we're already there.",
+    "Voice, languages, telephony, transcripts, audit trail — one platform built for India-first care and service teams.",
   primary: { label: "Build your agent", href: "#signup" },
   secondary: { label: "See it live", href: "#demo" }
 };
