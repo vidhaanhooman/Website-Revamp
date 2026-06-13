@@ -9,14 +9,14 @@ export interface Testimonial {
   tone: "ember" | "violet" | "mint" | "rose" | "sky" | "amber";
   /** Short brand label shown at top of large cards. */
   brand?: string;
-  /** Card size — large cards span 2 rows on desktop. */
+  /** Card size - large cards span 2 rows on desktop. */
   size?: "small" | "large";
   /** Accent style for large cards. */
   accent?: "white" | "coral";
 }
 
 export const testimonials: Testimonial[] = [
-  // Large left — white accent
+  // Large left - white accent
   {
     quote:
       "Maya handled three weeks of rescheduling without a single complaint. We stopped staffing the after-hours line entirely. Patients are talking to her in Hindi at 11pm and getting same-night confirmations.",
@@ -29,10 +29,10 @@ export const testimonials: Testimonial[] = [
     size: "large",
     accent: "white"
   },
-  // Middle column — three small
+  // Middle column - three small
   {
     quote:
-      "Forwarded the main line on a Friday — queue was gone by Monday. The voice is genuinely warm. Patients haven't noticed.",
+      "Forwarded the main line on a Friday - queue was gone by Monday. The voice is genuinely warm. Patients haven't noticed.",
     author: "Marcus L.",
     role: "Founder",
     company: "Apex Home Services",
@@ -57,7 +57,7 @@ export const testimonials: Testimonial[] = [
     initials: "SR",
     tone: "sky"
   },
-  // Right column top — small
+  // Right column top - small
   {
     quote:
       "We doubled volume without adding a single person. The dashboard is the only place I look on Monday morning.",
@@ -67,7 +67,7 @@ export const testimonials: Testimonial[] = [
     initials: "AK",
     tone: "rose"
   },
-  // Bottom row left — small
+  // Bottom row left - small
   {
     quote:
       "Plugged in our existing Plivo line, picked the languages, gone live in a day. No procurement, no waiting.",
@@ -77,7 +77,7 @@ export const testimonials: Testimonial[] = [
     initials: "RD",
     tone: "amber"
   },
-  // Large right — coral accent
+  // Large right - coral accent
   {
     quote:
       "We were paying ₹40 per call for an offshore team that couldn't speak Tamil. HoomanLabs is ₹0.40, picks up in three rings, and the patient never asks for a human.",

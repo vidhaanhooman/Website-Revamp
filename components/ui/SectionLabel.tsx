@@ -1,4 +1,4 @@
-/** Editorial chapter marker — placed between sections to give the page rhythm. */
+/** Editorial chapter marker - placed between sections to give the page rhythm. */
 export function SectionLabel({
   number,
   name,

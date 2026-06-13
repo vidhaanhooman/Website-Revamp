@@ -31,7 +31,7 @@ const serif = Instrument_Serif({
   display: "swap"
 });
 
-// Manrope as a Gilroy-Medium substitute — closest free Google Fonts geometric
+// Manrope as a Gilroy-Medium substitute - closest free Google Fonts geometric
 // humanist sans. Swap to a local Gilroy via @next/font/local if you license it.
 const gilroy = Manrope({
   subsets: ["latin"],
@@ -40,7 +40,7 @@ const gilroy = Manrope({
   display: "swap"
 });
 
-// Anton — condensed bold display sans, used for retro 90s headlines.
+// Anton - condensed bold display sans, used for retro 90s headlines.
 const anton = Anton({
   subsets: ["latin"],
   weight: ["400"],
@@ -48,7 +48,7 @@ const anton = Anton({
   display: "swap"
 });
 
-// VT323 — pixel-mono terminal font, used for retro subtitles + chrome.
+// VT323 - pixel-mono terminal font, used for retro subtitles + chrome.
 const vt323 = VT323({
   subsets: ["latin"],
   weight: ["400"],
@@ -57,7 +57,7 @@ const vt323 = VT323({
 });
 
 export const metadata: Metadata = {
-  title: "HoomanLabs — One platform for all your voice agents",
+  title: "HoomanLabs - One platform for all your voice agents",
   description:
     "Build, test, deploy, and monitor production-grade AI voice agents. Orchestration, real-time monitoring, and enterprise-grade configurability for healthcare and service businesses.",
   metadataBase: new URL("https://hoomanlabs.ai"),
@@ -78,7 +78,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      // Dark theme is the default — every dark: Tailwind variant fires.
+      // Dark theme is the default - every dark: Tailwind variant fires.
       className={`dark ${sans.variable} ${mono.variable} ${serif.variable} ${gilroy.variable} ${anton.variable} ${vt323.variable}`}
       suppressHydrationWarning
     >

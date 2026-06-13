@@ -12,12 +12,12 @@ export const faqs = [
   {
     question: "Is it HIPAA-compliant?",
     answer:
-      "Yes — BAA available on day one, SOC 2 Type II, GDPR DPA on file. PII is redacted from transcripts; per-call audit trails are exportable."
+      "Yes - BAA available on day one, SOC 2 Type II, GDPR DPA on file. PII is redacted from transcripts; per-call audit trails are exportable."
   },
   {
     question: "Can I keep my existing number?",
     answer:
-      "Yes. Port the number, forward calls, or route by SIP. Pick the path that matches your stack — we'll handle the rest."
+      "Yes. Port the number, forward calls, or route by SIP. Pick the path that matches your stack - we'll handle the rest."
   },
   {
     question: "How long does it take to get live?",

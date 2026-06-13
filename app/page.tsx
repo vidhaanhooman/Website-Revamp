@@ -14,7 +14,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <AgentDemo />
-      {/* Dark band — calls counter + features */}
+      {/* Dark band - calls counter + features */}
       <div className="relative bg-dark text-dark-text">
         <CallsCounter />
         <FeatureBento />

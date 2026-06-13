@@ -4,7 +4,7 @@ import { FaqAndCall } from "@/components/sections/FaqAndCall";
 import { Footer } from "@/components/sections/Footer";
 
 export const metadata = {
-  title: "Pricing — HoomanLabs",
+  title: "Pricing - HoomanLabs",
   description:
     "Usage-based pricing for AI voice agents. Launch from ₹3.50/min, Grow at ₹2.50/min with QA + simulation, Scale on volume contracts."
 };

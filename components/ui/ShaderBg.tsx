@@ -5,7 +5,7 @@ import type { ComponentType, PropsWithChildren } from "react";
 
 /**
  * Lazy-loaded shader-gradient surface (Three.js under the hood, ~400kB).
- * Loaded client-side only — the Canvas needs the DOM.
+ * Loaded client-side only - the Canvas needs the DOM.
  *
  * The package's TS declarations are missing several runtime-supported
  * props (axesHelper, envPreset, lightType, etc.), so we cast the lazy
@@ -86,9 +86,9 @@ export const BLUE_PRESET: ShaderBgPreset = {
   brightness: 1.1
 };
 
-/* ---------- Categories cards — saturated, painterly --------- */
+/* ---------- Categories cards - saturated, painterly --------- */
 
-/** Coral / orange — Bring Your Own Telephony */
+/** Coral / orange - Bring Your Own Telephony */
 export const CORAL_PRESET: ShaderBgPreset = {
   color1: "#FF6B3A",
   color2: "#E73779",
@@ -105,7 +105,7 @@ export const CORAL_PRESET: ShaderBgPreset = {
   brightness: 1.15
 };
 
-/** Hot pink / magenta — Self Evaluations */
+/** Hot pink / magenta - Self Evaluations */
 export const PINK_PRESET: ShaderBgPreset = {
   color1: "#E73779",
   color2: "#B23BD0",
@@ -122,7 +122,7 @@ export const PINK_PRESET: ShaderBgPreset = {
   brightness: 1.1
 };
 
-/** Violet / lavender — Lowest Latency */
+/** Violet / lavender - Lowest Latency */
 export const VIOLET_PRESET: ShaderBgPreset = {
   color1: "#9B89D8",
   color2: "#7B5AE0",
@@ -139,7 +139,7 @@ export const VIOLET_PRESET: ShaderBgPreset = {
   brightness: 1.15
 };
 
-/** Retro — saturated orange / cream / lavender, the shadergradient.co
+/** Retro - saturated orange / cream / lavender, the shadergradient.co
     "Retro" customize endpoint, retuned for full-bleed hero backdrops. */
 export const RETRO_PRESET: ShaderBgPreset = {
   color1: "#ff5005",

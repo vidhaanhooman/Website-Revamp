@@ -24,7 +24,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   const isLarge = t.size === "large";
   const accent = t.accent;
 
-  // Surface treatments — light theme. Large "white" accent inverts to ink.
+  // Surface treatments - light theme. Large "white" accent inverts to ink.
   const surface =
     accent === "white"
       ? "bg-ink text-white border-transparent shadow-[0_20px_60px_-20px_rgba(20,15,10,0.35)]"
@@ -128,9 +128,9 @@ export function Testimonials() {
           </p>
         </div>
 
-        {/* Asymmetric grid — desktop only; stacks on mobile */}
+        {/* Asymmetric grid - desktop only; stacks on mobile */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-3">
-          {/* Col 1 row 1-2 — large white */}
+          {/* Col 1 row 1-2 - large white */}
           <motion.div
             {...fadeUp(0)}
             className="md:col-start-1 md:row-span-2 md:row-start-1"
@@ -138,7 +138,7 @@ export function Testimonials() {
             <TestimonialCard t={largeWhite} />
           </motion.div>
 
-          {/* Col 2 row 1 — small */}
+          {/* Col 2 row 1 - small */}
           <motion.div
             {...fadeUp(0.04)}
             className="md:col-start-2 md:row-start-1"
@@ -146,7 +146,7 @@ export function Testimonials() {
             <TestimonialCard t={m1} />
           </motion.div>
 
-          {/* Col 3 row 1 — small */}
+          {/* Col 3 row 1 - small */}
           <motion.div
             {...fadeUp(0.08)}
             className="md:col-start-3 md:row-start-1"
@@ -154,7 +154,7 @@ export function Testimonials() {
             <TestimonialCard t={tr} />
           </motion.div>
 
-          {/* Col 2 row 2 — small */}
+          {/* Col 2 row 2 - small */}
           <motion.div
             {...fadeUp(0.12)}
             className="md:col-start-2 md:row-start-2"
@@ -162,7 +162,7 @@ export function Testimonials() {
             <TestimonialCard t={m2} />
           </motion.div>
 
-          {/* Col 3 row 2-3 — large coral */}
+          {/* Col 3 row 2-3 - large coral */}
           <motion.div
             {...fadeUp(0.16)}
             className="md:col-start-3 md:row-span-2 md:row-start-2"
@@ -170,7 +170,7 @@ export function Testimonials() {
             <TestimonialCard t={largeCoral} />
           </motion.div>
 
-          {/* Col 1 row 3 — small */}
+          {/* Col 1 row 3 - small */}
           <motion.div
             {...fadeUp(0.2)}
             className="md:col-start-1 md:row-start-3"
@@ -178,7 +178,7 @@ export function Testimonials() {
             <TestimonialCard t={bl} />
           </motion.div>
 
-          {/* Col 2 row 3 — small */}
+          {/* Col 2 row 3 - small */}
           <motion.div
             {...fadeUp(0.24)}
             className="md:col-start-2 md:row-start-3"

@@ -39,7 +39,7 @@ export function FeatureDetailHero({
             (preview ? "md:grid-cols-[1.05fr_0.95fr]" : "md:grid-cols-1")
           }
         >
-          {/* LEFT — copy */}
+          {/* LEFT - copy */}
           <div>
             <p className="font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
               {eyebrow}
@@ -67,7 +67,7 @@ export function FeatureDetailHero({
             </div>
           </div>
 
-          {/* RIGHT — optional preview */}
+          {/* RIGHT - optional preview */}
           {preview ? (
             <div className="relative hidden overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] p-6 md:block md:p-8">
               {preview}
@@ -79,7 +79,7 @@ export function FeatureDetailHero({
   );
 }
 
-/* ─── Placeholder shell — fills the page until real content lands ─── */
+/* ─── Placeholder shell - fills the page until real content lands ─── */
 interface FeatureContentPlaceholderProps {
   sections: { label: string; description: string }[];
 }
@@ -112,7 +112,7 @@ export function FeatureContentPlaceholder({
               </span>
             </div>
 
-            {/* Empty placeholder strip — visual stand-in for the eventual mock */}
+            {/* Empty placeholder strip - visual stand-in for the eventual mock */}
             <div className="relative mt-7 min-h-[220px] overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015]">
               <div
                 aria-hidden
@@ -131,7 +131,7 @@ export function FeatureContentPlaceholder({
   );
 }
 
-/* ─── Consolidated detail section — used on /features/details ─── */
+/* ─── Consolidated detail section - used on /features/details ─── */
 interface FeatureDetailSectionProps {
   id: string;
   eyebrow: string;
@@ -140,7 +140,7 @@ interface FeatureDetailSectionProps {
   sections: { label: string; description: string }[];
   /** Custom React visual (mock) for the bottom of the section. Takes priority over `image`. */
   visual?: React.ReactNode;
-  /** Optional bottom image — used when `visual` isn't provided. */
+  /** Optional bottom image - used when `visual` isn't provided. */
   image?: string;
   /** Alt text for the image. */
   imageAlt?: string;
@@ -168,7 +168,7 @@ export function FeatureDetailSection({
       style={{ scrollMarginTop: "100px" }}
     >
       <div className="mx-auto max-w-[1240px]">
-        {/* ONE consolidated unit per feature — header + sub-features + visual */}
+        {/* ONE consolidated unit per feature - header + sub-features + visual */}
         <article className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] p-8 md:p-12">
           {/* Header */}
           <div className="max-w-3xl">
@@ -183,7 +183,7 @@ export function FeatureDetailSection({
             </p>
           </div>
 
-          {/* Capability list — numbered, divided by hairlines, no per-row cards */}
+          {/* Capability list - numbered, divided by hairlines, no per-row cards */}
           <ul className="mt-12 divide-y divide-white/[0.06] border-y border-white/[0.06]">
             {sections.map((s, i) => (
               <li
@@ -205,7 +205,7 @@ export function FeatureDetailSection({
             ))}
           </ul>
 
-          {/* Bottom visual — custom React mock > image > dotted placeholder */}
+          {/* Bottom visual - custom React mock > image > dotted placeholder */}
           {visual ? (
             <div className="relative mt-10">{visual}</div>
           ) : image ? (

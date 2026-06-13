@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 
 interface SectionHeadingProps {
-  /** Small label that sits above the H2 (italic mono caption — sparing use). */
+  /** Small label that sits above the H2 (italic mono caption - sparing use). */
   caption?: string;
   title: ReactNode;
   description?: ReactNode;

@@ -22,7 +22,7 @@ export function Hero() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="relative isolate w-full overflow-hidden"
       >
-        {/* Full-bleed background image — runs edge-to-edge, no rounded card. */}
+        {/* Full-bleed background image - runs edge-to-edge, no rounded card. */}
         <div className="absolute inset-0 z-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -35,7 +35,7 @@ export function Hero() {
         {/* Spacer that drives the section height */}
         <div className="h-[100svh] min-h-[640px] w-full" aria-hidden />
 
-        {/* Left-side scrim — keeps the left-aligned headline legible */}
+        {/* Left-side scrim - keeps the left-aligned headline legible */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 z-10"
@@ -44,13 +44,13 @@ export function Hero() {
               "linear-gradient(90deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.45) 25%, rgba(0,0,0,0.22) 50%, rgba(0,0,0,0.05) 75%, transparent 100%)"
           }}
         />
-        {/* Bottom fade — anchors the marquee and CTAs */}
+        {/* Bottom fade - anchors the marquee and CTAs */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[40%] bg-gradient-to-t from-black/45 via-black/15 to-transparent"
         />
 
-        {/* Customer marquee — floats over the bottom of the image */}
+        {/* Customer marquee - floats over the bottom of the image */}
         <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 md:bottom-10">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -84,7 +84,7 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Left-aligned content stack — sits over the image */}
+        {/* Left-aligned content stack - sits over the image */}
         <div className="absolute inset-0 z-20 flex flex-col items-start justify-center px-6 md:px-12 lg:px-16">
           <motion.h1
             {...fadeUp(0.05)}

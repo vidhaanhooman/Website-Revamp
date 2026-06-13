@@ -145,39 +145,63 @@ export function BlogIndex() {
       style={{ backgroundColor: "#0a0a0d", color: INK }}
     >
       {/* HERO STRIP */}
-      <div className="mx-auto max-w-[1240px] px-4 pb-12 pt-24 md:pb-16 md:pt-28">
-        <p
-          className="font-sans text-[11px] font-medium uppercase tracking-[0.22em]"
-          style={{ color: INK_FAINT }}
-        >
-          [Resources] &nbsp; Blog &amp; field notes
-        </p>
-        <div className="mt-6 grid items-end gap-8 md:grid-cols-2 md:gap-14">
-          <h1
-            className="font-serif font-normal leading-[1] tracking-tight"
-            style={{
-              fontSize: "clamp(2.25rem, 5.6vw, 4.5rem)",
-              color: "#FFFFFF"
-            }}
-          >
-            Everything you need,
-            <br />
-            <span style={{ color: "rgba(255,255,255,0.45)" }}>
-              in one place.
-            </span>
-          </h1>
+      <div className="relative overflow-hidden">
+        {/* Background image — masked to fade out cleanly at the bottom edge */}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/BlogBG.png')",
+            WebkitMaskImage:
+              "linear-gradient(180deg, black 0%, black 55%, transparent 100%)",
+            maskImage:
+              "linear-gradient(180deg, black 0%, black 55%, transparent 100%)"
+          }}
+        />
+        {/* Scrim — ramps to solid page bg by the bottom so there's no seam */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(10,10,13,0.5) 0%, rgba(10,10,13,0.35) 40%, rgba(10,10,13,0.85) 80%, #0a0a0d 100%)"
+          }}
+        />
+
+        <div className="relative mx-auto max-w-[1240px] px-4 pb-12 pt-24 md:pb-16 md:pt-28">
           <p
-            className="max-w-md text-[15px] leading-[1.6] md:ml-auto"
-            style={{ color: "rgba(255,255,255,0.7)" }}
+            className="font-sans text-[11px] font-medium uppercase tracking-[0.22em]"
+            style={{ color: INK_FAINT }}
           >
-            Field notes from building voice agents in India — customer
-            stories, engineering deep-dives, and the choices that shape a
-            product. Organized for clarity, built to help you ship faster.
+            [Resources] &nbsp; Blog &amp; field notes
           </p>
+          <div className="mt-6 grid items-end gap-8 md:grid-cols-2 md:gap-14">
+            <h1
+              className="font-serif font-normal leading-[1] tracking-tight drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]"
+              style={{
+                fontSize: "clamp(2.25rem, 5.6vw, 4.5rem)",
+                color: "#FFFFFF"
+              }}
+            >
+              Everything you need,
+              <br />
+              <span style={{ color: "rgba(255,255,255,0.55)" }}>
+                in one place.
+              </span>
+            </h1>
+            <p
+              className="max-w-md text-[15px] leading-[1.6] drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)] md:ml-auto"
+              style={{ color: "rgba(255,255,255,0.78)" }}
+            >
+              Field notes from building voice agents in India - customer
+              stories, engineering deep-dives, and the choices that shape a
+              product. Organized for clarity, built to help you ship faster.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* BODY — sidebar + list */}
+      {/* BODY - sidebar + list */}
       <div className="mx-auto max-w-[1240px] px-4 pb-32">
         <div className="grid items-start gap-10 md:grid-cols-[260px_1fr] md:gap-16">
           {/* Sidebar */}

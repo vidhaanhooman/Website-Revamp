@@ -12,7 +12,7 @@ interface DotsFieldProps {
 
 /**
  * Grid of LED-style dots whose brightness falls off radially from the
- * centre of the field — mirrors the circular halo in the Luminous Labs CTA.
+ * centre of the field - mirrors the circular halo in the Luminous Labs CTA.
  */
 export function DotsField({
   rows = 12,

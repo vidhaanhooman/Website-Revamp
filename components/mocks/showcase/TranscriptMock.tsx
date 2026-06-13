@@ -12,7 +12,7 @@ const LINES: { who: "agent" | "patient"; lang: string; t: string; ms?: string }[
     who: "agent",
     lang: "EN",
     ms: "276ms",
-    t: "Of course — your 10:30 with Dr. Patel. Want Tuesday 2:15 PM instead?"
+    t: "Of course - your 10:30 with Dr. Patel. Want Tuesday 2:15 PM instead?"
   },
   {
     who: "patient",
@@ -23,7 +23,7 @@ const LINES: { who: "agent" | "patient"; lang: string; t: string; ms?: string }[
     who: "agent",
     lang: "EN",
     ms: "248ms",
-    t: "Done — Tuesday 19th, 2:15 PM. Confirmation sent to your number."
+    t: "Done - Tuesday 19th, 2:15 PM. Confirmation sent to your number."
   }
 ];
 

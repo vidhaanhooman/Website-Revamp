@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/cn";
 
-/* ---------- Card shell — subtle static coral tint, dual theme - */
+/* ---------- Card shell - subtle static coral tint, dual theme - */
 function DarkCard({
   className,
   children,
@@ -123,7 +123,7 @@ function HindiSwitchMock() {
   return (
     <div className="relative h-full w-full">
       <div className="relative flex h-full flex-col justify-center gap-4 p-7 sm:p-9">
-        {/* Row 1 — Patient pill + bubble */}
+        {/* Row 1 - Patient pill + bubble */}
         <div className="flex items-start gap-2.5">
           <span
             aria-hidden
@@ -160,7 +160,7 @@ function HindiSwitchMock() {
           />
         </svg>
 
-        {/* Row 2 — Maya pill + bubble */}
+        {/* Row 2 - Maya pill + bubble */}
         <div className="flex items-start justify-end gap-2.5">
           <div className="flex flex-col items-end gap-1.5">
             <span className="inline-flex items-center gap-1.5 self-end rounded-full bg-[#3B6BD8] px-2.5 py-0.5 text-[10.5px] font-medium text-white shadow-[0_6px_14px_-6px_rgba(59,107,216,0.55)]">
@@ -168,7 +168,7 @@ function HindiSwitchMock() {
               <span className="font-mono text-[9px] text-white/75">284ms</span>
             </span>
             <div className="max-w-[290px] rounded-2xl rounded-tr-md bg-[#3B6BD8] px-3.5 py-2.5 text-[12.5px] leading-snug text-white shadow-[0_14px_28px_-10px_rgba(59,107,216,0.45)]">
-              ज़रूर — Tuesday 19th, 2:15 PM with Dr. Patel. Confirm karu?
+              ज़रूर - Tuesday 19th, 2:15 PM with Dr. Patel. Confirm karu?
             </div>
           </div>
           <span
@@ -214,7 +214,7 @@ function TelephonyMock() {
   ];
   return (
     <div className="relative h-full w-full">
-      {/* warm halo behind the hub — only in dark */}
+      {/* warm halo behind the hub - only in dark */}
       <div
         aria-hidden
         className="absolute inset-0 hidden bg-[radial-gradient(closest-side_at_50%_38%,rgba(255,154,106,0.32),transparent_60%)] dark:block"
@@ -352,7 +352,7 @@ function ComplianceMock() {
 export function ProductReveal() {
   return (
     <section className="relative overflow-hidden bg-bg py-20 dark:bg-dark md:py-28">
-      {/* Ambient gradients — warm on the upper-left, cool on the lower-right */}
+      {/* Ambient gradients - warm on the upper-left, cool on the lower-right */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(45%_35%_at_18%_22%,rgba(247,126,92,0.10),transparent_70%),radial-gradient(40%_40%_at_82%_78%,rgba(122,140,255,0.08),transparent_70%)] dark:bg-[radial-gradient(45%_35%_at_18%_22%,rgba(247,126,92,0.18),transparent_70%),radial-gradient(40%_40%_at_82%_78%,rgba(122,140,255,0.14),transparent_70%)]"
@@ -378,7 +378,7 @@ export function ProductReveal() {
           </h2>
         </motion.header>
 
-        {/* Top wide card — text left, visual right */}
+        {/* Top wide card - text left, visual right */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -390,11 +390,11 @@ export function ProductReveal() {
               <div className="flex items-center p-8 md:p-10">
                 <CardLabel
                   icon={<Languages size={14} strokeWidth={1.75} />}
-                  title="Speaks 11 Indian languages — mid-sentence."
+                  title="Speaks 11 Indian languages - mid-sentence."
                   body={
                     <>
                       Hindi, Tamil, Telugu, Marathi, Bengali, Kannada,
-                      Gujarati, Malayalam, Punjabi, Urdu, and English —
+                      Gujarati, Malayalam, Punjabi, Urdu, and English -
                       code-switched in the same call. Patients keep talking the
                       way they actually talk.
                     </>
@@ -408,7 +408,7 @@ export function ProductReveal() {
           </DarkCard>
         </motion.div>
 
-        {/* 2-up grid — Raycast pattern: visual on top, label below */}
+        {/* 2-up grid - Raycast pattern: visual on top, label below */}
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -427,7 +427,7 @@ export function ProductReveal() {
                   body={
                     <>
                       Numbers, SIP routing, and DID pools managed for you on
-                      day one — or plug in your existing Plivo, Exotel, Tata
+                      day one - or plug in your existing Plivo, Exotel, Tata
                       Tele, or Twilio line if you&rsquo;d rather keep it.
                     </>
                   }
@@ -453,7 +453,7 @@ export function ProductReveal() {
                   body={
                     <>
                       PHI redaction on every transcript, per-call audit
-                      trail, and DPDP-aligned consent flow — exportable in a
+                      trail, and DPDP-aligned consent flow - exportable in a
                       format your security team can actually read.
                     </>
                   }

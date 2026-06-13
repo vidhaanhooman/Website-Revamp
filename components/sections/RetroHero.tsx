@@ -1,12 +1,12 @@
 "use client";
 
 /* ───────────────────────────────────────────────────────────────
-   Retro hero — uses the prebuilt PNGs in /public/retro/:
-     Win.png       — IE6 / Win95 browser chrome
-     BG.png        — sky + clouds backdrop
-     Phone.png     — orange handset, right side
-     Button.png    — CONNECT NOW pixel button
-     Features.png  — bottom 4-feature pill row
+   Retro hero - uses the prebuilt PNGs in /public/retro/:
+     Win.png       - IE6 / Win95 browser chrome
+     BG.png        - sky + clouds backdrop
+     Phone.png     - orange handset, right side
+     Button.png    - CONNECT NOW pixel button
+     Features.png  - bottom 4-feature pill row
 
    All positions are percentage-based so the composition scales
    with viewport. Tweak any `style={{ inset, top, left }}` to nudge.
@@ -29,7 +29,7 @@ export function RetroHero() {
 
         {/*
           The chrome PNG has a content slot somewhere in the middle.
-          These percentages frame that slot — adjust if the chrome
+          These percentages frame that slot - adjust if the chrome
           PNG dimensions change. They assume:
             top    ≈ 14% (below title bar / menu / toolbar / address)
             bottom ≈  4% (above status bar)
@@ -65,7 +65,7 @@ export function RetroHero() {
             draggable={false}
           />
 
-          {/* CTA button (clickable) — overlay on top of BG */}
+          {/* CTA button (clickable) - overlay on top of BG */}
           <a
             href="/#agent-demo"
             className="absolute z-10 inline-block transition-transform hover:translate-y-[2px]"

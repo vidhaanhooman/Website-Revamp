@@ -10,7 +10,7 @@ export interface PricingTier {
   name: string;
   /** Short summary of who the tier is for. */
   blurb: string;
-  /** Dual rate display — Standard + Premium per minute. */
+  /** Dual rate display - Standard + Premium per minute. */
   rates: AgentRate[];
   /** Optional small footnote under the rates (e.g. discount note). */
   rateNote?: string;

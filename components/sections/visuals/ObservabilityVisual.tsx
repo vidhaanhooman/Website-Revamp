@@ -1,4 +1,4 @@
-/* Observability feature visual — top: multi-series line chart (metrics).
+/* Observability feature visual - top: multi-series line chart (metrics).
    Bottom: compact event log (QA). */
 
 const SERIES = [

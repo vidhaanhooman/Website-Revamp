@@ -53,7 +53,7 @@ function CardSurface({
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-b from-transparent via-black/35 to-black/75"
       />
-      {/* Coarser overlay grain — gives the gradient analog film texture */}
+      {/* Coarser overlay grain - gives the gradient analog film texture */}
       <svg
         aria-hidden
         className="pointer-events-none absolute inset-0 z-10 h-full w-full opacity-[0.14] mix-blend-overlay"
@@ -69,7 +69,7 @@ function CardSurface({
         </filter>
         <rect width="100%" height="100%" filter="url(#card-grain)" />
       </svg>
-      {/* Finer secondary noise — keeps the texture from looking blocky */}
+      {/* Finer secondary noise - keeps the texture from looking blocky */}
       <svg
         aria-hidden
         className="pointer-events-none absolute inset-0 z-10 h-full w-full opacity-[0.06] mix-blend-soft-light"
@@ -119,7 +119,7 @@ function CardBody({ children }: { children: React.ReactNode }) {
 }
 
 /* ------------------------------------------------------------- */
-/*  Card 1 — Bring Your Own Telephony                            */
+/*  Card 1 - Bring Your Own Telephony                            */
 /* ------------------------------------------------------------- */
 function TelephonyTile({
   children,
@@ -151,7 +151,7 @@ function TelephonyCard() {
         </CardTitle>
       </div>
 
-      {/* Middle: brand row — real SVG logos, whitewashed via CSS filter */}
+      {/* Middle: brand row - real SVG logos, whitewashed via CSS filter */}
       <div className="flex w-full items-stretch gap-1.5">
         <TelephonyTile label="Plivo">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -172,7 +172,7 @@ function TelephonyCard() {
           />
         </TelephonyTile>
         <TelephonyTile label="Tata Tele">
-          {/* Tata wordmark — no SVG provided so we letterform it */}
+          {/* Tata wordmark - no SVG provided so we letterform it */}
           <span className="font-serif text-[18px] font-normal leading-none tracking-[-0.02em] text-white">
             TATA
           </span>
@@ -201,7 +201,7 @@ function TelephonyCard() {
 }
 
 /* ------------------------------------------------------------- */
-/*  Card 2 — Self Evaluations                                    */
+/*  Card 2 - Self Evaluations                                    */
 /* ------------------------------------------------------------- */
 function EvaluationsCard() {
   return (
@@ -243,7 +243,7 @@ function EvaluationsCard() {
 }
 
 /* ------------------------------------------------------------- */
-/*  Card 3 — Lowest Latency                                      */
+/*  Card 3 - Lowest Latency                                      */
 /* ------------------------------------------------------------- */
 function LatencyCard() {
   return (
@@ -291,7 +291,7 @@ function LatencyCard() {
       {/* Bottom: copy + cta */}
       <div className="flex flex-col gap-4">
         <CardBody>
-          Sub-second, human turn-taking — agents reply in ~300ms with no awkward
+          Sub-second, human turn-taking - agents reply in ~300ms with no awkward
           pauses.
         </CardBody>
         <CardCta label="View benchmarks" />

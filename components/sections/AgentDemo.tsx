@@ -103,7 +103,7 @@ function DottedSphere() {
     let auto = true;
     let raf = 0;
 
-    // BLAST state — 1 at moment of click, decays toward 0
+    // BLAST state - 1 at moment of click, decays toward 0
     let blast = 0;
     let jitters: { x: number; y: number; z: number }[] = [];
 
@@ -153,7 +153,7 @@ function DottedSphere() {
       const b = Math.round(255 - warmth * (255 - 90));
       const fill = `rgb(${r},${g},${b})`;
 
-      // Exponential decay — change is fast at the start (blast near 1) and
+      // Exponential decay - change is fast at the start (blast near 1) and
       // slows toward the end (blast near 0). Classic ease-out feel.
       if (blast > 0.001) blast *= 0.93;
       else blast = 0;
@@ -161,7 +161,7 @@ function DottedSphere() {
       for (let i = 0; i < basePoints.length; i++) {
         const p = basePoints[i];
 
-        // INWARD collapse — opposite direction from the previous outward blast.
+        // INWARD collapse - opposite direction from the previous outward blast.
         // At blast=1 dots are scrunched 15% from center; at blast=0 they're at
         // the base sphere. The exponential decay means they SPRING back fast
         // and ease into rest, which is the "start fast, end slow" cadence.
@@ -180,7 +180,7 @@ function DottedSphere() {
         const z2 = py * sx + z1 * cx;
 
         const depth = (z2 + 1) / 2; // 0 back → 1 front
-        // Silhouette-edge fade — |z2| is 0 at the sphere's rim and 1 at the front/back.
+        // Silhouette-edge fade - |z2| is 0 at the sphere's rim and 1 at the front/back.
         // Multiplying opacity by edgeFade quietens dots near the outline so the
         // sphere reads as a soft globe instead of a hard-edged disc.
         const edgeFade = Math.pow(Math.abs(z2), 0.85);
@@ -258,9 +258,9 @@ function DottedSphere() {
 
   return (
     <>
-      {/* Layout placeholder — reserves the sphere's slot inside the card. */}
+      {/* Layout placeholder - reserves the sphere's slot inside the card. */}
       <div ref={placeholderRef} className="h-full w-full" />
-      {/* Portal — sphere SVG lives on document.body so it can blast freely. */}
+      {/* Portal - sphere SVG lives on document.body so it can blast freely. */}
       {mounted && typeof document !== "undefined"
         ? createPortal(overlay, document.body)
         : null}
@@ -313,7 +313,7 @@ export function AgentDemo() {
   return (
     <section id="agent-demo" className="relative px-4 py-24 md:py-32">
       <div className="mx-auto max-w-[1180px]">
-        {/* Eyebrow + headline — single editorial line */}
+        {/* Eyebrow + headline - single editorial line */}
         <div className="mb-12 flex items-baseline justify-between border-b border-white/10 pb-6">
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/45">
             [01] &nbsp; Live Demo
@@ -332,11 +332,11 @@ export function AgentDemo() {
           </p>
         </div>
 
-        {/* Two panels — square, single hairline divider */}
+        {/* Two panels - square, single hairline divider */}
         <div className="grid overflow-hidden rounded-2xl border border-white/10 bg-white/[0.015] md:grid-cols-[1fr_1.05fr]">
-          {/* LEFT — dotted sphere panel */}
+          {/* LEFT - dotted sphere panel */}
           <div className="relative flex min-h-[520px] flex-col overflow-hidden border-b border-white/10 px-6 py-7 md:border-b-0 md:border-r md:px-9 md:py-9">
-            {/* Card header — Hooman mark + caps label */}
+            {/* Card header - Hooman mark + caps label */}
             <div className="flex items-center gap-2 text-white/85">
               <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/15 text-white">
                 <HoomanMark size={11} />
@@ -346,7 +346,7 @@ export function AgentDemo() {
               </span>
             </div>
 
-            {/* Bold headline + small caption — inspired by reference card */}
+            {/* Bold headline + small caption - inspired by reference card */}
             <h3 className="mt-4 max-w-xs text-[20px] font-semibold leading-[1.25] tracking-tight text-white md:text-[22px]">
               Hear how Asha handles a real conversation.
             </h3>
@@ -354,7 +354,7 @@ export function AgentDemo() {
               Customer voices, 22 languages, sub-second latency.
             </p>
 
-            {/* Dotted sphere — fills the remaining card space */}
+            {/* Dotted sphere - fills the remaining card space */}
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -367,14 +367,14 @@ export function AgentDemo() {
               </div>
             </motion.div>
 
-            {/* Footer caption — reacts to selected chip */}
+            {/* Footer caption - reacts to selected chip */}
             <div className="mt-6 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.22em] text-white/55">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
               {active.agent} · {active.label}
             </div>
           </div>
 
-          {/* RIGHT — focused form, Gilroy medium */}
+          {/* RIGHT - focused form, Gilroy medium */}
           <form
             className="flex flex-col font-gilroy font-medium"
             onSubmit={(e) => {
@@ -384,7 +384,7 @@ export function AgentDemo() {
             }}
           >
             <div className="flex-1 px-6 py-10 md:px-12 md:py-12">
-              {/* Use case — custom dropdown with visible options panel */}
+              {/* Use case - custom dropdown with visible options panel */}
               <div ref={dropdownRef} className="relative">
                 <label className="block font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">
                   01 · Use case

@@ -1,4 +1,4 @@
-/* Simulate feature visual — top: side-by-side vibe-check (v1.3.0 vs v1.3.1).
+/* Simulate feature visual - top: side-by-side vibe-check (v1.3.0 vs v1.3.1).
    Bottom: regression summary by category. */
 
 /* ─── helpers ─────────────────────────────────────────────── */
@@ -100,7 +100,7 @@ function Lane({
         />
         {pauseAt !== undefined ? (
           <g>
-            {/* Pause marker — vertical dim line */}
+            {/* Pause marker - vertical dim line */}
             <line
               x1={pauseAt}
               x2={pauseAt}
@@ -154,7 +154,7 @@ function DeltaRow({
       : dir === "down"
         ? "bg-[#E5413B]"
         : "bg-white/30";
-  const arrow = dir === "up" ? "↑" : dir === "down" ? "↓" : "—";
+  const arrow = dir === "up" ? "↑" : dir === "down" ? "↓" : "-";
 
   // Bar widths visualize the rate (0–100%)
   return (
@@ -181,7 +181,7 @@ function DeltaRow({
         }
       >
         <span>{arrow}</span>
-        <span>{delta === 0 ? "—" : `${Math.abs(delta).toFixed(1)} pts`}</span>
+        <span>{delta === 0 ? "-" : `${Math.abs(delta).toFixed(1)} pts`}</span>
       </div>
     </li>
   );
@@ -208,7 +208,7 @@ export function SimulateVisual() {
         </span>
       </div>
 
-      {/* TOP — vibe-check */}
+      {/* TOP - vibe-check */}
       <div className="border-b border-white/10 p-5 md:p-6">
         <div className="flex items-start justify-between gap-3">
           <div>
@@ -226,7 +226,7 @@ export function SimulateVisual() {
         </div>
 
         <div className="mt-5 space-y-3">
-          {/* v1.3.0 — before */}
+          {/* v1.3.0 - before */}
           <Lane
             version="v1.3.0"
             badge="Before"
@@ -239,13 +239,13 @@ export function SimulateVisual() {
             pauseAt={47}
           />
 
-          {/* v1.3.1 — after */}
+          {/* v1.3.1 - after */}
           <Lane
             version="v1.3.1"
             badge="After"
             color="#F77E5C"
             fillColor="rgba(247,126,92,0.08)"
-            transcript="Tuesday at 2:15 PM with Dr. Patel — confirmed."
+            transcript="Tuesday at 2:15 PM with Dr. Patel - confirmed."
             latency="248 ms"
             highlighted
             seed={59}
@@ -253,7 +253,7 @@ export function SimulateVisual() {
         </div>
       </div>
 
-      {/* BOTTOM — regression deltas */}
+      {/* BOTTOM - regression deltas */}
       <div className="p-5 md:p-6">
         <div className="mb-3 flex items-center justify-between">
           <span className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/55">

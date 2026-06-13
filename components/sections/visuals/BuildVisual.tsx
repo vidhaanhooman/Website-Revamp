@@ -1,4 +1,4 @@
-/* Build feature visual — no-code agent builder canvas with a fuller node graph
+/* Build feature visual - no-code agent builder canvas with a fuller node graph
    than the bento version. macOS chrome + dotted grid + 6 connected nodes. */
 
 export function BuildVisual() {
@@ -30,7 +30,7 @@ export function BuildVisual() {
           }}
         />
 
-        {/* Connectors — viewBox 100x56 matches 16:9 aspect (16/9 ≈ 100/56.25).
+        {/* Connectors - viewBox 100x56 matches 16:9 aspect (16/9 ≈ 100/56.25).
             Coordinates are percentages along x; y is css_percent × 0.56. */}
         <svg
           aria-hidden

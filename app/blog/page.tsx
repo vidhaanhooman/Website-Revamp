@@ -3,9 +3,9 @@ import { Footer } from "@/components/sections/Footer";
 import { BlogIndex } from "@/components/sections/BlogIndex";
 
 export const metadata = {
-  title: "Blog — HoomanLabs",
+  title: "Blog - HoomanLabs",
   description:
-    "Field notes from building voice agents in India — customer stories, engineering deep-dives, and product updates."
+    "Field notes from building voice agents in India - customer stories, engineering deep-dives, and product updates."
 };
 
 export default function BlogPage() {

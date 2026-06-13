@@ -11,7 +11,7 @@ interface ThemeToggleProps {
 export function ThemeToggle({ className }: ThemeToggleProps) {
   const [theme, setTheme] = useState<"light" | "dark" | null>(null);
 
-  // Read the active theme on mount — the layout's pre-hydration script
+  // Read the active theme on mount - the layout's pre-hydration script
   // has already applied .dark to <html>, so this is just synchronising
   // React state with the DOM.
   useEffect(() => {

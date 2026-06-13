@@ -14,7 +14,7 @@ export interface BlogPost {
   description: string;
   date: string; // ISO
   readTime: string;
-  thumbColor: string; // hex — used for placeholder swatch
+  thumbColor: string; // hex - used for placeholder swatch
   thumbAccent?: string;
 }
 
@@ -27,7 +27,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "How Brightside Dental cut after-hours staffing by 84% with HoomanLabs.",
     description:
-      "A 12-branch dental group switched its evening line over to Maya and recovered an entire FTE in three weeks — with zero patient complaints.",
+      "A 12-branch dental group switched its evening line over to Maya and recovered an entire FTE in three weeks - with zero patient complaints.",
     date: "2026-06-01",
     readTime: "6 min read",
     thumbColor: "#F77E5C",
@@ -41,7 +41,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "Why Hindi–English code-switching is the dealbreaker for voice AI in India.",
     description:
-      "How callers actually talk: a teardown of 50,000 real conversations from healthcare, insurance, and service queues — and what it means for ASR.",
+      "How callers actually talk: a teardown of 50,000 real conversations from healthcare, insurance, and service queues - and what it means for ASR.",
     date: "2026-05-22",
     readTime: "9 min read",
     thumbColor: "#7257C7",
@@ -53,7 +53,7 @@ export const blogPosts: BlogPost[] = [
     topic: "Platform",
     industry: "All",
     title:
-      "Context & Memory — tools, history, and a real knowledge base.",
+      "Context & Memory - tools, history, and a real knowledge base.",
     description:
       "The agent now reaches for the right tool, remembers the caller's last interaction, and answers from your indexed docs. Here's how it works.",
     date: "2026-05-14",
@@ -68,7 +68,7 @@ export const blogPosts: BlogPost[] = [
     industry: "Healthcare",
     title: "DPDP-ready: audit trails, PHI redaction, and consent for India.",
     description:
-      "What the DPDP Act actually requires from a voice platform — and the engineering decisions that make compliance the easy part, not the long part.",
+      "What the DPDP Act actually requires from a voice platform - and the engineering decisions that make compliance the easy part, not the long part.",
     date: "2026-04-29",
     readTime: "7 min read",
     thumbColor: "#1F89C8",
@@ -96,7 +96,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "Engineering a sub-300ms voice agent pipeline across Indian carriers.",
     description:
-      "The full stack — STT, LLM, TTS, telephony — and the four bottlenecks that took us from 1.2s to 248ms median time-to-first-word.",
+      "The full stack - STT, LLM, TTS, telephony - and the four bottlenecks that took us from 1.2s to 248ms median time-to-first-word.",
     date: "2026-04-02",
     readTime: "12 min read",
     thumbColor: "#4877D8",
@@ -124,7 +124,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "₹0.40 per minute, three rings to pickup: StoneRidge Vet's rural rollout.",
     description:
-      "How a Tamil Nadu veterinary practice moved off ₹40-per-call offshore staff to HoomanLabs — and what changed for the farmers calling in at 5am.",
+      "How a Tamil Nadu veterinary practice moved off ₹40-per-call offshore staff to HoomanLabs - and what changed for the farmers calling in at 5am.",
     date: "2026-03-04",
     readTime: "5 min read",
     thumbColor: "#FFB02E",
@@ -138,7 +138,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "Bring your own telephony: Plivo, Exotel, Tata, and Twilio routing on day one.",
     description:
-      "Why we built BYOT first instead of selling SIP minutes — and how teams plug in their existing DIDs in under an hour.",
+      "Why we built BYOT first instead of selling SIP minutes - and how teams plug in their existing DIDs in under an hour.",
     date: "2026-02-19",
     readTime: "6 min read",
     thumbColor: "#5B47E0",
@@ -150,7 +150,7 @@ export const blogPosts: BlogPost[] = [
     topic: "Observability",
     industry: "All",
     title:
-      "Real-time transcripts with per-utterance latency — and a seekable waveform.",
+      "Real-time transcripts with per-utterance latency - and a seekable waveform.",
     description:
       "How the live console renders speaker-attributed transcripts as the agent talks, with one click to redirect a call to a human.",
     date: "2026-02-05",

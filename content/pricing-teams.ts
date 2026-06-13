@@ -34,7 +34,7 @@ export const proSubPlans: TeamSubPlan[] = [
     name: "SOLO",
     yearlyMonthlyPrice: 999,
     monthlyPrice: 1499,
-    description: "One agent — full-featured, no minute limit. Ideal for a single practice.",
+    description: "One agent - full-featured, no minute limit. Ideal for a single practice.",
     cta: { label: "Get Started", href: "/signup?plan=solo" }
   },
   {

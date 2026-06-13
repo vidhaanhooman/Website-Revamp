@@ -19,7 +19,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Two separate floating pills, Giga-style — left holds brand + links,
+  // Two separate floating pills, Giga-style - left holds brand + links,
   // right holds the CTAs. On scroll both deepen their glass slightly.
   const pillBase =
     "flex items-center rounded-full border backdrop-blur-md transition-all duration-300 ease-out";
@@ -30,7 +30,7 @@ export function Navbar() {
   return (
     <div className="fixed inset-x-0 top-4 z-50 px-4">
       <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between gap-3">
-        {/* LEFT PILL — brand + primary nav */}
+        {/* LEFT PILL - brand + primary nav */}
         <motion.nav
           aria-label="Primary"
           initial={{ y: -16, opacity: 0 }}
@@ -66,7 +66,7 @@ export function Navbar() {
           </button>
         </motion.nav>
 
-        {/* RIGHT PILL — CTAs (hidden on mobile, mobile uses drawer) */}
+        {/* RIGHT PILL - CTAs (hidden on mobile, mobile uses drawer) */}
         <motion.div
           initial={{ y: -16, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

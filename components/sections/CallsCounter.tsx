@@ -57,7 +57,7 @@ export function CallsCounter() {
     <section className="relative px-4 py-20 md:py-24">
       <div className="mx-auto max-w-[1240px]">
         <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0d]">
-          {/* TOP — image spans full width, fades smoothly into dark right side */}
+          {/* TOP - image spans full width, fades smoothly into dark right side */}
           <div className="relative min-h-[300px] sm:min-h-[380px] md:min-h-[460px]">
             {/* Full-width image */}
             <div
@@ -65,7 +65,7 @@ export function CallsCounter() {
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: "url('/counter.png')" }}
             />
-            {/* Long horizontal scrim — gradual transparent→dark across the whole panel */}
+            {/* Long horizontal scrim - gradual transparent→dark across the whole panel */}
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0"
@@ -74,7 +74,7 @@ export function CallsCounter() {
                   "linear-gradient(to right, transparent 0%, transparent 30%, rgba(10,10,13,0.45) 55%, rgba(10,10,13,0.88) 78%, rgba(10,10,13,1) 100%)"
               }}
             />
-            {/* Content grid sits over the scrim — only the right column has copy */}
+            {/* Content grid sits over the scrim - only the right column has copy */}
             <div className="relative grid h-full md:grid-cols-2">
               <div aria-hidden />
               <div className="flex flex-col items-center justify-center px-8 py-14 text-center md:items-end md:px-14 md:py-20 md:text-right">
@@ -98,7 +98,7 @@ export function CallsCounter() {
             </div>
           </div>
 
-          {/* STATS — 4-column hairline grid */}
+          {/* STATS - 4-column hairline grid */}
           <div className="grid grid-cols-2 border-t border-white/10 md:grid-cols-4">
             {STATS.map((s, i) => (
               <div
@@ -122,7 +122,7 @@ export function CallsCounter() {
             ))}
           </div>
 
-          {/* USE-CASE CHIP STRIP — infinite marquee */}
+          {/* USE-CASE CHIP STRIP - infinite marquee */}
           <div
             className="relative overflow-hidden border-t border-white/10 py-5 md:py-6"
             style={{

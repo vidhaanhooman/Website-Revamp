@@ -1,9 +1,9 @@
 import { RetroHero } from "@/components/sections/RetroHero";
 
 export const metadata = {
-  title: "Retro Landing Preview — HoomanLabs",
+  title: "Retro Landing Preview - HoomanLabs",
   description:
-    "Retro 90s landing — IE6 chrome, chunky orange type, retro phone hero."
+    "Retro 90s landing - IE6 chrome, chunky orange type, retro phone hero."
 };
 
 export default function RetroPage() {

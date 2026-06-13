@@ -39,7 +39,7 @@ const SLABS: Slab[] = [
       <>
         <H>See every call live.</H> Filter by language, queue, agent, status.
         <H> Drop in</H> to listen. Redirect to a human <H>in one click.</H>{" "}
-        Built for ops leads who actually run the floor — not for the dashboard
+        Built for ops leads who actually run the floor - not for the dashboard
         that gets opened at the QBR.
       </>
     ),
@@ -67,7 +67,7 @@ const SLABS: Slab[] = [
       <>
         Pick the voice. Pick the languages. Slide <H>warmth</H>, <H>pace</H>,
         and <H>code-switch readiness</H> until it sounds like your front desk.
-        Test a call in one tap — no redeploy, no waiting.
+        Test a call in one tap - no redeploy, no waiting.
       </>
     ),
     mock: <StudioMock />
@@ -81,7 +81,7 @@ const SLABS: Slab[] = [
       <>
         Volume, CSAT, latency, and a <H>ranked list of escalation reasons</H>
         {" "}
-        — derived from real transcripts, not survey replies. Spot the
+        - derived from real transcripts, not survey replies. Spot the
         out-of-support languages, the off-script intents,
         <H> the patterns you can fix this week.</H>
       </>

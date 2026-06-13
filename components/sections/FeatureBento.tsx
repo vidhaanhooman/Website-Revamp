@@ -38,7 +38,7 @@ function StripeMargin({ side = "left" }: { side?: "left" | "right" }) {
   );
 }
 
-/* ─── 1. BUILD — No-code agent builder canvas ─────────────────── */
+/* ─── 1. BUILD - No-code agent builder canvas ─────────────────── */
 function MockBuild() {
   return (
     <div className="w-full max-w-[540px]">
@@ -69,7 +69,7 @@ function MockBuild() {
             }}
           />
 
-          {/* Connectors — viewBox 100×60 matches container 5:3 aspect.
+          {/* Connectors - viewBox 100×60 matches container 5:3 aspect.
               Y coords are (css_percent × 0.6) so they map to CSS top: percentages. */}
           <svg
             aria-hidden
@@ -117,7 +117,7 @@ function MockBuild() {
             <circle cx="78" cy="44.4" r="0.9" fill="#4877D8" />
           </svg>
 
-          {/* TRIGGER — right edge at x=24, center y=50 */}
+          {/* TRIGGER - right edge at x=24, center y=50 */}
           <div
             className="absolute"
             style={{
@@ -147,7 +147,7 @@ function MockBuild() {
             </div>
           </div>
 
-          {/* AI AGENT — left edge at x=40, right edge at x=70, center y=50 */}
+          {/* AI AGENT - left edge at x=40, right edge at x=70, center y=50 */}
           <div
             className="absolute"
             style={{
@@ -180,7 +180,7 @@ function MockBuild() {
             </div>
           </div>
 
-          {/* RESULT — left edge at x=78, center y=26 */}
+          {/* RESULT - left edge at x=78, center y=26 */}
           <div
             className="absolute"
             style={{
@@ -210,7 +210,7 @@ function MockBuild() {
             </div>
           </div>
 
-          {/* HUMAN HANDOFF — left edge at x=78, center y=74 */}
+          {/* HUMAN HANDOFF - left edge at x=78, center y=74 */}
           <div
             className="absolute"
             style={{
@@ -245,7 +245,7 @@ function MockBuild() {
   );
 }
 
-/* ─── 2. SIMULATION — minimal waveform lanes ──────────────────── */
+/* ─── 2. SIMULATION - minimal waveform lanes ──────────────────── */
 type TestLane = {
   label: string;
   status: "pass" | "fail" | "run";
@@ -265,7 +265,7 @@ function Wave({
   const H = 22;
   const SAMPLES = 72;
 
-  // Deterministic organic-looking waveform — sum of sines at multiple frequencies
+  // Deterministic organic-looking waveform - sum of sines at multiple frequencies
   const points = Array.from({ length: SAMPLES }, (_, i) => {
     const x = (i / (SAMPLES - 1)) * W;
     const s = idx * 31 + i;
@@ -303,7 +303,7 @@ function Wave({
       className="block h-6 w-full"
       aria-hidden
     >
-      {/* Played portion (running only) — soft amber wash */}
+      {/* Played portion (running only) - soft amber wash */}
       {playhead !== null ? (
         <>
           <defs>
@@ -413,9 +413,9 @@ function MockSimulation() {
   );
 }
 
-/* ─── OBSERVABILITY — compact event log ───────────────────────── */
+/* ─── OBSERVABILITY - compact event log ───────────────────────── */
 function MockObservability() {
-  // Deterministic 24-step sparkline data — call volume across last 24h.
+  // Deterministic 24-step sparkline data - call volume across last 24h.
   const SPARK = Array.from({ length: 24 }, (_, i) => {
     const s = i;
     const v =
@@ -487,7 +487,7 @@ function MockObservability() {
         </ul>
       </div>
 
-      {/* Metrics summary — fills the space below the log */}
+      {/* Metrics summary - fills the space below the log */}
       <div className="relative rounded-2xl border border-white/[0.06] bg-white/[0.015] p-4">
         <div className="flex items-center justify-between">
           <span className="font-sans text-[10px] uppercase tracking-[0.22em] text-white/45">
@@ -550,7 +550,7 @@ function MockObservability() {
   );
 }
 
-/* ─── DEPLOY — two telephony paths: HoomanLabs or BYO ─────────── */
+/* ─── DEPLOY - two telephony paths: HoomanLabs or BYO ─────────── */
 function HoomanMarkChip({ size = "md" }: { size?: "sm" | "md" }) {
   const px = size === "sm" ? 5 : 6;
   const iconPx = size === "sm" ? 8 : 9;
@@ -589,7 +589,7 @@ function MockDeploy() {
 
   return (
     <div className="space-y-4">
-      {/* Header — speed indicator */}
+      {/* Header - speed indicator */}
       <div className="flex items-center justify-between border-b border-white/10 pb-3">
         <span className="flex items-center gap-1.5 font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/60">
           <span className="h-1 w-1 animate-pulse rounded-full bg-white" />
@@ -603,7 +603,7 @@ function MockDeploy() {
         </span>
       </div>
 
-      {/* PREFERRED — HoomanLabs Telephony at the top of the list */}
+      {/* PREFERRED - HoomanLabs Telephony at the top of the list */}
       <div className="relative overflow-hidden rounded-xl border-[1.5px] border-white/25 bg-white/[0.05] p-3.5 shadow-[0_10px_30px_-15px_rgba(255,255,255,0.18)]">
         {/* Subtle neutral glow from corner */}
         <div
@@ -667,7 +667,7 @@ function MockDeploy() {
         <span className="h-px flex-1 bg-white/[0.07]" />
       </div>
 
-      {/* Carrier list — vertical, divided, BYO options */}
+      {/* Carrier list - vertical, divided, BYO options */}
       <ul className="divide-y divide-white/[0.06] overflow-hidden rounded-xl border border-white/10 bg-white/[0.02]">
         {carriers.map((c) => (
           <li
@@ -717,7 +717,7 @@ function MockDeploy() {
   );
 }
 
-/* ─── INTEGRATIONS — 3x3 logo grid ────────────────────────────── */
+/* ─── INTEGRATIONS - 3x3 logo grid ────────────────────────────── */
 function MockIntegrations() {
   const logos: { label: string; color: string; mono?: boolean }[] = [
     { label: "HubSpot", color: "#FF7A59" },
@@ -752,7 +752,7 @@ function MockIntegrations() {
   );
 }
 
-/* ─── BYOT — bring your own telephony ─────────────────────────── */
+/* ─── BYOT - bring your own telephony ─────────────────────────── */
 function MockBYOT() {
   const carriers = [
     { label: "Plivo", color: "#5B47E0" },
@@ -849,7 +849,7 @@ function MockBYOT() {
   );
 }
 
-/* ─── 4. OMNICHANNEL — phone mockup with channel tabs ─────────── */
+/* ─── 4. OMNICHANNEL - phone mockup with channel tabs ─────────── */
 function MockOmniCall() {
   const channels = [
     { label: "Voice", Icon: Phone, active: true },
@@ -984,7 +984,7 @@ function MockOmniCall() {
   );
 }
 
-/* ─── CONTEXT & MEMORY — tools + history + knowledgebase ──────── */
+/* ─── CONTEXT & MEMORY - tools + history + knowledgebase ──────── */
 function MockContextMemory() {
   const tools = [
     { label: "Search", color: "#7AB6F0" },
@@ -1104,7 +1104,7 @@ export function FeatureBento() {
       <StripeMargin side="right" />
 
       <div className="mx-auto max-w-[1240px]">
-        {/* HERO STRIP — single column with image bg */}
+        {/* HERO STRIP - single column with image bg */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -1119,7 +1119,7 @@ export function FeatureBento() {
               backgroundImage: "url('/FeatureHeader.png')"
             }}
           />
-          {/* Dark scrim — keeps text legible over any image */}
+          {/* Dark scrim - keeps text legible over any image */}
           <div
             aria-hidden
             className="absolute inset-0"
@@ -1158,7 +1158,7 @@ export function FeatureBento() {
           </div>
         </motion.div>
 
-        {/* 2 × 2 grid — Build, Simulate, Deploy, Observability.
+        {/* 2 × 2 grid - Build, Simulate, Deploy, Observability.
             Each card is a Link to its dedicated detail page. Same typography
             and same spacing across all four for clean visual hierarchy. */}
         <div className="mt-4 grid gap-4 md:grid-cols-2 md:auto-rows-fr">
@@ -1167,7 +1167,7 @@ export function FeatureBento() {
               eyebrow: "Build",
               title: "Ship a production-ready agent in an afternoon.",
               description:
-                "Describe what you want in plain English or Hindi. Drop in your knowledge base, pick a voice. HoomanLabs writes the prompts, wires up the tools, and remembers every caller across every call — your ops team launches it the same day, no engineers.",
+                "Describe what you want in plain English or Hindi. Drop in your knowledge base, pick a voice. HoomanLabs writes the prompts, wires up the tools, and remembers every caller across every call - your ops team launches it the same day, no engineers.",
               href: "/features/details#build",
               mock: <MockBuild />,
               visualClassName:
@@ -1177,7 +1177,7 @@ export function FeatureBento() {
               eyebrow: "Simulate",
               title: "Run every scenario. Vibe-check the tone. Ship with confidence.",
               description:
-                "Every change runs through 16,000+ conversational scenarios — interruptions, code-switches, noisy lines, off-script asks. Then a side-by-side vibe-check so you hear the difference, not just read the diff. Promote only when the numbers and the vibe both pass.",
+                "Every change runs through 16,000+ conversational scenarios - interruptions, code-switches, noisy lines, off-script asks. Then a side-by-side vibe-check so you hear the difference, not just read the diff. Promote only when the numbers and the vibe both pass.",
               href: "/features/details#simulate",
               mock: <MockSimulation />,
               visualClassName: "relative flex-1 px-7 pb-7"
@@ -1186,7 +1186,7 @@ export function FeatureBento() {
               eyebrow: "Deploy",
               title: "Live in minutes. Our telephony or yours.",
               description:
-                "Pick a HoomanLabs number and you're routing calls in minutes. Bringing your own line? Plug Plivo, Exotel, Tata, or Twilio straight in — same agent, same SIP, no migration, no procurement.",
+                "Pick a HoomanLabs number and you're routing calls in minutes. Bringing your own line? Plug Plivo, Exotel, Tata, or Twilio straight in - same agent, same SIP, no migration, no procurement.",
               href: "/features/details#deploy",
               mock: <MockDeploy />,
               visualClassName: "relative flex-1 px-7 pb-7"
@@ -1195,7 +1195,7 @@ export function FeatureBento() {
               eyebrow: "Observability",
               title: "See exactly what happens, every time.",
               description:
-                "Watch every call in real time — flagged moments, tool calls, audit-grade event log for enterprise QA.",
+                "Watch every call in real time - flagged moments, tool calls, audit-grade event log for enterprise QA.",
               href: "/features/details#observability",
               mock: <MockObservability />,
               visualClassName: "relative flex-1 px-7 pb-7"
@@ -1207,12 +1207,12 @@ export function FeatureBento() {
               className="group relative block h-full"
             >
               <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] transition-all duration-300 group-hover:border-white/25 group-hover:bg-white/[0.035]">
-                {/* Arrow chip — subtle by default, lights up on hover */}
+                {/* Arrow chip - subtle by default, lights up on hover */}
                 <span className="absolute right-5 top-5 z-10 flex h-7 w-7 items-center justify-center rounded-md border border-white/10 bg-black/30 text-white/45 transition-all duration-300 group-hover:border-white/35 group-hover:bg-black/55 group-hover:text-white">
                   <ArrowUpRight size={13} strokeWidth={2.2} />
                 </span>
 
-                {/* Text block — identical structure on every card */}
+                {/* Text block - identical structure on every card */}
                 <div className="p-7 md:p-8">
                   <p className="font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
                     {card.eyebrow}

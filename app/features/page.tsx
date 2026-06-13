@@ -4,7 +4,7 @@ import { Footer } from "@/components/sections/Footer";
 import { FeatureBento } from "@/components/sections/FeatureBento";
 
 export const metadata: Metadata = {
-  title: "Features — HoomanLabs",
+  title: "Features - HoomanLabs",
   description:
     "Voice studio, live call console, real-time transcripts, telephony, audit trails. Everything you need to ship a voice agent that picks up."
 };

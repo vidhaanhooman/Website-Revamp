@@ -15,7 +15,7 @@ export function CtaBanner() {
           className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0d] shadow-[0_40px_80px_-30px_rgba(20,15,10,0.5)]"
         >
           <div className="relative grid items-stretch gap-0 md:grid-cols-[1.05fr_0.95fr]">
-            {/* LEFT — copy */}
+            {/* LEFT - copy */}
             <div className="relative z-10 flex flex-col justify-center px-8 py-12 sm:px-10 sm:py-14 md:px-14 md:py-16">
               <p className="font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
                 Try HoomanLabs
@@ -44,7 +44,7 @@ export function CtaBanner() {
               </div>
             </div>
 
-            {/* RIGHT — image */}
+            {/* RIGHT - image */}
             <div className="relative min-h-[280px] sm:min-h-[340px] md:min-h-[420px]">
               <div
                 aria-hidden
@@ -53,7 +53,7 @@ export function CtaBanner() {
                   backgroundImage: "url('/Footer.png')"
                 }}
               />
-              {/* Left-edge fade — blends image into dark copy panel */}
+              {/* Left-edge fade - blends image into dark copy panel */}
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0"

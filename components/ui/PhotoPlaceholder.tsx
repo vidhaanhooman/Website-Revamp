@@ -17,7 +17,7 @@ type Tone =
 interface PhotoPlaceholderProps {
   /** Hex/url of a real image to render; when present, overrides the gradient. */
   src?: string;
-  /** Alt text — required for accessibility when src is set. */
+  /** Alt text - required for accessibility when src is set. */
   alt?: string;
   /** Filename hint shown in the corner so we know what to drop in. */
   caption?: string;

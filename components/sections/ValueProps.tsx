@@ -32,21 +32,21 @@ interface BadgeStyle {
 }
 
 const BADGE_STYLES: BadgeStyle[] = [
-  // 01 — deep violet
+  // 01 - deep violet
   {
     bg: "#5A3FB0",
     text: "#FFFFFF",
     border: "rgba(90,63,176,0.25)",
     glow: "rgba(123,90,224,0.35)"
   },
-  // 02 — coral / ember
+  // 02 - coral / ember
   {
     bg: "#F77E5C",
     text: "#FFFFFF",
     border: "rgba(247,126,92,0.25)",
     glow: "rgba(247,126,92,0.35)"
   },
-  // 03 — soft cream
+  // 03 - soft cream
   {
     bg: "#FAE9D6",
     text: "#5A3FB0",
@@ -81,17 +81,17 @@ const STATS: StatRow[] = [
   {
     value: "3.2× pickup",
     description:
-      "Brightside Dental — after-hours coverage, no missed calls between 9 PM and 8 AM."
+      "Brightside Dental - after-hours coverage, no missed calls between 9 PM and 8 AM."
   },
   {
     value: "6 days",
     description:
-      "Apex Home Services — kickoff to first live caller, ops team of three."
+      "Apex Home Services - kickoff to first live caller, ops team of three."
   },
   {
     value: "+38% bookings",
     description:
-      "Brookside Care — multi-clinic group, measured against the prior 30 days."
+      "Brookside Care - multi-clinic group, measured against the prior 30 days."
   }
 ];
 
@@ -162,7 +162,7 @@ export function ValueProps() {
           </span>
         </motion.div>
 
-        {/* Headline — Instrument Serif */}
+        {/* Headline - Instrument Serif */}
         <motion.h2
           {...fadeUp(0.08)}
           className="mx-auto mt-6 max-w-3xl text-balance text-center font-serif text-[clamp(2.25rem,4.2vw,3.5rem)] font-normal leading-[1.05] tracking-tight text-ink dark:text-dark-text"
@@ -176,11 +176,11 @@ export function ValueProps() {
           {...fadeUp(0.14)}
           className="mx-auto mt-4 max-w-xl text-center text-[14.5px] leading-[1.55] text-muted dark:text-dark-muted"
         >
-          Sub-300ms latency, eleven Indian languages, drops into your stack —
+          Sub-300ms latency, eleven Indian languages, drops into your stack -
           and tracks every call so you can prove the lift.
         </motion.p>
 
-        {/* Outer container — rounded card with hairline border holds the
+        {/* Outer container - rounded card with hairline border holds the
             three columns, mirroring the reference's framed layout */}
         <motion.div
           {...fadeUp(0.22)}

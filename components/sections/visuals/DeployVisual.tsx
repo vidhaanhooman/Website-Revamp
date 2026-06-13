@@ -1,4 +1,4 @@
-/* Deploy feature visual — top: managed-vs-BYO telephony comparison.
+/* Deploy feature visual - top: managed-vs-BYO telephony comparison.
    Bottom: recent deployment activity log. */
 
 const MANAGED_NUMBERS = [
@@ -73,7 +73,7 @@ export function DeployVisual() {
 
       {/* ─── TWO PATHS ─────────────────────────────────────── */}
       <div className="grid border-b border-white/10 md:grid-cols-2">
-        {/* LEFT — HoomanLabs Managed (preferred) */}
+        {/* LEFT - HoomanLabs Managed (preferred) */}
         <div className="relative overflow-hidden border-b border-white/10 p-5 md:border-b-0 md:border-r md:p-6">
           {/* Subtle neutral glow */}
           <div
@@ -124,7 +124,7 @@ export function DeployVisual() {
           </div>
         </div>
 
-        {/* RIGHT — BYO trunks */}
+        {/* RIGHT - BYO trunks */}
         <div className="p-5 md:p-6">
           <div className="flex items-start justify-between gap-3">
             <div>

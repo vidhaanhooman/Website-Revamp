@@ -83,7 +83,7 @@ export function PricingTiers() {
             </motion.h1>
             <p className="mx-auto mt-5 max-w-xl text-center text-[15px] leading-[1.55] text-white/60">
               Simple, transparent pricing that scales with you. Start with
-              1,000 free credits — no card required.
+              1,000 free credits - no card required.
             </p>
 
             {/* Trusted by */}
@@ -104,7 +104,7 @@ export function PricingTiers() {
               </div>
             </div>
 
-            {/* Tier grid — 2 columns, centered */}
+            {/* Tier grid - 2 columns, centered */}
             <div className="mx-auto mt-14 grid max-w-[920px] gap-5 md:grid-cols-2">
               {tiers.map((t) => {
                 const isHighlight = !!t.highlight;

@@ -11,7 +11,7 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }
 });
 
-/* A stat tile — short metric + label, neutral surface */
+/* A stat tile - short metric + label, neutral surface */
 function StatTile({ value, label }: { value: string; label: string }) {
   return (
     <div className="flex h-full flex-col justify-between rounded-3xl border border-hairline bg-white p-5 dark:border-dark-edge dark:bg-dark-soft md:p-6">
@@ -25,7 +25,7 @@ function StatTile({ value, label }: { value: string; label: string }) {
   );
 }
 
-/* A wider testimonial tile — quote + author + company on a soft tint */
+/* A wider testimonial tile - quote + author + company on a soft tint */
 function TestimonialTile({
   index
 }: {
@@ -74,7 +74,7 @@ export function PricingSocial() {
           say about <span className="italic">HoomanLabs</span>
         </motion.h2>
 
-        {/* Mosaic: row 1 — two stat tiles + wide testimonial */}
+        {/* Mosaic: row 1 - two stat tiles + wide testimonial */}
         <div className="grid gap-4 md:gap-5">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-12 md:gap-5">
             <motion.div {...fadeUp(0.02)} className="md:col-span-3">
@@ -88,7 +88,7 @@ export function PricingSocial() {
             </motion.div>
           </div>
 
-          {/* Row 2 — wide testimonial + two stat tiles */}
+          {/* Row 2 - wide testimonial + two stat tiles */}
           <div className="grid grid-cols-2 gap-4 md:grid-cols-12 md:gap-5">
             <motion.div {...fadeUp(0.02)} className="col-span-2 md:col-span-6">
               <TestimonialTile index={1} />
