@@ -3,14 +3,22 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { Button } from "@/components/ui/Button";
 import { navLinks } from "@/content/nav";
 import { cn } from "@/lib/cn";
+import { LoginModal } from "@/components/sections/LoginModal";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+
+  const openLogin = () => {
+    setMobileOpen(false);
+    setLoginOpen(true);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -38,9 +46,9 @@ export function Navbar() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
           className={cn(pillBase, pillSurface, "gap-2 pl-3 pr-2 py-2 md:pl-4 md:py-2")}
         >
-          <a href="#" className="flex shrink-0 items-center pr-1">
+          <Link href="/" className="flex shrink-0 items-center pr-1" aria-label="HoomanLabs - back to home">
             <Wordmark tone="dark" />
-          </a>
+          </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">
             {navLinks.map((l) => (
@@ -86,15 +94,14 @@ export function Navbar() {
               Book a Demo
             </Button>
           </a>
-          <a href="/signup">
-            <Button
-              variant="primary"
-              size="sm"
-              className="rounded-full bg-white text-ink hover:bg-white/90"
-            >
-              Sign Up
-            </Button>
-          </a>
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={openLogin}
+            className="rounded-full bg-white text-ink hover:bg-white/90"
+          >
+            Platform
+          </Button>
         </motion.div>
       </div>
 
@@ -116,15 +123,20 @@ export function Navbar() {
                   Book a Demo
                 </Button>
               </a>
-              <a href="/signup">
-                <Button variant="primary" size="sm" className="w-full">
-                  Sign Up
-                </Button>
-              </a>
+              <Button
+                variant="primary"
+                size="sm"
+                className="w-full"
+                onClick={openLogin}
+              >
+                Platform
+              </Button>
             </div>
           </div>
         </div>
       ) : null}
+
+      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
     </div>
   );
 }
