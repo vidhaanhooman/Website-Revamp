@@ -1,13 +1,13 @@
 export const heroContent = {
   /** Save the real aurora image to /public/hero.jpg, then set src below. */
   photo: {
-    src: "/HeroNew.png" as string | undefined,
+    src: "/heronew.png" as string | undefined,
     alt: "Aurora gradient - voice AI without borders",
-    caption: "HeroNew.png"
+    caption: "heronew.png"
   },
-  headline: "From a single prompt to a million calls - and better every week.",
+  headline: "One prompt to a million calls.",
   description:
-    "Build the agent, ship it on your numbers, then let the data sharpen it - on a new version, without ever touching the one that's live.",
+    "Build, ship, and improve production-grade AI voice agents - in 22 languages, on your numbers, without ever breaking what's live.",
   primary: { label: "Build your agent", href: "#signup" },
   secondary: { label: "See it live", href: "#demo" }
 };

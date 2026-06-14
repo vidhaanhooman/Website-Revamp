@@ -26,9 +26,10 @@ export function Hero() {
         <div className="absolute inset-0 z-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/Hero.png"
+            src={c.photo.src ?? "/heronew.png"}
             alt={c.photo.alt}
             className="h-full w-full object-cover"
+            style={{ objectPosition: "center 62%" }}
           />
         </div>
 
@@ -94,16 +95,28 @@ export function Hero() {
 
         {/* Left-aligned content stack - sits over the image */}
         <div className="absolute inset-0 z-20 flex flex-col items-start justify-center px-6 md:px-12 lg:px-16">
+          <motion.p
+            {...fadeUp(0)}
+            className="mb-5 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.22em] text-white/70 drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-[#F77E5C]" />
+            The voice agent platform
+          </motion.p>
+
           <motion.h1
             {...fadeUp(0.05)}
-            className="max-w-3xl font-serif text-[clamp(2.25rem,4.6vw,3.75rem)] font-normal leading-[1.02] tracking-tight text-white drop-shadow-[0_2px_22px_rgba(0,0,0,0.55)]"
+            className="font-dmsans text-[clamp(2rem,4.6vw,4rem)] font-bold leading-[1.04] tracking-[-0.03em] text-white drop-shadow-[0_2px_22px_rgba(0,0,0,0.55)]"
           >
-            {c.headline}
+            One prompt to
+            <br />
+            <span className="font-display font-normal italic tracking-[-0.01em]">
+              a million calls.
+            </span>
           </motion.h1>
 
           <motion.p
             {...fadeUp(0.15)}
-            className="mt-6 max-w-xl text-[15.5px] font-medium leading-[1.55] text-white drop-shadow-[0_1px_10px_rgba(0,0,0,0.5)] sm:text-[16px]"
+            className="mt-5 max-w-[34rem] text-[16px] font-normal leading-[1.6] text-white/80 drop-shadow-[0_1px_10px_rgba(0,0,0,0.5)] sm:text-[17px]"
           >
             {c.description}
           </motion.p>

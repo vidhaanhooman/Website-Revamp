@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import {
   Inter,
+  DM_Sans,
   JetBrains_Mono,
   Instrument_Serif,
+  Fraunces,
   Manrope,
   Anton,
   VT323
@@ -13,6 +15,14 @@ const sans = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-sans",
+  display: "swap"
+});
+
+// DM Sans - geometric low-contrast sans, used for the hero display headline.
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-dmsans",
   display: "swap"
 });
 
@@ -28,6 +38,16 @@ const serif = Instrument_Serif({
   weight: ["400"],
   style: ["normal", "italic"],
   variable: "--font-serif",
+  display: "swap"
+});
+
+// Fraunces - premium variable soft-serif display. Optical sizing + a touch
+// of contrast give headlines an editorial, luxe feel.
+const display = Fraunces({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz", "SOFT"],
+  variable: "--font-display",
   display: "swap"
 });
 
@@ -79,7 +99,7 @@ export default function RootLayout({
     <html
       lang="en"
       // Dark theme is the default - every dark: Tailwind variant fires.
-      className={`dark ${sans.variable} ${mono.variable} ${serif.variable} ${gilroy.variable} ${anton.variable} ${vt323.variable}`}
+      className={`dark ${sans.variable} ${dmSans.variable} ${mono.variable} ${serif.variable} ${display.variable} ${gilroy.variable} ${anton.variable} ${vt323.variable}`}
       suppressHydrationWarning
     >
       <body className="bg-dark text-dark-text">{children}</body>

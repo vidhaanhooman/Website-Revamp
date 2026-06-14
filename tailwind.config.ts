@@ -60,6 +60,8 @@ const config: Config = {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
         serif: ["var(--font-serif)", "ui-serif", "Georgia", "serif"],
+        display: ["var(--font-display)", "var(--font-serif)", "ui-serif", "Georgia", "serif"],
+        dmsans: ["var(--font-dmsans)", "var(--font-sans)", "system-ui", "sans-serif"],
         gilroy: ["var(--font-gilroy)", "var(--font-sans)", "system-ui", "sans-serif"],
         anton: ["var(--font-anton)", "Impact", "sans-serif"],
         pixel: ["var(--font-pixel)", "Courier New", "monospace"]
