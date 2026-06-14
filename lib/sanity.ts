@@ -1,6 +1,10 @@
 import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+
+/* Minimal source shape — the builder accepts asset refs, full image objects,
+   or asset _id strings. Typing as unknown avoids a deep import that breaks
+   under newer @sanity/image-url versions. */
+type SanityImageSource = unknown;
 
 /* Pulled from .env.local. Defaults to the known HoomanLabs project so dev
    still works if envs aren't set yet. Project ID + dataset are PUBLIC,
@@ -24,4 +28,6 @@ export const sanity = createClient({
 });
 
 const builder = imageUrlBuilder(sanity);
-export const urlFor = (src: SanityImageSource) => builder.image(src);
+export const urlFor = (src: SanityImageSource) =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  builder.image(src as any);
