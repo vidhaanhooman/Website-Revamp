@@ -1,9 +1,9 @@
 export const heroContent = {
   /** Save the real aurora image to /public/hero.jpg, then set src below. */
   photo: {
-    src: "/heronew.png" as string | undefined,
+    src: "/HeroNew.png" as string | undefined,
     alt: "Aurora gradient - voice AI without borders",
-    caption: "heronew.png"
+    caption: "HeroNew.png"
   },
   headline: "One prompt to a million calls.",
   description:

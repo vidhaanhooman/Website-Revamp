@@ -111,7 +111,7 @@ export function Testimonials() {
   const [largeWhite, m1, m2, m3, tr, bl, largeCoral] = testimonials;
 
   return (
-    <section className="relative px-4 py-24 md:py-28">
+    <section className="relative px-6 py-24 md:py-28">
       <div className="mx-auto max-w-[1240px]">
         {/* Eyebrow row */}
         <div className="mb-10 flex items-end justify-between gap-6 border-b border-hairline pb-6">

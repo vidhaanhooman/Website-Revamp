@@ -26,7 +26,7 @@ export function Hero() {
         <div className="absolute inset-0 z-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={c.photo.src ?? "/heronew.png"}
+            src={c.photo.src ?? "/HeroNew.png"}
             alt={c.photo.alt}
             className="h-full w-full object-cover"
             style={{ objectPosition: "center 62%" }}

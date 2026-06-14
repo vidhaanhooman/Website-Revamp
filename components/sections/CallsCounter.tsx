@@ -98,7 +98,7 @@ export function CallsCounter() {
   }, []);
 
   return (
-    <section className="relative px-4 py-16 md:py-20">
+    <section className="relative px-6 py-16 md:py-20">
       <div className="mx-auto max-w-[1240px]">
         <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.015]">
           {/* TOP - big rolling counter, left aligned */}

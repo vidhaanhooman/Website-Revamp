@@ -233,71 +233,31 @@ function PhaseRail() {
 
 export function JourneyBento() {
   return (
-    <section className="relative px-4 pb-24 pt-32 md:pt-40">
+    <section className="relative px-6 pb-24 pt-12 md:pt-16">
       <StripeMargin side="left" />
       <StripeMargin side="right" />
 
-      <div className="mx-auto max-w-[1080px]">
-        {/* Hero strip - full-bleed: breaks out of the 1080px column to span
-            the viewport edge-to-edge. The breakout (`left-1/2 w-screen
-            -translate-x-1/2`) lives on a static inner <div> so Framer Motion's
-            transform on the outer motion.div doesn't clobber the translateX
-            and shove the content off the page. */}
+      <div className="mx-auto max-w-[1240px]">
+        {/* Section header - minimal: eyebrow + concise headline. */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-2xl"
         >
-          <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('/FeatureHeader.png')" }}
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.45) 100%)"
-              }}
-            />
-            <div className="relative mx-auto flex max-w-[1080px] flex-col px-6 py-16 md:px-12 md:py-24">
- <p className="font-sans text-[11px] tracking-[0.04em] text-white/65">
-                [01] &nbsp; How it works
-              </p>
-              <h1 className="mt-5 max-w-4xl font-serif text-[clamp(2.25rem,4.6vw,3.5rem)] font-normal leading-[1.02] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
-                From a single prompt to a million calls -{" "}
-                <em className="not-italic italic text-[#F77E5C]">
-                  better every week.
-                </em>
-              </h1>
-              <p className="mt-5 max-w-xl text-[15px] font-medium leading-[1.6] text-white/85 drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
-                Build the agent, ship it on your numbers, then let the data
-                sharpen it - on a new version, without ever touching the one
-                that&apos;s live.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-2">
-                <a
-                  href="/#agent-demo"
-                  className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-ink transition-colors hover:bg-white/85"
-                >
-                  Try a live demo
-                  <ArrowUpRight size={14} strokeWidth={2.25} />
-                </a>
-                <a
-                  href="/pricing"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/30 px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-white backdrop-blur-sm hover:bg-black/50"
-                >
-                  See pricing
-                </a>
-              </div>
-            </div>
-          </div>
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/40">
+            [01] &nbsp; How it works
+          </p>
+          <h2 className="mt-4 font-serif text-[clamp(1.85rem,3.4vw,2.75rem)] font-normal leading-[1.1] tracking-tight text-white">
+            From a single prompt to a million calls,{" "}
+            <em className="not-italic italic text-white/50">
+              better every week.
+            </em>
+          </h2>
         </motion.div>
 
-        {/* Spacer so the cards below don't crowd the hero */}
-        <div className="h-12 md:h-16" />
+        {/* Spacer so the cards below don't crowd the header */}
+        <div className="h-10 md:h-14" />
 
         {/* Phases - horizontal rail above, content full-width below */}
         <PhaseRail />

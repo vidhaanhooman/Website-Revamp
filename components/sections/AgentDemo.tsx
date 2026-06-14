@@ -311,7 +311,7 @@ export function AgentDemo() {
   }, [open]);
 
   return (
-    <section id="agent-demo" className="relative px-4 py-24 md:py-32">
+    <section id="agent-demo" className="relative px-6 py-24 md:py-32">
       <div className="mx-auto max-w-[1240px]">
         {/* Eyebrow + headline - single editorial line */}
         <div className="mb-12 flex items-baseline justify-between border-b border-white/10 pb-6">

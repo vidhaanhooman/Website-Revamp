@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export function CtaBanner() {
   return (
-    <section className="relative px-4 py-20 md:py-24">
+    <section className="relative px-6 py-20 md:py-24">
       <div className="mx-auto max-w-[1240px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
