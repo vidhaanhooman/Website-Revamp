@@ -111,7 +111,7 @@ export function ProductShowcase() {
           {...fadeUp(0)}
           className="mx-auto mb-20 flex max-w-2xl flex-col items-center gap-4 text-center md:mb-28"
         >
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/55 dark:text-white/55">
+ <span className="font-sans text-[11px] tracking-[0.04em] text-ink/55 dark:text-white/55">
             Product
           </span>
           <h2 className="font-serif text-[clamp(2.25rem,4.5vw,3.5rem)] font-normal leading-[1.04] tracking-tight text-ink dark:text-white">

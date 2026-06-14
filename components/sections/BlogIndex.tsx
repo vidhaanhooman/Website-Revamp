@@ -49,7 +49,7 @@ function FilterDropdown({
       >
         <span>
           <span
-            className="block text-[10px] uppercase tracking-[0.22em]"
+ className="block text-[10px] tracking-[0.04em]"
             style={{ color: INK_FAINT }}
           >
             {label}
@@ -179,7 +179,7 @@ export function BlogIndex({ posts }: BlogIndexProps = {}) {
 
         <div className="relative mx-auto max-w-[1240px] px-4 pb-12 pt-24 md:pb-16 md:pt-28">
           <p
-            className="font-sans text-[11px] font-medium uppercase tracking-[0.22em]"
+ className="font-sans text-[11px] font-medium tracking-[0.04em]"
             style={{ color: INK_FAINT }}
           >
             [Resources] &nbsp; Blog &amp; field notes
@@ -278,7 +278,7 @@ export function BlogIndex({ posts }: BlogIndexProps = {}) {
             ) : null}
 
             <p
-              className="mt-8 text-[11px] uppercase tracking-[0.22em]"
+ className="mt-8 text-[11px] tracking-[0.04em]"
               style={{ color: INK_FAINT }}
             >
               {filtered.length} {filtered.length === 1 ? "post" : "posts"}
@@ -304,7 +304,7 @@ export function BlogIndex({ posts }: BlogIndexProps = {}) {
                   <article className="grid grid-cols-1 gap-6 py-10 md:grid-cols-[1fr_auto] md:gap-10">
                     <div>
                       <p
-                        className="text-[11px] font-medium uppercase tracking-[0.22em]"
+ className="text-[11px] font-medium tracking-[0.04em]"
                         style={{ color: INK_FAINT }}
                       >
                         {post.type}{" "}

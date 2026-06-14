@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -16,7 +17,7 @@ import { JOURNEY_VISUALS } from "@/components/sections/visuals/JourneyVisuals";
 
 /* Build -> Ship -> Improve journey, rendered in the existing dark
    FeatureBento style: white/10 hairlines, white/[0.025] card surfaces,
-   uppercase mono eyebrows, serif phase titles, dark shot slot on top
+ mono eyebrows, serif phase titles, dark shot slot on top
    of every card. Swap card.bg for a screenshot when ready. */
 
 type Card = {
@@ -177,68 +178,131 @@ function StripeMargin({ side = "left" }: { side?: "left" | "right" }) {
   );
 }
 
+/* ─── Vertical phase rail - sticky, click-driven active state ──── */
+const RAIL_PHASES = [
+  { id: "lp-build", label: "Build", range: "01 – 04" },
+  { id: "lp-ship", label: "Ship", range: "05 – 07" },
+  { id: "lp-improve", label: "Improve", range: "08 – 11" }
+] as const;
+
+function PhaseRail() {
+  const [active, setActive] = useState<string>("lp-build");
+  return (
+    <nav
+      aria-label="Journey phases"
+      className="sticky top-[76px] z-30 -mx-1 mb-2 flex w-fit items-center gap-1 self-start rounded-full border border-white/10 bg-[#0a0a0d]/85 p-1 backdrop-blur-xl"
+    >
+      {RAIL_PHASES.map((p) => {
+        const isActive = active === p.id;
+        return (
+          <a
+            key={p.id}
+            href={`#${p.id}`}
+            onClick={() => setActive(p.id)}
+            className={
+              "group/rail flex items-center gap-2 rounded-full px-4 py-2 transition-colors duration-300 " +
+              (isActive
+                ? "bg-white/[0.08]"
+                : "hover:bg-white/[0.04]")
+            }
+          >
+            <span
+              className={
+                "font-sans text-[14px] font-medium tracking-tight transition-colors duration-300 " +
+                (isActive
+                  ? "text-white"
+                  : "text-white/50 group-hover/rail:text-white/80")
+              }
+            >
+              {p.label}
+            </span>
+            <span
+              className={
+ "font-sans text-[10px] tracking-[0.04em] transition-colors duration-300 " +
+                (isActive ? "text-[#F77E5C]/80" : "text-white/25")
+              }
+            >
+              {p.range}
+            </span>
+          </a>
+        );
+      })}
+    </nav>
+  );
+}
+
 export function JourneyBento() {
   return (
     <section className="relative px-4 pb-24 pt-32 md:pt-40">
       <StripeMargin side="left" />
       <StripeMargin side="right" />
 
-      <div className="mx-auto max-w-[1240px]">
-        {/* Hero strip - same composition as FeatureBento, journey copy. */}
+      <div className="mx-auto max-w-[1080px]">
+        {/* Hero strip - full-bleed: breaks out of the 1080px column to span
+            the viewport edge-to-edge. The breakout (`left-1/2 w-screen
+            -translate-x-1/2`) lives on a static inner <div> so Framer Motion's
+            transform on the outer motion.div doesn't clobber the translateX
+            and shove the content off the page. */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative overflow-hidden rounded-3xl border border-white/10"
         >
-          <div
-            aria-hidden
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/FeatureHeader.png')" }}
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.45) 100%)"
-            }}
-          />
-          <div className="relative flex flex-col px-6 py-14 md:px-12 md:py-20">
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/65">
-              [01] &nbsp; How it works
-            </p>
-            <h1 className="mt-5 max-w-4xl font-serif text-[clamp(2.25rem,4.6vw,3.5rem)] font-normal leading-[1.02] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
-              From a single prompt to a million calls -{" "}
-              <em className="not-italic italic text-[#F77E5C]">
-                better every week.
-              </em>
-            </h1>
-            <p className="mt-5 max-w-xl text-[15px] font-medium leading-[1.6] text-white/85 drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
-              Build the agent, ship it on your numbers, then let the data
-              sharpen it - on a new version, without ever touching the one
-              that&apos;s live.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-2">
-              <a
-                href="/#agent-demo"
-                className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-ink transition-colors hover:bg-white/85"
-              >
-                Try a live demo
-                <ArrowUpRight size={14} strokeWidth={2.25} />
-              </a>
-              <a
-                href="/pricing"
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/30 px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-white backdrop-blur-sm hover:bg-black/50"
-              >
-                See pricing
-              </a>
+          <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: "url('/FeatureHeader.png')" }}
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.45) 100%)"
+              }}
+            />
+            <div className="relative mx-auto flex max-w-[1080px] flex-col px-6 py-16 md:px-12 md:py-24">
+ <p className="font-sans text-[11px] tracking-[0.04em] text-white/65">
+                [01] &nbsp; How it works
+              </p>
+              <h1 className="mt-5 max-w-4xl font-serif text-[clamp(2.25rem,4.6vw,3.5rem)] font-normal leading-[1.02] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
+                From a single prompt to a million calls -{" "}
+                <em className="not-italic italic text-[#F77E5C]">
+                  better every week.
+                </em>
+              </h1>
+              <p className="mt-5 max-w-xl text-[15px] font-medium leading-[1.6] text-white/85 drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
+                Build the agent, ship it on your numbers, then let the data
+                sharpen it - on a new version, without ever touching the one
+                that&apos;s live.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-2">
+                <a
+                  href="/#agent-demo"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-ink transition-colors hover:bg-white/85"
+                >
+                  Try a live demo
+                  <ArrowUpRight size={14} strokeWidth={2.25} />
+                </a>
+                <a
+                  href="/pricing"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/30 px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-white backdrop-blur-sm hover:bg-black/50"
+                >
+                  See pricing
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Phases */}
+        {/* Spacer so the cards below don't crowd the hero */}
+        <div className="h-12 md:h-16" />
+
+        {/* Phases - horizontal rail above, content full-width below */}
+        <PhaseRail />
         <Phase
+          id="lp-build"
           idx="01 - 04"
           title="Build"
           note="Start simple, add depth only where the conversation needs it."
@@ -246,6 +310,7 @@ export function JourneyBento() {
           cols={2}
         />
         <Phase
+          id="lp-ship"
           idx="05 - 07"
           title="Ship"
           note="Prove it works, put it on a line, and go - inbound or outbound."
@@ -253,6 +318,7 @@ export function JourneyBento() {
           cols={3}
         />
         <Phase
+          id="lp-improve"
           idx="08 - 11"
           title="Improve"
           note="Measure what's objective and what's subjective - then close the loop, safely."
@@ -296,11 +362,11 @@ export function JourneyBento() {
             />
           </div>
 
-          <span className="inline-flex items-center gap-2.5 rounded-full border border-[#F77E5C]/35 bg-[#0a0a0d]/55 px-3.5 py-[7px] font-mono text-[11px] uppercase tracking-[0.22em] text-[#F77E5C] backdrop-blur-sm">
+ <span className="inline-flex items-center gap-2.5 rounded-full border border-[#F77E5C]/35 bg-[#0a0a0d]/55 px-3.5 py-[7px] font-sans text-[11px] tracking-[0.04em] text-[#F77E5C] backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-[#F77E5C]" />
             The loop
           </span>
-          <h2 className="mx-auto mt-5 max-w-[22ch] font-serif text-[clamp(28px,3.4vw,46px)] font-normal leading-[1.06] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">
+          <h2 className="mx-auto mt-5 max-w-[22ch] font-sans text-[clamp(28px,3.4vw,46px)] font-semibold leading-[1.06] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">
             Ship, measure, and improve -{" "}
             <em className="not-italic italic text-[#F77E5C]">
               without breaking what&apos;s live.
@@ -337,6 +403,7 @@ export function JourneyBento() {
 /* ---------- internals ---------- */
 
 function Phase({
+  id,
   idx,
   title,
   note,
@@ -344,6 +411,7 @@ function Phase({
   cols,
   beforeGrid
 }: {
+  id?: string;
   idx: string;
   title: string;
   note: string;
@@ -355,12 +423,12 @@ function Phase({
     cols === 2 ? "md:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3";
 
   return (
-    <div className="mt-16">
+    <div id={id} className="mt-16 scroll-mt-28">
       <div className="mb-7 flex flex-wrap items-baseline gap-x-4 gap-y-2 border-t border-white/10 pt-8">
-        <span className="font-mono text-[11.5px] uppercase tracking-[0.22em] text-[#F77E5C]">
+ <span className="font-sans text-[11.5px] tracking-[0.04em] text-[#F77E5C]">
           {idx}
         </span>
-        <h3 className="font-serif text-[clamp(26px,3vw,38px)] font-normal leading-[1.05] tracking-tight text-white">
+        <h3 className="font-sans text-[clamp(26px,3vw,38px)] font-semibold leading-[1.05] tracking-tight text-white">
           {title}
         </h3>
         <p className="ml-auto max-w-[36ch] text-[13.5px] leading-[1.5] text-white/55 md:text-right">
@@ -400,11 +468,11 @@ function JourneyCard({ card }: { card: Card }) {
       />
 
       {/* Top chip row */}
-      <div className="relative flex items-center justify-between border-b border-white/[0.06] px-6 py-3 transition-colors duration-300 group-hover:border-[#F77E5C]/15 md:px-7">
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/45 transition-colors duration-300 group-hover:text-white/65">
+      <div className="relative flex items-center justify-between border-b border-white/[0.06] px-5 py-2.5 transition-colors duration-300 group-hover:border-[#F77E5C]/15 md:px-6">
+ <span className="font-sans text-[11px] tracking-[0.04em] text-white/45 transition-colors duration-300 group-hover:text-white/65">
           step / {card.n}
         </span>
-        <span className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#F77E5C] transition-[text-shadow] duration-300 group-hover:[text-shadow:0_0_18px_rgba(247,126,92,0.55)]">
+ <span className="flex items-center gap-1.5 font-sans text-[11px] tracking-[0.04em] text-[#F77E5C] transition-[text-shadow] duration-300 group-hover:[text-shadow:0_0_18px_rgba(247,126,92,0.55)]">
           {card.tag}
           {card.beta && (
             <span className="rounded-[4px] bg-[#F77E5C]/15 px-1.5 py-0.5 text-[9px] font-medium tracking-normal text-[#F77E5C] transition-colors duration-300 group-hover:bg-[#F77E5C]/25">
@@ -416,7 +484,7 @@ function JourneyCard({ card }: { card: Card }) {
 
       {/* Shot slot - inline visual (or bg image if provided).
           Image scales subtly and brightens on hover. */}
-      <div className="relative aspect-[5/3] overflow-hidden border-b border-white/10 bg-[#0a0a0d] transition-colors duration-300 group-hover:border-[#F77E5C]/15">
+      <div className="relative aspect-[2/1] overflow-hidden border-b border-white/10 bg-[#0a0a0d] transition-colors duration-300 group-hover:border-[#F77E5C]/15">
         {card.bg ? (
           <div
             className="absolute inset-0 transition-[transform,filter] duration-700 ease-out group-hover:scale-[1.04] group-hover:brightness-110"
@@ -433,14 +501,13 @@ function JourneyCard({ card }: { card: Card }) {
         )}
       </div>
 
-      <div className="relative flex flex-1 flex-col p-6 md:p-8">
-        <h4 className="font-sans text-[20px] font-semibold leading-[1.2] tracking-tight text-white md:text-[22px]">
+      <div className="relative flex flex-1 flex-col p-4 md:p-5">
+        <h4 className="font-sans text-[16px] font-semibold leading-[1.2] tracking-tight text-white md:text-[17px]">
           {card.title}
         </h4>
-        <p className="mt-3 text-[14px] leading-[1.6] text-white/65">
+        <p className="mt-2 text-[12.5px] leading-[1.5] text-white/65">
           {card.body}
         </p>
-
       </div>
     </article>
   );
@@ -450,7 +517,7 @@ function SplitCallout() {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
       <div className="rounded-2xl border border-white/10 bg-white/[0.025] px-5 py-4">
-        <div className="mb-2 font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#F77E5C]">
+ <div className="mb-2 font-sans text-[10.5px] tracking-[0.04em] text-[#F77E5C]">
           Objective · Insights
         </div>
         <p className="text-[13.5px] leading-[1.55] text-white/65">
@@ -460,7 +527,7 @@ function SplitCallout() {
         </p>
       </div>
       <div className="rounded-2xl border border-white/10 bg-white/[0.025] px-5 py-4">
-        <div className="mb-2 font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#F77E5C]">
+ <div className="mb-2 font-sans text-[10.5px] tracking-[0.04em] text-[#F77E5C]">
           Subjective · QA
         </div>
         <p className="text-[13.5px] leading-[1.55] text-white/65">
@@ -477,7 +544,7 @@ function LoopSVG() {
   return (
     <div className="relative mx-auto mt-12 w-full max-w-[1100px]">
       {/* Mono caption above the arc */}
-      <div className="text-center font-mono text-[10.5px] uppercase tracking-[0.26em] text-[#F77E5C]/90">
+ <div className="text-center font-sans text-[10.5px] tracking-[0.04em] text-[#F77E5C]/90">
         BRANCH · SIMULATE · VALIDATE · PROMOTE
       </div>
 
@@ -560,10 +627,10 @@ function LoopCard({
       />
 
       <div className="relative flex items-baseline justify-between gap-2">
-        <span className="font-sans text-[12px] font-semibold uppercase tracking-[0.20em] text-white">
+ <span className="font-sans text-[12px] font-semibold tracking-[0.04em] text-white">
           {title}
         </span>
-        <span className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-white/35">
+ <span className="font-sans text-[9.5px] tracking-[0.04em] text-white/35">
           {caption}
         </span>
       </div>
@@ -631,7 +698,7 @@ function LoopNodeTile({
       </div>
       <span
         className={
-          "font-mono text-[9px] uppercase tracking-[0.14em] " +
+ "font-sans text-[9px] tracking-[0.04em] " +
           (active ? "text-[#F77E5C]" : "text-white/40")
         }
       >
@@ -666,11 +733,11 @@ function LoopShip() {
   return (
     <div className="rounded-xl border border-white/10 bg-[#15151A] p-3.5">
       <div className="flex items-center justify-between">
-        <span className="flex items-center gap-1.5 font-mono text-[9.5px] uppercase tracking-[0.18em] text-[#F77E5C]">
+ <span className="flex items-center gap-1.5 font-sans text-[9.5px] tracking-[0.04em] text-[#F77E5C]">
           <PhoneIncoming size={11} strokeWidth={2} />
           INCOMING
         </span>
-        <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/35">
+ <span className="font-sans text-[9px] tracking-[0.04em] text-white/35">
           हिंदी
         </span>
       </div>
@@ -690,7 +757,7 @@ function LoopShip() {
             <Phone size={14} strokeWidth={2} className="rotate-[135deg]" />
           </span>
         </div>
-        <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-white/35">
+ <span className="font-sans text-[9.5px] tracking-[0.04em] text-white/35">
           3 rings
         </span>
       </div>
@@ -702,7 +769,7 @@ function LoopImprove() {
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <div className="flex items-center justify-between font-mono text-[9.5px] uppercase tracking-[0.18em]">
+ <div className="flex items-center justify-between font-sans text-[9.5px] tracking-[0.04em]">
           <span className="text-white/50">PASS RATE · 30D</span>
           <span className="text-[#F77E5C]">+8%</span>
         </div>
@@ -747,7 +814,7 @@ function LoopImprove() {
           <Metric label="empathy" value="0.92" />
           <Metric label="contain" value="78%" />
         </div>
-        <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-[#F77E5C]/85">
+ <span className="font-sans text-[9.5px] tracking-[0.04em] text-[#F77E5C]/85">
           promote →
         </span>
       </div>

@@ -40,7 +40,7 @@ export function TranscriptMock() {
             <div className="text-[12.5px] font-medium text-ink dark:text-white">
               +91 98765 43210
             </div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink/50 dark:text-white/50">
+ <div className="font-sans text-[10px] tracking-[0.04em] text-ink/50 dark:text-white/50">
               Maya · Brightside · 02:14
             </div>
           </div>
@@ -64,7 +64,7 @@ export function TranscriptMock() {
           >
             <span
               className={
-                "font-mono text-[9.5px] uppercase tracking-[0.16em] " +
+ "font-sans text-[9.5px] tracking-[0.04em] " +
                 (l.who === "agent"
                   ? "text-[#3B6BD8] dark:text-[#7AB6F0]"
                   : "text-ink/55 dark:text-white/55")

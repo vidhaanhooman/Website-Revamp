@@ -54,7 +54,7 @@ export function CallsListMock() {
           <Search size={12} strokeWidth={1.75} />
           Filter by number, agent, language
         </div>
-        <div className="flex items-center gap-1.5 rounded-md bg-ink/5 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink/70 dark:bg-white/[0.04] dark:text-white/70">
+ <div className="flex items-center gap-1.5 rounded-md bg-ink/5 px-2 py-1 font-sans text-[10px] tracking-[0.04em] text-ink/70 dark:bg-white/[0.04] dark:text-white/70">
           <Radio size={10} strokeWidth={2} className="text-[#3B6BD8] dark:text-[#7AB6F0]" />
           Live · 14
         </div>
@@ -96,7 +96,7 @@ export function CallsListMock() {
               <span className="font-mono text-ink/75 dark:text-white/75">{r.dur}</span>
               <span
                 className={
-                  "rounded-md border px-1.5 py-0.5 font-mono text-[9.5px] uppercase tracking-[0.14em] " +
+ "rounded-md border px-1.5 py-0.5 font-sans text-[9.5px] tracking-[0.04em] " +
                   (r.status === "live"
                     ? "border-[#3B6BD8]/40 bg-[#3B6BD8]/12 text-[#3B6BD8] dark:border-[#7AB6F0]/40 dark:bg-[#7AB6F0]/12 dark:text-[#7AB6F0]"
                     : "border-ink/15 bg-ink/[0.04] text-ink/70 dark:border-white/15 dark:bg-white/[0.04] dark:text-white/70")

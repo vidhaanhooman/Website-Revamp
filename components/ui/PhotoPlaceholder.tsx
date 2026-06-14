@@ -108,7 +108,7 @@ export function PhotoPlaceholder({
       ) : null}
 
       {caption ? (
-        <span className="absolute right-3 top-3 z-20 inline-flex items-center gap-1.5 rounded-full bg-black/35 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm">
+ <span className="absolute right-3 top-3 z-20 inline-flex items-center gap-1.5 rounded-full bg-black/35 px-2.5 py-1 font-sans text-[10px] tracking-[0.04em] text-white/90 backdrop-blur-sm">
           <ImageIcon size={11} strokeWidth={1.75} />
           {caption}
         </span>

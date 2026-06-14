@@ -116,10 +116,10 @@ export function Testimonials() {
         {/* Eyebrow row */}
         <div className="mb-10 flex items-end justify-between gap-6 border-b border-hairline pb-6">
           <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-black/55">
+ <p className="font-sans text-[11px] tracking-[0.04em] text-black/55">
               [02] &nbsp; Testimonials
             </p>
-            <h2 className="mt-3 max-w-2xl font-serif text-[clamp(1.75rem,3.4vw,2.5rem)] font-normal leading-[1.1] tracking-tight !text-black">
+            <h2 className="mt-3 max-w-2xl font-sans text-[clamp(1.75rem,3.4vw,2.5rem)] font-semibold leading-[1.1] tracking-tight !text-black">
               Teams shipping voice agents that actually pick up.
             </h2>
           </div>

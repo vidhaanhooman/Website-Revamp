@@ -1,8 +1,61 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { StepMock } from "@/components/sections/visuals/JourneyMocks";
+
+/* ─── Vertical phase rail - sticky, click-driven active state ──── */
+const PHASES = [
+  { id: "build", label: "Build", range: "01 – 04" },
+  { id: "ship", label: "Ship", range: "05 – 07" },
+  { id: "improve", label: "Improve", range: "08 – 11" }
+] as const;
+
+function PhaseRail() {
+  const [active, setActive] = useState<string>("build");
+  return (
+    <nav
+      aria-label="Journey phases"
+      className="sticky top-[76px] z-30 flex w-fit items-center gap-1 rounded-full border border-white/10 bg-[#0a0a0d]/85 p-1 backdrop-blur-xl"
+    >
+      {PHASES.map((p) => {
+        const isActive = active === p.id;
+        return (
+          <a
+            key={p.id}
+            href={`#${p.id}`}
+            onClick={() => setActive(p.id)}
+            className={
+              "group/rail flex items-center gap-2 rounded-full px-4 py-2 transition-colors duration-300 " +
+              (isActive ? "bg-white/[0.08]" : "hover:bg-white/[0.04]")
+            }
+          >
+            <span
+              className={
+                "font-sans text-[14px] font-medium tracking-tight transition-colors duration-300 " +
+                (isActive
+                  ? "text-white"
+                  : "text-white/50 group-hover/rail:text-white/80")
+              }
+            >
+              {p.label}
+            </span>
+            <span
+              className={
+ "font-sans text-[10px] tracking-[0.04em] transition-colors duration-300 " +
+                (isActive ? "text-[#F77E5C]/80" : "text-white/25")
+              }
+            >
+              {p.range}
+            </span>
+          </a>
+        );
+      })}
+    </nav>
+  );
+}
 
 /* ─── Shot placeholder ──────────────────────────────────────────
    The intentional dark "screenshot slot" from the HTML reference.
@@ -60,16 +113,16 @@ interface Step {
 function StepCard({ step }: { step: Step }) {
   return (
     <article className="flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025]">
-      <Shot label={step.shotLabel} caption={step.shotCaption} />
+      <StepMock n={step.n} />
       <div className="flex flex-1 flex-col p-5 md:p-6">
         <div className="flex items-center gap-2.5">
           <span className="font-serif text-[24px] font-medium leading-none text-[#F77E5C]">
             {step.n}
           </span>
-          <span className="flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.12em] text-white/55">
+ <span className="flex items-center gap-2 font-sans text-[10.5px] tracking-[0.04em] text-white/55">
             {step.label}
             {step.beta ? (
-              <span className="rounded-[5px] border border-[#F77E5C]/30 bg-[#F77E5C]/12 px-1.5 py-[1px] font-sans text-[9px] font-medium uppercase tracking-[0.16em] text-[#FFB58F]">
+ <span className="rounded-[5px] border border-[#F77E5C]/30 bg-[#F77E5C]/12 px-1.5 py-[1px] font-sans text-[9px] font-medium tracking-[0.04em] text-[#FFB58F]">
                 Beta
               </span>
             ) : null}
@@ -99,10 +152,10 @@ function PhaseHeader({
 }) {
   return (
     <div className="mb-7 flex flex-wrap items-baseline gap-x-4 gap-y-2 border-t border-white/10 pt-7">
-      <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-[#F77E5C]">
+ <span className="font-sans text-[12px] tracking-[0.04em] text-[#F77E5C]">
         {index}
       </span>
-      <h2 className="font-serif text-[clamp(26px,3vw,38px)] font-medium leading-[1.1] tracking-tight text-white">
+      <h2 className="font-sans text-[clamp(26px,3vw,38px)] font-semibold leading-[1.1] tracking-tight text-white">
         {title}
       </h2>
       <p className="ml-auto max-w-[36ch] text-[15px] leading-[1.5] text-white/55">
@@ -227,7 +280,7 @@ export function Journey() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-[44ch]"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#F77E5C]/35 px-3.5 py-1.5 font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#F77E5C]">
+ <span className="inline-flex items-center gap-2 rounded-full border border-[#F77E5C]/35 px-3.5 py-1.5 font-sans text-[11.5px] tracking-[0.04em] text-[#F77E5C]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#F77E5C]" />
             How it works
           </span>
@@ -244,8 +297,13 @@ export function Journey() {
           </p>
         </motion.div>
 
-        {/* ─── BUILD ────────────────────────────────────────── */}
+        {/* ─── PHASES - horizontal rail above, content below ── */}
         <div className="mt-14 md:mt-20">
+          <PhaseRail />
+
+          <div className="mt-8">
+        {/* ─── BUILD ────────────────────────────────────────── */}
+        <div id="build" className="scroll-mt-28">
           <PhaseHeader
             index="01 – 04"
             title="Build"
@@ -259,7 +317,7 @@ export function Journey() {
         </div>
 
         {/* ─── SHIP ─────────────────────────────────────────── */}
-        <div className="mt-16 md:mt-20">
+        <div id="ship" className="mt-16 scroll-mt-28 md:mt-20">
           <PhaseHeader
             index="05 – 07"
             title="Ship"
@@ -273,7 +331,7 @@ export function Journey() {
         </div>
 
         {/* ─── IMPROVE ──────────────────────────────────────── */}
-        <div className="mt-16 md:mt-20">
+        <div id="improve" className="mt-16 scroll-mt-28 md:mt-20">
           <PhaseHeader
             index="08 – 11"
             title="Improve"
@@ -283,7 +341,7 @@ export function Journey() {
           {/* Objective vs Subjective split */}
           <div className="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-6">
-              <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#F77E5C]">
+ <div className="font-sans text-[11px] tracking-[0.04em] text-[#F77E5C]">
                 Objective · Insights
               </div>
               <p className="mt-2.5 text-[14px] leading-[1.55] text-white/65">
@@ -295,7 +353,7 @@ export function Journey() {
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-6">
-              <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#F77E5C]">
+ <div className="font-sans text-[11px] tracking-[0.04em] text-[#F77E5C]">
                 Subjective · QA
               </div>
               <p className="mt-2.5 text-[14px] leading-[1.55] text-white/65">
@@ -314,14 +372,16 @@ export function Journey() {
             ))}
           </div>
         </div>
+          </div>
+        </div>
 
         {/* ─── THE LOOP ─────────────────────────────────────── */}
         <div className="mt-20 border-t border-white/10 pt-16 text-center md:mt-28 md:pt-20">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#F77E5C]/35 px-3.5 py-1.5 font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#F77E5C]">
+ <span className="inline-flex items-center gap-2 rounded-full border border-[#F77E5C]/35 px-3.5 py-1.5 font-sans text-[11.5px] tracking-[0.04em] text-[#F77E5C]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#F77E5C]" />
             The loop
           </span>
-          <h2 className="mx-auto mt-5 max-w-[22ch] font-serif text-[clamp(28px,3.4vw,46px)] font-medium leading-[1.06] tracking-tight text-white">
+          <h2 className="mx-auto mt-5 max-w-[22ch] font-sans text-[clamp(28px,3.4vw,46px)] font-semibold leading-[1.06] tracking-tight text-white">
             Ship, measure, and improve -{" "}
             <em className="not-italic font-medium text-[#F77E5C]">
               without breaking what&apos;s live.

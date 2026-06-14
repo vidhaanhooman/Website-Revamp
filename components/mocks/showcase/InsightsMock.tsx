@@ -41,7 +41,7 @@ export function InsightsMock() {
           <LineChart size={12} strokeWidth={1.75} />
           Insights · last 14 days
         </div>
-        <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink/55 dark:text-white/55">
+ <span className="font-sans text-[10px] tracking-[0.04em] text-ink/55 dark:text-white/55">
           Live
         </span>
       </div>
@@ -49,7 +49,7 @@ export function InsightsMock() {
       <div className="grid grid-cols-2 gap-2 p-3.5">
         {/* Call volume */}
         <div className="rounded-lg border border-hairline bg-ink/[0.02] p-3 dark:border-white/10 dark:bg-white/[0.03]">
-          <div className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink/55 dark:text-white/55">
+ <div className="font-sans text-[9.5px] tracking-[0.04em] text-ink/55 dark:text-white/55">
             Calls / day
           </div>
           <div className="mt-1 text-[15px] font-medium text-ink dark:text-white">9,142</div>
@@ -70,7 +70,7 @@ export function InsightsMock() {
 
         {/* CSAT trend */}
         <div className="rounded-lg border border-hairline bg-ink/[0.02] p-3 dark:border-white/10 dark:bg-white/[0.03]">
-          <div className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink/55 dark:text-white/55">
+ <div className="font-sans text-[9.5px] tracking-[0.04em] text-ink/55 dark:text-white/55">
             CSAT
           </div>
           <div className="mt-1 flex items-baseline gap-1.5">
@@ -110,7 +110,7 @@ export function InsightsMock() {
 
       {/* Reasons list */}
       <div className="border-t border-hairline px-3.5 pb-3.5 pt-2 dark:border-white/8">
-        <div className="mb-2 flex items-center gap-1.5 font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink/55 dark:text-white/55">
+ <div className="mb-2 flex items-center gap-1.5 font-sans text-[9.5px] tracking-[0.04em] text-ink/55 dark:text-white/55">
           <AlertCircle size={10} strokeWidth={1.75} />
           Why calls escalated
         </div>

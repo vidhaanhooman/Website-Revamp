@@ -91,7 +91,7 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {COLS.map((col) => (
               <div key={col.label}>
-                <div className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-dark-muted">
+ <div className="font-sans text-[10.5px] tracking-[0.04em] text-dark-muted">
                   {col.label}
                 </div>
                 <ul className="mt-4 space-y-2.5">
@@ -119,7 +119,7 @@ export function Footer() {
             {TRUST.map((t) => (
               <span
                 key={t.label}
-                className="inline-flex items-center gap-1.5 rounded-full border border-dark-edge px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-dark-text/85"
+ className="inline-flex items-center gap-1.5 rounded-full border border-dark-edge px-3 py-1.5 font-sans text-[11px] tracking-[0.04em] text-dark-text/85"
               >
                 {t.icon}
                 {t.label}

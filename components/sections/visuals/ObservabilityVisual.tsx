@@ -192,10 +192,10 @@ export function ObservabilityVisual() {
           {/* Highlighted action */}
           <div>
             <div className="flex items-center justify-between">
-              <span className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] tabular-nums text-white/45">
+ <span className="font-sans text-[10.5px] font-medium tracking-[0.04em] tabular-nums text-white/45">
                 12:37:16
               </span>
-              <span className="flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-emerald-300/85">
+ <span className="flex items-center gap-1.5 font-sans text-[10px] font-medium tracking-[0.04em] text-emerald-300/85">
                 <span className="h-1 w-1 animate-pulse rounded-full bg-emerald-400" />
                 Live
               </span>

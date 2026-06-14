@@ -87,7 +87,7 @@ export function L2Footer() {
 
           {COLS.map((col) => (
             <div key={col.heading}>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45">
+ <div className="text-[11px] font-semibold tracking-[0.04em] text-white/45">
                 {col.heading}
               </div>
               <ul className="mt-5 space-y-3">

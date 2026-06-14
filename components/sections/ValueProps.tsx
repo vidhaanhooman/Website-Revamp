@@ -157,7 +157,7 @@ export function ValueProps() {
       <div className="container max-w-[1180px]">
         {/* Pill chip */}
         <motion.div {...fadeUp(0)} className="flex justify-center">
-          <span className="inline-flex items-center rounded-md border border-[#7B5AE0]/30 bg-[#7B5AE0]/8 px-2.5 py-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#5A3FB0] dark:border-[#7B5AE0]/40 dark:bg-[#7B5AE0]/15 dark:text-[#C2A8FF]">
+ <span className="inline-flex items-center rounded-md border border-[#7B5AE0]/30 bg-[#7B5AE0]/8 px-2.5 py-1 font-sans text-[10.5px] font-semibold tracking-[0.04em] text-[#5A3FB0] dark:border-[#7B5AE0]/40 dark:bg-[#7B5AE0]/15 dark:text-[#C2A8FF]">
             Built for India-first care &amp; service teams
           </span>
         </motion.div>
@@ -165,7 +165,7 @@ export function ValueProps() {
         {/* Headline - Instrument Serif */}
         <motion.h2
           {...fadeUp(0.08)}
-          className="mx-auto mt-6 max-w-3xl text-balance text-center font-serif text-[clamp(2.25rem,4.2vw,3.5rem)] font-normal leading-[1.05] tracking-tight text-ink dark:text-dark-text"
+          className="mx-auto mt-6 max-w-3xl text-balance text-center font-sans text-[clamp(2.25rem,4.2vw,3.5rem)] font-semibold leading-[1.05] tracking-tight text-ink dark:text-dark-text"
         >
           HoomanLabs picks up every call, in every language, before your team
           picks up the next one.

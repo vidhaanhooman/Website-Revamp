@@ -70,7 +70,7 @@ function Lane({
           </span>
           <span
             className={
-              "font-sans text-[9.5px] font-semibold uppercase tracking-[0.2em] " +
+ "font-sans text-[9.5px] font-semibold tracking-[0.04em] " +
               (highlighted ? "text-[#F77E5C]" : "text-white/35")
             }
           >
@@ -202,7 +202,7 @@ export function SimulateVisual() {
         <span className="font-sans text-[12px] font-medium text-white/85">
           Vibe-check · Maya · v1.3.0 → v1.3.1
         </span>
-        <span className="flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-white/65">
+ <span className="flex items-center gap-1.5 font-sans text-[10px] font-medium tracking-[0.04em] text-white/65">
           <span className="h-1 w-1 animate-pulse rounded-full bg-amber-300" />
           Simulating
         </span>
@@ -212,14 +212,14 @@ export function SimulateVisual() {
       <div className="border-b border-white/10 p-5 md:p-6">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/45">
+ <p className="font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/45">
               Side-by-side vibe-check
             </p>
             <h4 className="mt-1.5 font-sans text-[14px] font-semibold tracking-tight text-white">
               Patient asks to reschedule mid-confirmation
             </h4>
           </div>
-          <span className="shrink-0 rounded-full border border-emerald-400/45 bg-emerald-500/15 px-2 py-[3px] font-sans text-[9.5px] font-semibold uppercase tracking-[0.18em] text-emerald-300">
+ <span className="shrink-0 rounded-full border border-emerald-400/45 bg-emerald-500/15 px-2 py-[3px] font-sans text-[9.5px] font-semibold tracking-[0.04em] text-emerald-300">
             <span className="mr-1">↑</span>
             Better
           </span>
@@ -256,7 +256,7 @@ export function SimulateVisual() {
       {/* BOTTOM - regression deltas */}
       <div className="p-5 md:p-6">
         <div className="mb-3 flex items-center justify-between">
-          <span className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/55">
+ <span className="font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/55">
             Regression summary · by category
           </span>
           <span className="font-mono text-[10px] tabular-nums text-white/40">
@@ -279,7 +279,7 @@ export function SimulateVisual() {
           <DeltaRow category="Off-script asks" before={99.1} after={99.1} />
         </ul>
 
-        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 font-sans text-[10.5px] uppercase tracking-[0.18em]">
+ <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 font-sans text-[10.5px] tracking-[0.04em]">
           <span className="flex items-center gap-1.5 text-emerald-300/80">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             Improved

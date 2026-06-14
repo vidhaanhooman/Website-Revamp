@@ -84,7 +84,7 @@ function IconTile({
       {label && (
         <span
           className={
-            "font-mono text-[9.5px] uppercase tracking-[0.12em] " +
+ "font-sans text-[9.5px] tracking-[0.04em] " +
             (active ? "text-white" : "text-white/40")
           }
         >
@@ -238,7 +238,7 @@ export function V04Outcomes() {
           <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#F77E5C] text-[#0a0a0d]">
             <Database size={15} strokeWidth={1.8} />
           </span>
-          <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#F77E5C]">
+ <span className="font-sans text-[11px] tracking-[0.04em] text-[#F77E5C]">
             agent &nbsp;[12:21]
           </span>
         </div>
@@ -306,7 +306,7 @@ export function V05Simulate() {
     <Stage>
       <div className="mx-auto grid w-full max-w-[420px] grid-cols-2 gap-3">
         <div className="rounded-xl border border-white/10 bg-[#15151A] p-3">
-          <div className="flex items-center justify-between font-mono text-[9.5px] uppercase tracking-[0.16em] text-white/50">
+ <div className="flex items-center justify-between font-sans text-[9.5px] tracking-[0.04em] text-white/50">
             <span>v1.3.0</span>
             <span className="text-white/30">baseline</span>
           </div>
@@ -321,7 +321,7 @@ export function V05Simulate() {
           </div>
         </div>
         <div className="rounded-xl border border-[#F77E5C] bg-[#F77E5C] p-3 text-[#0a0a0d] shadow-[0_10px_30px_-8px_rgba(247,126,92,0.5)]">
-          <div className="flex items-center justify-between font-mono text-[9.5px] uppercase tracking-[0.16em]">
+ <div className="flex items-center justify-between font-sans text-[9.5px] tracking-[0.04em]">
             <span>v1.3.1</span>
             <span className="opacity-65">candidate</span>
           </div>
@@ -367,7 +367,7 @@ function CarrierTile({
       </div>
       <span
         className={
-          "font-mono text-[9.5px] uppercase tracking-[0.12em] " +
+ "font-sans text-[9.5px] tracking-[0.04em] " +
           (active ? "text-white" : "text-white/40")
         }
       >
@@ -398,7 +398,7 @@ export function V07GoLive() {
   return (
     <Stage>
       <div className="mx-auto w-full max-w-[360px] rounded-xl border border-white/10 bg-[#15151A] p-4">
-        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/45">
+ <div className="flex items-center gap-2 font-sans text-[10px] tracking-[0.04em] text-white/45">
           <PhoneIncoming size={11} strokeWidth={2} />
           incoming · Hindi
         </div>
@@ -454,7 +454,7 @@ export function V08Metrics() {
       <div className="mx-auto w-full max-w-[400px]">
         <div className="flex items-end justify-between">
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/45">
+ <div className="font-sans text-[10px] tracking-[0.04em] text-white/45">
               calls · last 24h
             </div>
             <div className="mt-1 font-serif text-[36px] leading-none text-white">
@@ -512,14 +512,14 @@ export function V09Quality() {
             key={r.label}
             className="flex items-center justify-between rounded-lg border border-white/10 bg-[#15151A] px-3 py-2.5"
           >
-            <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/65">
+ <span className="font-sans text-[11px] tracking-[0.04em] text-white/65">
               {r.label}
             </span>
             <Chip label={r.v} tone={r.tone} />
           </div>
         ))}
         <div className="flex items-center justify-between rounded-lg border border-[#E5413B]/45 bg-[#E5413B]/[0.08] px-3 py-2.5">
-          <span className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-[#E5413B]">
+ <span className="flex items-center gap-1.5 font-sans text-[11px] tracking-[0.04em] text-[#E5413B]">
             <AlertTriangle size={12} strokeWidth={2} />
             latency p95
           </span>
@@ -536,7 +536,7 @@ export function V09Quality() {
    ============================================================ */
 export function V10Alerts() {
   const tag = (t: string) => (
-    <span className="rounded-md bg-white/[0.05] px-2 py-1 font-mono text-[9.5px] uppercase tracking-[0.14em] text-white/55">
+ <span className="rounded-md bg-white/[0.05] px-2 py-1 font-sans text-[9.5px] tracking-[0.04em] text-white/55">
       {t}
     </span>
   );

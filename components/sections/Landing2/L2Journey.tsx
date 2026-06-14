@@ -124,7 +124,7 @@ export function L2Journey() {
         {/* Intro */}
         <div className="max-w-[32ch] pb-4 pt-24 lg:pt-28">
           <Pill>How it works</Pill>
-          <h2 className="mt-6 font-serif text-[clamp(38px,4.6vw,62px)] font-semibold leading-[1.02] tracking-[-0.02em] text-[#1B1209]">
+          <h2 className="mt-6 font-sans text-[clamp(38px,4.6vw,62px)] font-semibold leading-[1.02] tracking-[-0.02em] text-[#1B1209]">
             From a single prompt to a million calls - and{" "}
             <em className="font-medium not-italic italic text-[#E25B12]">
               better every week.
@@ -174,7 +174,7 @@ export function L2Journey() {
         {/* The loop */}
         <div className="mt-16 border-t border-[rgba(27,18,9,0.12)] pb-2.5 pt-14 text-center">
           <Pill center>The loop</Pill>
-          <h2 className="mx-auto mt-5 max-w-[22ch] font-serif text-[clamp(28px,3.4vw,46px)] font-semibold leading-[1.06] tracking-[-0.02em] text-[#1B1209]">
+          <h2 className="mx-auto mt-5 max-w-[22ch] font-sans text-[clamp(28px,3.4vw,46px)] font-semibold leading-[1.06] tracking-[-0.02em] text-[#1B1209]">
             Ship, measure, and improve -{" "}
             <em className="font-medium not-italic italic text-[#E25B12]">
               without breaking what&apos;s live.
@@ -222,7 +222,7 @@ function Pill({
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-2.5 rounded-full border border-[rgba(226,91,18,0.34)] px-3.5 py-[7px] font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#E25B12] ${
+ className={`inline-flex items-center gap-2.5 rounded-full border border-[rgba(226,91,18,0.34)] px-3.5 py-[7px] font-sans text-[11.5px] tracking-[0.04em] text-[#E25B12] ${
         center ? "" : ""
       }`}
     >
@@ -248,10 +248,10 @@ function Phase({
   return (
     <div className="pb-2 pt-14">
       <div className="mb-7 flex flex-wrap items-baseline gap-x-4 gap-y-2 border-t border-[rgba(27,18,9,0.12)] pt-7">
-        <span className="font-mono text-[13px] uppercase tracking-[0.12em] text-[#E25B12]">
+ <span className="font-sans text-[13px] tracking-[0.04em] text-[#E25B12]">
           {idx}
         </span>
-        <h3 className="font-serif text-[clamp(26px,3vw,38px)] font-semibold tracking-[-0.018em] text-[#1B1209]">
+        <h3 className="font-sans text-[clamp(26px,3vw,38px)] font-semibold tracking-[-0.018em] text-[#1B1209]">
           {title}
         </h3>
         <p className="ml-auto max-w-[36ch] text-[15px] leading-[1.5] text-[#6B6052] md:text-right">
@@ -313,7 +313,7 @@ function JourneyCard({ card }: { card: Card }) {
           <span className="font-serif text-[26px] font-semibold leading-none text-[#E25B12]">
             {card.n}
           </span>
-          <span className="flex items-center gap-1.5 font-mono text-[10.5px] uppercase tracking-[0.1em] text-[#6B6052]">
+ <span className="flex items-center gap-1.5 font-sans text-[10.5px] tracking-[0.04em] text-[#6B6052]">
             {card.label}
             {card.beta && (
               <span className="rounded-[5px] bg-[rgba(226,91,18,0.16)] px-1.5 py-0.5 text-[9px] tracking-normal text-[#1B1209]">
@@ -342,7 +342,7 @@ function SplitCard({
 }) {
   return (
     <div className="rounded-[13px] border border-[rgba(27,18,9,0.12)] bg-[rgba(251,246,236,0.5)] px-[18px] py-4">
-      <div className="mb-[7px] font-mono text-[11px] uppercase tracking-[0.1em] text-[#E25B12]">
+ <div className="mb-[7px] font-sans text-[11px] tracking-[0.04em] text-[#E25B12]">
         {k}
       </div>
       <p className="text-[13.5px] leading-[1.5] text-[#6B6052]">

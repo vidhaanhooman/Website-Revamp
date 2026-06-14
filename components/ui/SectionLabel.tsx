@@ -19,10 +19,10 @@ export function SectionLabel({
           "flex items-baseline justify-between gap-4 border-t pt-5 " + colors
         }
       >
-        <span className="font-sans text-[11px] font-medium uppercase tracking-[0.24em]">
+ <span className="font-sans text-[11px] font-medium tracking-[0.04em]">
           [{number}] &nbsp; {name}
         </span>
-        <span className="font-sans text-[11px] font-medium uppercase tracking-[0.24em]">
+ <span className="font-sans text-[11px] font-medium tracking-[0.04em]">
           HoomanLabs
         </span>
       </div>

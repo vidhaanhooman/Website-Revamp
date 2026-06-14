@@ -133,13 +133,13 @@ export default async function PostPage({ params }: PageProps) {
       <article className="relative mx-auto max-w-[760px] px-4 pb-24 pt-32 md:pt-40">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-1.5 font-sans text-[11.5px] font-medium uppercase tracking-[0.18em] text-white/55 transition-colors hover:text-white"
+ className="inline-flex items-center gap-1.5 font-sans text-[11.5px] font-medium tracking-[0.04em] text-white/55 transition-colors hover:text-white"
         >
           <ArrowLeft size={13} strokeWidth={2.25} />
           All posts
         </Link>
 
-        <div className="mt-8 flex flex-wrap items-center gap-3 font-sans text-[11.5px] uppercase tracking-[0.18em] text-white/55">
+ <div className="mt-8 flex flex-wrap items-center gap-3 font-sans text-[11.5px] tracking-[0.04em] text-white/55">
           <span
             className="rounded-full px-2.5 py-1 font-medium"
             style={{
@@ -167,7 +167,7 @@ export default async function PostPage({ params }: PageProps) {
 
         {post.author ? (
           <div className="mt-7 flex items-center gap-3 border-t border-white/10 pt-6">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 font-sans text-[13px] font-semibold uppercase text-white">
+ <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 font-sans text-[13px] font-semibold text-white">
               {post.author.name?.[0] ?? "?"}
             </div>
             <div>

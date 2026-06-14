@@ -30,19 +30,63 @@ const STATS = [
   { value: "<500ms", label: "Voice latency" },
   { value: "99.99%", label: "Platform uptime" },
   { value: "22", label: "Languages supported" },
-  { value: "1,200+", label: "Agents deployed" }
+  { value: "150+", label: "Cities connected" }
 ];
 
 const USE_CASES = [
-  { label: "Appointments", Icon: Calendar },
   { label: "Lead qualification", Icon: Target },
   { label: "Order tracking", Icon: Package },
   { label: "Payment collection", Icon: CreditCard },
   { label: "Feedback surveys", Icon: MessageSquare },
   { label: "Insurance verification", Icon: ShieldCheck },
+  { label: "Appointments", Icon: Calendar },
   { label: "Follow-up calls", Icon: PhoneCall },
   { label: "Clinical triage", Icon: Stethoscope }
 ];
+
+/* ─── Rolling odometer digit ──────────────────────────────────── */
+function RollingDigit({ d }: { d: string }) {
+  const n = parseInt(d, 10);
+  return (
+    <span
+      className="relative inline-block overflow-hidden align-baseline tabular-nums"
+      style={{ height: "1em", width: "0.6em" }}
+    >
+      <span
+        className="flex flex-col transition-transform duration-700 ease-out"
+        style={{ transform: `translateY(-${n * 10}%)` }}
+      >
+        {Array.from({ length: 10 }, (_, i) => (
+          <span
+            key={i}
+            className="flex items-center justify-center leading-none"
+            style={{ height: "1em" }}
+          >
+            {i}
+          </span>
+        ))}
+      </span>
+    </span>
+  );
+}
+
+function RollingNumber({ value }: { value: number }) {
+  const chars = value.toLocaleString("en-US").split("");
+  return (
+    <span className="inline-flex items-baseline">
+      {chars.map((c, i) =>
+        /\d/.test(c) ? (
+          <RollingDigit key={i} d={c} />
+        ) : (
+          <span key={i} className="inline-block" style={{ width: "0.3em" }}>
+            {c}
+          </span>
+        )
+      )}
+      <span className="text-white/30">+</span>
+    </span>
+  );
+}
 
 export function CallsCounter() {
   const [count, setCount] = useState<number>(BASE_COUNT);
@@ -54,57 +98,48 @@ export function CallsCounter() {
   }, []);
 
   return (
-    <section className="relative px-4 py-20 md:py-24">
+    <section className="relative px-4 py-16 md:py-20">
       <div className="mx-auto max-w-[1240px]">
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0d]">
-          {/* TOP - image spans full width, fades smoothly into dark right side */}
-          <div className="relative min-h-[300px] sm:min-h-[380px] md:min-h-[460px]">
-            {/* Full-width image */}
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.015]">
+          {/* TOP - big rolling counter, left aligned */}
+          <div className="relative px-7 pt-10 md:px-12 md:pt-14">
+            {/* webcounter.png - large feature image anchored to the right,
+                spans the full height of the counter block for more weight */}
             <div
               aria-hidden
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('/counter.png')" }}
-            />
-            {/* Long horizontal scrim - gradual transparent→dark across the whole panel */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
+              className="pointer-events-none absolute -right-4 -top-10 bottom-[-40px] hidden w-[46%] bg-contain bg-right bg-no-repeat opacity-95 md:block lg:-right-2 lg:w-[48%]"
               style={{
-                background:
-                  "linear-gradient(to right, transparent 0%, transparent 30%, rgba(10,10,13,0.45) 55%, rgba(10,10,13,0.88) 78%, rgba(10,10,13,1) 100%)"
+                backgroundImage: "url('/webcounter.png')",
+                maskImage:
+                  "linear-gradient(to right, transparent 0%, black 22%, black 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to right, transparent 0%, black 22%, black 100%)"
               }}
             />
-            {/* Content grid sits over the scrim - only the right column has copy */}
-            <div className="relative grid h-full md:grid-cols-2">
-              <div aria-hidden />
-              <div className="flex flex-col items-center justify-center px-8 py-14 text-center md:items-end md:px-14 md:py-20 md:text-right">
-                <p className="flex items-center gap-2 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white/65">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-                  Live · ticking now
-                </p>
-                <div
-                  className="mt-5 font-serif font-normal leading-[0.92] tracking-tight text-white tabular-nums drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]"
-                  style={{ fontSize: "clamp(3.25rem, 9vw, 6.5rem)" }}
-                  aria-live="polite"
-                >
-                  {count.toLocaleString("en-US")}
-                  <span>+</span>
-                </div>
-                <p className="mt-5 max-w-sm font-sans text-[14.5px] leading-[1.55] text-white/75">
-                  minutes of customer conversations handled by HoomanLabs voice
-                  agents.
-                </p>
-              </div>
+
+ <p className="flex items-center gap-2 font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/50">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+              Live · ticking now
+            </p>
+            <div
+              className="mt-4 font-sans font-bold leading-[0.95] tracking-tight text-white"
+              style={{ fontSize: "clamp(2.75rem, 7vw, 5.5rem)" }}
+              aria-live="polite"
+            >
+              <RollingNumber value={count} />
             </div>
+            <p className="mt-3 max-w-md font-sans text-[15px] leading-[1.55] text-white/55 md:text-[16px]">
+              minutes of customer conversations handled by HoomanLabs AI agents.
+            </p>
           </div>
 
           {/* STATS - 4-column hairline grid */}
-          <div className="grid grid-cols-2 border-t border-white/10 md:grid-cols-4">
+          <div className="relative mt-10 grid grid-cols-2 border-t border-white/10 md:grid-cols-4">
             {STATS.map((s, i) => (
               <div
                 key={s.label}
                 className={
-                  "px-6 py-7 md:px-8 md:py-9 " +
+                  "px-7 py-6 md:px-7 md:py-7 " +
                   (i < STATS.length - 1
                     ? "md:border-r md:border-white/10 "
                     : "") +
@@ -112,19 +147,19 @@ export function CallsCounter() {
                   (i % 2 === 0 ? "border-r border-white/10 md:border-r " : "")
                 }
               >
-                <div className="font-sans text-[28px] font-semibold tracking-tight text-white md:text-[32px]">
+                <div className="font-sans text-[24px] font-bold tracking-tight text-white md:text-[28px]">
                   {s.value}
                 </div>
-                <div className="mt-2 font-sans text-[10.5px] font-medium uppercase tracking-[0.2em] text-white/50">
+ <div className="mt-1.5 font-sans text-[10px] font-medium tracking-[0.04em] text-white/45">
                   {s.label}
                 </div>
               </div>
             ))}
           </div>
 
-          {/* USE-CASE CHIP STRIP - infinite marquee */}
+          {/* USE-CASE STRIP - infinite marquee */}
           <div
-            className="relative overflow-hidden border-t border-white/10 py-5 md:py-6"
+            className="relative overflow-hidden border-t border-white/10 py-4 md:py-5"
             style={{
               maskImage:
                 "linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%)",
@@ -136,14 +171,10 @@ export function CallsCounter() {
               {[...USE_CASES, ...USE_CASES].map(({ label, Icon }, i) => (
                 <li
                   key={`${label}-${i}`}
-                  className="flex shrink-0 items-center gap-2 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/60"
+ className="flex shrink-0 items-center gap-2 font-sans text-[11px] font-medium tracking-[0.04em] text-white/55"
                   aria-hidden={i >= USE_CASES.length ? true : undefined}
                 >
-                  <Icon
-                    size={13}
-                    strokeWidth={1.75}
-                    className="text-white/45"
-                  />
+                  <Icon size={13} strokeWidth={1.75} className="text-[#F77E5C]/70" />
                   {label}
                 </li>
               ))}

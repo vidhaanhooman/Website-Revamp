@@ -104,7 +104,7 @@ function CardCta({ label }: { label: string }) {
 
 function CardTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="px-2 text-center font-serif text-[clamp(2rem,3vw,2.75rem)] font-normal leading-[1.02] tracking-tight text-white">
+    <h3 className="px-2 text-center font-sans text-[clamp(2rem,3vw,2.75rem)] font-semibold leading-[1.02] tracking-tight text-white">
       {children}
     </h3>
   );
@@ -258,7 +258,7 @@ function LatencyCard() {
 
       {/* Middle: benchmark mock */}
       <div className="-mt-2 rounded-[14px] border border-white/25 bg-white/15 p-3.5 backdrop-blur-md">
-        <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/80">
+ <div className="font-sans text-[10px] tracking-[0.04em] text-white/80">
           p50 · last 24h
         </div>
         <div className="mt-1 flex items-baseline justify-between">
@@ -279,7 +279,7 @@ function LatencyCard() {
               key={k}
               className="rounded-md border border-white/25 bg-white/10 px-2 py-1.5"
             >
-              <div className="text-[9.5px] uppercase tracking-[0.12em] text-white/75">
+ <div className="text-[9.5px] tracking-[0.04em] text-white/75">
                 {k}
               </div>
               <div className="font-mono text-[11.5px] text-white">{v}</div>

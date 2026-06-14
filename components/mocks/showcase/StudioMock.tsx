@@ -25,7 +25,7 @@ export function StudioMock() {
 
       {/* Voice picker */}
       <div className="border-b border-hairline px-3.5 py-3.5 dark:border-white/8">
-        <div className="mb-2 font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink/55 dark:text-white/55">
+ <div className="mb-2 font-sans text-[9.5px] tracking-[0.04em] text-ink/55 dark:text-white/55">
           Voice
         </div>
         <div className="grid grid-cols-2 gap-1.5">

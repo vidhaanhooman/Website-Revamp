@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, Check, ChevronDown } from "lucide-react";
 
 function HoomanMark({ size = 12 }: { size?: number }) {
   const w = Math.round((size * 86) / 95);
@@ -312,19 +312,19 @@ export function AgentDemo() {
 
   return (
     <section id="agent-demo" className="relative px-4 py-24 md:py-32">
-      <div className="mx-auto max-w-[1180px]">
+      <div className="mx-auto max-w-[1240px]">
         {/* Eyebrow + headline - single editorial line */}
         <div className="mb-12 flex items-baseline justify-between border-b border-white/10 pb-6">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/45">
+ <p className="font-sans text-[11px] tracking-[0.04em] text-white/45">
             [01] &nbsp; Live Demo
           </p>
-          <p className="hidden font-mono text-[11px] uppercase tracking-[0.22em] text-white/45 md:block">
+ <p className="hidden font-sans text-[11px] tracking-[0.04em] text-white/45 md:block">
             India · 22 languages
           </p>
         </div>
 
         <div className="mb-14 max-w-2xl">
-          <h2 className="font-serif text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.05] tracking-tight text-white">
+          <h2 className="font-sans text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.05] tracking-tight text-white">
             Hear it before you build it.
           </h2>
           <p className="mt-4 text-[15px] leading-[1.6] text-white/60">
@@ -336,8 +336,18 @@ export function AgentDemo() {
         <div className="grid overflow-hidden rounded-2xl border border-white/10 bg-white/[0.015] md:grid-cols-[1fr_1.05fr]">
           {/* LEFT - dotted sphere panel */}
           <div className="relative flex min-h-[520px] flex-col overflow-hidden border-b border-white/10 px-6 py-7 md:border-b-0 md:border-r md:px-9 md:py-9">
+            {/* Ambient glow - soft coral/violet wash behind the sphere */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse 60% 55% at 50% 58%, rgba(247,126,92,0.10), transparent 70%), radial-gradient(ellipse 50% 50% at 30% 30%, rgba(114,87,199,0.08), transparent 65%)"
+              }}
+            />
+
             {/* Card header - Hooman mark + caps label */}
-            <div className="flex items-center gap-2 text-white/85">
+            <div className="relative flex items-center gap-2 text-white/85">
               <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/15 text-white">
                 <HoomanMark size={11} />
               </span>
@@ -346,11 +356,11 @@ export function AgentDemo() {
               </span>
             </div>
 
-            {/* Bold headline + small caption - inspired by reference card */}
-            <h3 className="mt-4 max-w-xs text-[20px] font-semibold leading-[1.25] tracking-tight text-white md:text-[22px]">
-              Hear how Asha handles a real conversation.
+            {/* Bold headline + small caption - tracks the selected agent */}
+            <h3 className="relative mt-4 max-w-xs text-[20px] font-semibold leading-[1.25] tracking-tight text-white md:text-[22px]">
+              Hear how {active.agent} handles a real conversation.
             </h3>
-            <p className="mt-3 text-[13px] text-white/45">
+            <p className="relative mt-3 text-[13px] text-white/45">
               Customer voices, 22 languages, sub-second latency.
             </p>
 
@@ -367,10 +377,30 @@ export function AgentDemo() {
               </div>
             </motion.div>
 
-            {/* Footer caption - reacts to selected chip */}
-            <div className="mt-6 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.22em] text-white/55">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-              {active.agent} · {active.label}
+            {/* Footer caption - reacts to selected chip, with live equalizer */}
+            <div className="relative mt-6 flex items-center justify-between">
+ <div className="flex items-center gap-2.5 font-sans text-[11px] tracking-[0.04em] text-white/55">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                {active.agent} · {active.label}
+              </div>
+              {/* Live equalizer - signals the agent is "speaking" */}
+              <div
+                aria-hidden
+                className="flex items-end gap-[3px]"
+                style={{ height: 14 }}
+              >
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <span
+                    key={i}
+                    className="w-[2.5px] rounded-full bg-emerald-400/70 motion-reduce:!animate-none"
+                    style={{
+                      height: "100%",
+                      transformOrigin: "bottom",
+                      animation: `eq 1s ease-in-out ${i * 0.13}s infinite`
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
 
@@ -386,7 +416,7 @@ export function AgentDemo() {
             <div className="flex-1 px-6 py-10 md:px-12 md:py-12">
               {/* Use case - custom dropdown with visible options panel */}
               <div ref={dropdownRef} className="relative">
-                <label className="block font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">
+ <label className="block font-sans text-[10px] tracking-[0.04em] text-white/45">
                   01 · Use case
                 </label>
                 <button
@@ -451,7 +481,7 @@ export function AgentDemo() {
               <div className="mt-9">
                 <label
                   htmlFor="name"
-                  className="block font-mono text-[10px] uppercase tracking-[0.22em] text-white/45"
+ className="block font-sans text-[10px] tracking-[0.04em] text-white/45"
                 >
                   02 · Name
                 </label>
@@ -466,37 +496,47 @@ export function AgentDemo() {
                 />
               </div>
 
-              {/* Phone */}
+              {/* Phone - with India country-code prefix */}
               <div className="mt-7">
                 <label
                   htmlFor="phone"
-                  className="block font-mono text-[10px] uppercase tracking-[0.22em] text-white/45"
+ className="block font-sans text-[10px] tracking-[0.04em] text-white/45"
                 >
                   03 · Phone number
                 </label>
-                <input
-                  id="phone"
-                  type="tel"
-                  required
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+91 98765 43210"
-                  className="mt-2 w-full border-b border-white/15 bg-transparent py-2.5 font-gilroy text-[15px] font-medium text-white placeholder:font-medium placeholder:text-white/30 outline-none transition-colors focus:border-white/50"
-                />
+                <div className="mt-2 flex items-center border-b border-white/15 transition-colors focus-within:border-white/50">
+                  <span className="flex shrink-0 items-center gap-1.5 pr-3 font-gilroy text-[15px] font-medium text-white/45">
+                    <span className="text-[13px]">🇮🇳</span> +91
+                  </span>
+                  <input
+                    id="phone"
+                    type="tel"
+                    required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="98765 43210"
+                    className="w-full bg-transparent py-2.5 font-gilroy text-[15px] font-medium tabular-nums text-white placeholder:font-medium placeholder:text-white/30 outline-none"
+                  />
+                </div>
               </div>
             </div>
 
             {/* Submit row */}
             <div className="flex items-center justify-between border-t border-white/10 px-6 py-4 md:px-12">
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
-                Free · No card required
+ <span className="flex items-center gap-1.5 font-sans text-[10px] tracking-[0.04em] text-white/40">
+                <Check size={12} strokeWidth={2.5} className="text-emerald-400/70" />
+                Free · No card
               </span>
               <button
                 type="submit"
-                className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-ink transition-colors hover:bg-white/85"
+                className="group/cta inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-ink shadow-[0_8px_24px_-10px_rgba(255,255,255,0.4)] transition-all hover:bg-white/90 hover:shadow-[0_10px_30px_-10px_rgba(255,255,255,0.55)]"
               >
-                Call me
-                <ArrowRight size={14} strokeWidth={2.25} />
+                Call me now
+                <ArrowRight
+                  size={14}
+                  strokeWidth={2.25}
+                  className="transition-transform group-hover/cta:translate-x-0.5"
+                />
               </button>
             </div>
           </form>

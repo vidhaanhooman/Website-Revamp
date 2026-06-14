@@ -65,7 +65,7 @@ export function DeployVisual() {
         <span className="font-sans text-[12px] font-medium text-white/85">
           Telephony Console · Brightside Dental
         </span>
-        <span className="flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-white/65">
+ <span className="flex items-center gap-1.5 font-sans text-[10px] font-medium tracking-[0.04em] text-white/65">
           <span className="h-1 w-1 animate-pulse rounded-full bg-white" />
           Live · 4 numbers
         </span>
@@ -87,14 +87,14 @@ export function DeployVisual() {
           <div className="relative">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/45">
+ <p className="font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/45">
                   HoomanLabs Telephony
                 </p>
                 <h4 className="mt-1.5 font-sans text-[14px] font-semibold tracking-tight text-white">
                   Managed Indian numbers
                 </h4>
               </div>
-              <span className="shrink-0 rounded-full border border-white/35 bg-white/10 px-2 py-[3px] font-sans text-[9.5px] font-semibold uppercase tracking-[0.18em] text-white">
+ <span className="shrink-0 rounded-full border border-white/35 bg-white/10 px-2 py-[3px] font-sans text-[9.5px] font-semibold tracking-[0.04em] text-white">
                 Preferred
               </span>
             </div>
@@ -118,7 +118,7 @@ export function DeployVisual() {
               ))}
             </ul>
 
-            <p className="mt-3 font-sans text-[10.5px] uppercase tracking-[0.2em] text-white/35">
+ <p className="mt-3 font-sans text-[10.5px] tracking-[0.04em] text-white/35">
               50+ circles available · billed by the minute
             </p>
           </div>
@@ -128,14 +128,14 @@ export function DeployVisual() {
         <div className="p-5 md:p-6">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/45">
+ <p className="font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/45">
                 Bring your own
               </p>
               <h4 className="mt-1.5 font-sans text-[14px] font-semibold tracking-tight text-white">
                 BYO trunks
               </h4>
             </div>
-            <span className="shrink-0 rounded-full border border-white/12 bg-white/[0.03] px-2 py-[3px] font-sans text-[9.5px] font-medium uppercase tracking-[0.18em] text-white/55">
+ <span className="shrink-0 rounded-full border border-white/12 bg-white/[0.03] px-2 py-[3px] font-sans text-[9.5px] font-medium tracking-[0.04em] text-white/55">
               SIP
             </span>
           </div>
@@ -164,7 +164,7 @@ export function DeployVisual() {
                 </span>
                 <span
                   className={
-                    "ml-auto flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.18em] " +
+ "ml-auto flex items-center gap-1.5 font-sans text-[10px] font-medium tracking-[0.04em] " +
                     (c.status === "Live"
                       ? "text-white/70"
                       : "text-white/35")
@@ -182,7 +182,7 @@ export function DeployVisual() {
             ))}
           </ul>
 
-          <p className="mt-3 font-sans text-[10.5px] uppercase tracking-[0.2em] text-white/35">
+ <p className="mt-3 font-sans text-[10.5px] tracking-[0.04em] text-white/35">
             Keep your DIDs, pricing, contracts
           </p>
         </div>
@@ -191,7 +191,7 @@ export function DeployVisual() {
       {/* ─── DEPLOYMENT ACTIVITY LOG ────────────────────────── */}
       <div className="relative px-5 py-4 md:px-6 md:py-5">
         <div className="mb-3 flex items-center justify-between">
-          <span className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/55">
+ <span className="font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/55">
             Deployment activity · last 5 min
           </span>
           <span className="font-mono text-[10px] tabular-nums text-white/40">
@@ -206,7 +206,7 @@ export function DeployVisual() {
               className="grid items-center gap-x-3 font-sans text-[12px] md:grid-cols-[68px_minmax(120px,max-content)_minmax(0,1fr)]"
             >
               <span className="tabular-nums text-white/40">{e.t}</span>
-              <span className="inline-flex w-fit items-center gap-1.5 rounded-sm border border-white/10 bg-white/[0.04] px-1.5 py-[2px] font-sans text-[9.5px] font-medium uppercase tracking-[0.18em] text-white/65">
+ <span className="inline-flex w-fit items-center gap-1.5 rounded-sm border border-white/10 bg-white/[0.04] px-1.5 py-[2px] font-sans text-[9.5px] font-medium tracking-[0.04em] text-white/65">
                 <StatusDot tone={e.tone} />
                 {e.tag}
               </span>

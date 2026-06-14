@@ -162,7 +162,7 @@ export default function FeaturesDetailsPage() {
             <div className="flex flex-wrap items-center justify-between gap-4">
               <Link
                 href="/features"
-                className="inline-flex items-center gap-1.5 font-sans text-[11.5px] font-medium uppercase tracking-[0.18em] text-white/65 transition-colors hover:text-white"
+ className="inline-flex items-center gap-1.5 font-sans text-[11.5px] font-medium tracking-[0.04em] text-white/65 transition-colors hover:text-white"
               >
                 <ArrowLeft size={13} strokeWidth={2.25} />
                 All features
@@ -176,7 +176,7 @@ export default function FeaturesDetailsPage() {
                   <a
                     key={f.id}
                     href={`#${f.id}`}
-                    className="rounded-full border border-white/15 bg-black/30 px-3.5 py-1.5 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/75 backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-black/50 hover:text-white"
+ className="rounded-full border border-white/15 bg-black/30 px-3.5 py-1.5 font-sans text-[11px] font-medium tracking-[0.04em] text-white/75 backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-black/50 hover:text-white"
                   >
                     {f.eyebrow}
                   </a>
@@ -189,7 +189,7 @@ export default function FeaturesDetailsPage() {
         {/* HERO - introduces the page before diving into each section */}
         <section className="relative px-4 pb-16 pt-12 md:pb-24 md:pt-20">
           <div className="mx-auto max-w-[1240px]">
-            <p className="font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white/65">
+ <p className="font-sans text-[11px] font-medium tracking-[0.04em] text-white/65">
               Platform overview
             </p>
             <h1 className="mt-5 max-w-4xl font-serif text-[clamp(2.5rem,5.4vw,4.5rem)] font-normal leading-[1] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)]">
@@ -209,7 +209,7 @@ export default function FeaturesDetailsPage() {
                   href={`#${f.id}`}
                   className="group rounded-2xl border border-white/15 bg-black/40 p-5 backdrop-blur-md transition-all hover:border-white/30 hover:bg-black/55"
                 >
-                  <div className="flex items-center justify-between font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-white/60">
+ <div className="flex items-center justify-between font-sans text-[10px] font-medium tracking-[0.04em] text-white/60">
                     <span>{String(i + 1).padStart(2, "0")}</span>
                     <span className="transition-transform group-hover:translate-x-0.5">
                       →

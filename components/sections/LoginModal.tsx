@@ -157,7 +157,7 @@ export function LoginModal({ open, onClose }: LoginModalProps) {
               </div>
 
               {/* Divider */}
-              <div className="my-6 flex items-center gap-3 font-sans text-[11px] uppercase tracking-[0.2em] text-white/35">
+ <div className="my-6 flex items-center gap-3 font-sans text-[11px] tracking-[0.04em] text-white/35">
                 <span className="h-px flex-1 bg-white/10" />
                 Or sign in with
                 <span className="h-px flex-1 bg-white/10" />

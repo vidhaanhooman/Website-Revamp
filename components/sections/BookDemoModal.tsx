@@ -196,7 +196,7 @@ export function BookDemoModal({ open, onClose }: BookDemoModalProps) {
                   />
                 </svg>
               </div>
-              <p className="mt-5 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white/45">
+ <p className="mt-5 font-sans text-[11px] font-medium tracking-[0.04em] text-white/45">
                 HoomanLabs
               </p>
               <h2
@@ -268,7 +268,7 @@ export function BookDemoModal({ open, onClose }: BookDemoModalProps) {
                 {DAY_HEADERS.map((d) => (
                   <div
                     key={d}
-                    className="py-1 text-center font-sans text-[10px] font-medium uppercase tracking-[0.18em] text-white/40"
+ className="py-1 text-center font-sans text-[10px] font-medium tracking-[0.04em] text-white/40"
                   >
                     {d}
                   </div>
@@ -388,7 +388,7 @@ export function BookDemoModal({ open, onClose }: BookDemoModalProps) {
               <button
                 type="button"
                 onClick={() => setStep("calendar")}
-                className="inline-flex items-center gap-1.5 font-sans text-[11.5px] font-medium uppercase tracking-[0.18em] text-white/55 transition-colors hover:text-white"
+ className="inline-flex items-center gap-1.5 font-sans text-[11.5px] font-medium tracking-[0.04em] text-white/55 transition-colors hover:text-white"
               >
                 <ArrowLeft size={13} strokeWidth={2.25} />
                 Back to time
@@ -509,12 +509,12 @@ export function BookDemoModal({ open, onClose }: BookDemoModalProps) {
 
             {/* Booking summary side panel */}
             <aside className="border-t border-white/10 bg-white/[0.02] p-7 md:border-l md:border-t-0 md:p-8">
-              <p className="font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white/45">
+ <p className="font-sans text-[11px] font-medium tracking-[0.04em] text-white/45">
                 Booking summary
               </p>
               <div className="mt-4 space-y-3">
                 <div>
-                  <p className="font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/40">
+ <p className="font-sans text-[11px] font-medium tracking-[0.04em] text-white/40">
                     Event
                   </p>
                   <p className="mt-1 font-sans text-[13.5px] font-semibold text-white">
@@ -522,7 +522,7 @@ export function BookDemoModal({ open, onClose }: BookDemoModalProps) {
                   </p>
                 </div>
                 <div>
-                  <p className="font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/40">
+ <p className="font-sans text-[11px] font-medium tracking-[0.04em] text-white/40">
                     Date
                   </p>
                   <p className="mt-1 font-sans text-[13.5px] text-white">
@@ -532,7 +532,7 @@ export function BookDemoModal({ open, onClose }: BookDemoModalProps) {
                   </p>
                 </div>
                 <div>
-                  <p className="font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/40">
+ <p className="font-sans text-[11px] font-medium tracking-[0.04em] text-white/40">
                     Time
                   </p>
                   <p className="mt-1 font-sans text-[13.5px] tabular-nums text-white">
@@ -542,7 +542,7 @@ export function BookDemoModal({ open, onClose }: BookDemoModalProps) {
                   </p>
                 </div>
                 <div>
-                  <p className="font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/40">
+ <p className="font-sans text-[11px] font-medium tracking-[0.04em] text-white/40">
                     Where
                   </p>
                   <p className="mt-1 flex items-center gap-1.5 font-sans text-[13.5px] text-white">

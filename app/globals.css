@@ -125,6 +125,17 @@ a {
   animation-play-state: paused;
 }
 
+/* Live equalizer bars - used in the AgentDemo "live agent" footer */
+@keyframes eq {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

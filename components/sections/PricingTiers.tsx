@@ -88,7 +88,7 @@ export function PricingTiers() {
 
             {/* Trusted by */}
             <div className="mx-auto mt-12 max-w-2xl text-center">
-              <p className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/45">
+ <p className="font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/45">
                 Trusted by India&apos;s best care &amp; service teams
               </p>
               <div className="mt-6 grid grid-cols-2 gap-x-12 gap-y-4 md:grid-cols-3">
@@ -143,7 +143,7 @@ export function PricingTiers() {
                       </div>
                       {isHighlight ? (
                         <span
-                          className="rounded-md px-2 py-[3px] font-sans text-[10px] font-semibold uppercase tracking-[0.18em]"
+ className="rounded-md px-2 py-[3px] font-sans text-[10px] font-semibold tracking-[0.04em]"
                           style={{ backgroundColor: CORAL_BG, color: CORAL }}
                         >
                           Most popular
@@ -173,7 +173,7 @@ export function PricingTiers() {
                             <span className="font-sans text-[28px] font-semibold leading-none tracking-tight text-white">
                               {r.rate}
                             </span>
-                            <span className="font-sans text-[10.5px] font-medium uppercase tracking-[0.18em] text-white/45">
+ <span className="font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/45">
                               /min
                             </span>
                           </span>
@@ -254,7 +254,7 @@ export function PricingTiers() {
               {FOOTER_NOTES.map(({ Icon, label }) => (
                 <span
                   key={label}
-                  className="flex items-center gap-2 font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/55"
+ className="flex items-center gap-2 font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/55"
                 >
                   <Icon
                     size={13}

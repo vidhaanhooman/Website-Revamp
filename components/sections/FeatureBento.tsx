@@ -363,7 +363,7 @@ function StatusLabel({ status }: { status: TestLane["status"] }) {
   return (
     <span
       className={
-        "shrink-0 font-sans text-[10px] font-medium uppercase tracking-[0.2em] " +
+ "shrink-0 font-sans text-[10px] font-medium tracking-[0.04em] " +
         color
       }
     >
@@ -385,7 +385,7 @@ function MockSimulation() {
   return (
     <div className="space-y-6">
       {/* Quiet header strip */}
-      <div className="flex items-center justify-between border-b border-white/[0.06] pb-3 font-sans text-[10.5px] uppercase tracking-[0.2em]">
+ <div className="flex items-center justify-between border-b border-white/[0.06] pb-3 font-sans text-[10.5px] tracking-[0.04em]">
         <span className="flex items-center gap-1.5 text-white/55">
           <span className="h-1 w-1 animate-pulse rounded-full bg-amber-300" />
           Simulating · live
@@ -451,10 +451,10 @@ function MockObservability() {
       {/* Event log */}
       <div className="relative space-y-3 rounded-2xl border border-white/[0.06] bg-white/[0.015] p-4">
         <div className="flex items-center justify-between">
-          <span className="font-sans text-[10px] uppercase tracking-[0.22em] tabular-nums text-white/45">
+ <span className="font-sans text-[10px] tracking-[0.04em] tabular-nums text-white/45">
             12:37:16
           </span>
-          <span className="flex items-center gap-1.5 font-sans text-[9.5px] uppercase tracking-[0.22em] text-emerald-300/85">
+ <span className="flex items-center gap-1.5 font-sans text-[9.5px] tracking-[0.04em] text-emerald-300/85">
             <span className="h-1 w-1 animate-pulse rounded-full bg-emerald-400" />
             Live
           </span>
@@ -490,10 +490,10 @@ function MockObservability() {
       {/* Metrics summary - fills the space below the log */}
       <div className="relative rounded-2xl border border-white/[0.06] bg-white/[0.015] p-4">
         <div className="flex items-center justify-between">
-          <span className="font-sans text-[10px] uppercase tracking-[0.22em] text-white/45">
+ <span className="font-sans text-[10px] tracking-[0.04em] text-white/45">
             Calls · last 24h
           </span>
-          <span className="font-sans text-[10px] uppercase tracking-[0.22em] tabular-nums text-emerald-300/75">
+ <span className="font-sans text-[10px] tracking-[0.04em] tabular-nums text-emerald-300/75">
             ↑ 12.4%
           </span>
         </div>
@@ -524,7 +524,7 @@ function MockObservability() {
             <div className="font-sans text-[13px] font-semibold tabular-nums text-white">
               96.2%
             </div>
-            <div className="font-sans text-[9.5px] uppercase tracking-[0.18em] text-white/40">
+ <div className="font-sans text-[9.5px] tracking-[0.04em] text-white/40">
               CSAT
             </div>
           </div>
@@ -532,7 +532,7 @@ function MockObservability() {
             <div className="font-sans text-[13px] font-semibold tabular-nums text-white">
               248ms
             </div>
-            <div className="font-sans text-[9.5px] uppercase tracking-[0.18em] text-white/40">
+ <div className="font-sans text-[9.5px] tracking-[0.04em] text-white/40">
               Latency
             </div>
           </div>
@@ -540,7 +540,7 @@ function MockObservability() {
             <div className="font-sans text-[13px] font-semibold tabular-nums text-white">
               98.1%
             </div>
-            <div className="font-sans text-[9.5px] uppercase tracking-[0.18em] text-white/40">
+ <div className="font-sans text-[9.5px] tracking-[0.04em] text-white/40">
               Resolved
             </div>
           </div>
@@ -591,11 +591,11 @@ function MockDeploy() {
     <div className="space-y-4">
       {/* Header - speed indicator */}
       <div className="flex items-center justify-between border-b border-white/10 pb-3">
-        <span className="flex items-center gap-1.5 font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/60">
+ <span className="flex items-center gap-1.5 font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/60">
           <span className="h-1 w-1 animate-pulse rounded-full bg-white" />
           Routed & live
         </span>
-        <span className="font-sans text-[10px] uppercase tracking-[0.22em] text-white/55">
+ <span className="font-sans text-[10px] tracking-[0.04em] text-white/55">
           Ready in{" "}
           <span className="font-semibold tracking-tight text-white">
             ~2 min
@@ -628,7 +628,7 @@ function MockDeploy() {
                 </div>
               </div>
             </div>
-            <span className="flex shrink-0 items-center gap-1 rounded-full border border-white/35 bg-white/10 px-2 py-[3px] font-sans text-[9.5px] font-semibold uppercase tracking-[0.18em] text-white">
+ <span className="flex shrink-0 items-center gap-1 rounded-full border border-white/35 bg-white/10 px-2 py-[3px] font-sans text-[9.5px] font-semibold tracking-[0.04em] text-white">
               <Check size={9} strokeWidth={3} />
               Preferred
             </span>
@@ -637,7 +637,7 @@ function MockDeploy() {
           {/* Active call mini-display */}
           <div className="mt-3 flex items-center justify-between rounded-lg border border-white/10 bg-black/40 px-3 py-2">
             <div className="min-w-0">
-              <div className="flex items-center gap-1.5 font-sans text-[9px] font-medium uppercase tracking-[0.22em] text-white/60">
+ <div className="flex items-center gap-1.5 font-sans text-[9px] font-medium tracking-[0.04em] text-white/60">
                 <PhoneCall size={9} strokeWidth={2.5} />
                 Active call
               </div>
@@ -662,7 +662,7 @@ function MockDeploy() {
       </div>
 
       {/* OR section header */}
-      <div className="flex items-center gap-3 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-white/45">
+ <div className="flex items-center gap-3 font-sans text-[10px] font-medium tracking-[0.04em] text-white/45">
         <span>Or bring your own</span>
         <span className="h-px flex-1 bg-white/[0.07]" />
       </div>
@@ -690,7 +690,7 @@ function MockDeploy() {
             <span className="font-sans text-[12.5px] font-medium text-white/90">
               {c.label}
             </span>
-            <span className="ml-auto flex items-center gap-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.18em] text-white/50">
+ <span className="ml-auto flex items-center gap-1.5 font-sans text-[10px] font-medium tracking-[0.04em] text-white/50">
               <span className="h-1 w-1 rounded-full bg-white/50" />
               Plug in
             </span>
@@ -836,11 +836,11 @@ function MockBYOT() {
           <div className="font-sans text-[12.5px] font-semibold text-white">
             HoomanLabs
           </div>
-          <div className="font-sans text-[10px] uppercase tracking-[0.18em] text-white/45">
+ <div className="font-sans text-[10px] tracking-[0.04em] text-white/45">
             Your SIP, your numbers
           </div>
         </div>
-        <span className="ml-auto flex items-center gap-1.5 font-sans text-[9.5px] uppercase tracking-[0.18em] text-emerald-300/85">
+ <span className="ml-auto flex items-center gap-1.5 font-sans text-[9.5px] tracking-[0.04em] text-emerald-300/85">
           <span className="h-1 w-1 animate-pulse rounded-full bg-emerald-400" />
           Routed
         </span>
@@ -893,7 +893,7 @@ function MockOmniCall() {
             <span
               key={label}
               className={
-                "flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] " +
+ "flex items-center gap-1.5 rounded-full px-2.5 py-1 font-sans text-[10px] tracking-[0.04em] " +
                 (active
                   ? "bg-white text-ink"
                   : "text-white/65 hover:text-white")
@@ -912,13 +912,13 @@ function MockOmniCall() {
             <div className="px-4 pt-7">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[10px] text-white">9:32</span>
-                <span className="flex items-center gap-1 font-mono text-[9px] uppercase tracking-[0.18em] text-emerald-300">
+ <span className="flex items-center gap-1 font-sans text-[9px] tracking-[0.04em] text-emerald-300">
                   <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
                   Live
                 </span>
               </div>
               <div className="mt-5">
-                <div className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-white/45">
+ <div className="font-sans text-[9.5px] tracking-[0.04em] text-white/45">
                   Incoming · हिंदी
                 </div>
                 <div className="mt-1 font-gilroy text-[15px] font-semibold text-white">
@@ -933,14 +933,14 @@ function MockOmniCall() {
                   <span className="flex h-[70px] w-[70px] items-center justify-center rounded-full bg-gradient-to-br from-[#E5572E] to-[#7B294C] text-[18px] font-semibold text-white shadow-[0_0_0_4px_rgba(255,255,255,0.06)]">
                     M
                   </span>
-                  <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full border border-emerald-400/40 bg-emerald-400/15 px-2 py-[2px] font-mono text-[9px] uppercase tracking-[0.18em] text-emerald-300">
+ <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full border border-emerald-400/40 bg-emerald-400/15 px-2 py-[2px] font-sans text-[9px] tracking-[0.04em] text-emerald-300">
                     Maya
                   </span>
                 </div>
               </div>
               <div className="mt-6 space-y-1.5">
                 <div className="rounded-md bg-white/[0.05] p-2">
-                  <div className="font-mono text-[8.5px] uppercase tracking-[0.15em] text-white/45">
+ <div className="font-sans text-[8.5px] tracking-[0.04em] text-white/45">
                     Patient · हिं
                   </div>
                   <div className="mt-0.5 font-gilroy text-[10.5px] leading-snug text-white/85">
@@ -948,7 +948,7 @@ function MockOmniCall() {
                   </div>
                 </div>
                 <div className="rounded-md border border-[#4877D8]/30 bg-[#4877D8]/15 p-2">
-                  <div className="font-mono text-[8.5px] uppercase tracking-[0.15em] text-[#7AB6F0]">
+ <div className="font-sans text-[8.5px] tracking-[0.04em] text-[#7AB6F0]">
                     Maya · EN · 248ms
                   </div>
                   <div className="mt-0.5 font-gilroy text-[10.5px] leading-snug text-white/90">
@@ -1003,7 +1003,7 @@ function MockContextMemory() {
       {/* TOOLS */}
       <div className="rounded-xl border border-white/[0.06] bg-white/[0.015] p-4">
         <div className="flex items-center justify-between">
-          <span className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/55">
+ <span className="font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/55">
             Tools
           </span>
           <span className="font-sans text-[10.5px] tabular-nums text-white/45">
@@ -1031,7 +1031,7 @@ function MockContextMemory() {
       {/* HISTORY */}
       <div className="rounded-xl border border-white/[0.06] bg-white/[0.015] p-4">
         <div className="flex items-center justify-between">
-          <span className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/55">
+ <span className="font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/55">
             History
           </span>
           <span className="font-sans text-[10.5px] tabular-nums text-white/45">
@@ -1041,7 +1041,7 @@ function MockContextMemory() {
         <ul className="mt-3 space-y-3">
           {history.map((h) => (
             <li key={h.when} className="border-l-2 border-white/15 pl-3">
-              <div className="font-sans text-[10px] uppercase tracking-[0.18em] text-white/40">
+ <div className="font-sans text-[10px] tracking-[0.04em] text-white/40">
                 {h.when}
               </div>
               <div className="mt-0.5 font-sans text-[12.5px] font-medium leading-snug text-white/80">
@@ -1055,10 +1055,10 @@ function MockContextMemory() {
       {/* KNOWLEDGEBASE */}
       <div className="rounded-xl border border-white/[0.06] bg-white/[0.015] p-4">
         <div className="flex items-center justify-between">
-          <span className="font-sans text-[10.5px] font-medium uppercase tracking-[0.22em] text-white/55">
+ <span className="font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/55">
             Knowledgebase
           </span>
-          <span className="flex items-center gap-1.5 font-sans text-[10px] uppercase tracking-[0.18em] text-emerald-300/85">
+ <span className="flex items-center gap-1.5 font-sans text-[10px] tracking-[0.04em] text-emerald-300/85">
             <span className="h-1 w-1 animate-pulse rounded-full bg-emerald-400" />
             Synced
           </span>
@@ -1068,7 +1068,7 @@ function MockContextMemory() {
             <div className="font-sans text-[26px] font-semibold tabular-nums tracking-tight text-white">
               1,247
             </div>
-            <div className="font-sans text-[10.5px] uppercase tracking-[0.18em] text-white/45">
+ <div className="font-sans text-[10.5px] tracking-[0.04em] text-white/45">
               documents indexed
             </div>
           </div>
@@ -1129,7 +1129,7 @@ export function FeatureBento() {
             }}
           />
           <div className="relative flex flex-col px-6 py-14 md:px-12 md:py-20">
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/65">
+ <p className="font-sans text-[11px] tracking-[0.04em] text-white/65">
               [01] &nbsp; Features
             </p>
             <h1 className="mt-5 max-w-4xl font-serif text-[clamp(2.25rem,4.6vw,3.5rem)] font-normal leading-[1.02] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
@@ -1208,7 +1208,7 @@ export function FeatureBento() {
 
                 {/* Content block */}
                 <div>
-                  <p className="font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
+ <p className="font-sans text-[11px] font-medium tracking-[0.04em] text-white/55">
                     {card.eyebrow}
                   </p>
                   <h3 className="mt-4 max-w-md pr-10 font-sans text-[22px] font-semibold leading-[1.15] tracking-tight text-white md:text-[26px]">
@@ -1220,7 +1220,7 @@ export function FeatureBento() {
                 </div>
 
                 {/* Quiet CTA at the bottom */}
-                <span className="mt-8 inline-flex items-center gap-1.5 font-sans text-[12.5px] font-medium uppercase tracking-[0.18em] text-white/55 transition-all duration-300 group-hover:gap-2 group-hover:text-white">
+ <span className="mt-8 inline-flex items-center gap-1.5 font-sans text-[12.5px] font-medium tracking-[0.04em] text-white/55 transition-all duration-300 group-hover:gap-2 group-hover:text-white">
                   {card.cta}
                   <ArrowUpRight size={13} strokeWidth={2.25} />
                 </span>
