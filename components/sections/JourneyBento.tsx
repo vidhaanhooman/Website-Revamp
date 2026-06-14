@@ -548,7 +548,7 @@ function LoopCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-[280px] flex-col overflow-hidden rounded-2xl border border-[#F77E5C]/25 bg-[#0a0a0d] p-5 shadow-[0_0_42px_-14px_rgba(247,126,92,0.55)] md:p-6">
+    <div className="relative flex min-h-[280px] flex-col overflow-hidden rounded-2xl border border-[#F77E5C]/25 bg-[#0a0a0d] p-5 md:p-6">
       {/* Subtle coral top-edge wash */}
       <span
         aria-hidden
