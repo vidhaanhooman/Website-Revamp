@@ -7,9 +7,12 @@ export type BlogType =
 
 export interface BlogPost {
   slug: string;
-  type: BlogType;
-  topic: string;
-  industry: string;
+  /** Sanity sends category->title (any string); static array uses BlogType. */
+  type: BlogType | string;
+  /** Optional - not in Sanity schema today. Populated for static fallback posts. */
+  topic?: string;
+  /** Optional - not in Sanity schema today. */
+  industry?: string;
   title: string;
   description: string;
   date: string; // ISO

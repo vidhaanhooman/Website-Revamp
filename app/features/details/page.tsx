@@ -133,35 +133,100 @@ export default function FeaturesDetailsPage() {
     <main className="relative min-h-screen overflow-x-hidden bg-dark text-dark-text">
       <Navbar />
 
-      {/* Page header - back link + jump-to nav */}
-      <header className="relative px-4 pb-2 pt-32 md:pt-36">
-        <div className="mx-auto max-w-[1240px]">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <Link
-              href="/features"
-              className="inline-flex items-center gap-1.5 font-sans text-[11.5px] font-medium uppercase tracking-[0.18em] text-white/55 transition-colors hover:text-white"
-            >
-              <ArrowLeft size={13} strokeWidth={2.25} />
-              All features
-            </Link>
+      {/* Page header + hero on a shared FeaturePageHeader.png backdrop */}
+      <div className="relative overflow-hidden">
+        {/* Background image */}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/FeaturePageHeader.png')" }}
+        />
+        {/* Dark scrim - keeps copy readable on any portion of the image */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.78) 100%)"
+          }}
+        />
+        {/* Bottom fade - eases into the dark page below */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#000]"
+        />
 
-            <nav
-              aria-label="Feature sections"
-              className="flex flex-wrap items-center gap-1"
-            >
-              {FEATURES.map((f) => (
+        {/* Page nav strip - back link + section anchors */}
+        <header className="relative px-4 pt-32 md:pt-36">
+          <div className="mx-auto max-w-[1240px]">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <Link
+                href="/features"
+                className="inline-flex items-center gap-1.5 font-sans text-[11.5px] font-medium uppercase tracking-[0.18em] text-white/65 transition-colors hover:text-white"
+              >
+                <ArrowLeft size={13} strokeWidth={2.25} />
+                All features
+              </Link>
+
+              <nav
+                aria-label="Feature sections"
+                className="flex flex-wrap items-center gap-1"
+              >
+                {FEATURES.map((f) => (
+                  <a
+                    key={f.id}
+                    href={`#${f.id}`}
+                    className="rounded-full border border-white/15 bg-black/30 px-3.5 py-1.5 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/75 backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-black/50 hover:text-white"
+                  >
+                    {f.eyebrow}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </div>
+        </header>
+
+        {/* HERO - introduces the page before diving into each section */}
+        <section className="relative px-4 pb-16 pt-12 md:pb-24 md:pt-20">
+          <div className="mx-auto max-w-[1240px]">
+            <p className="font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white/65">
+              Platform overview
+            </p>
+            <h1 className="mt-5 max-w-4xl font-serif text-[clamp(2.5rem,5.4vw,4.5rem)] font-normal leading-[1] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)]">
+              Build, simulate, deploy, observe.
+            </h1>
+            <p className="mt-6 max-w-2xl text-[16px] leading-[1.6] text-white/80 drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
+              Everything HoomanLabs does, in one place. The full platform, end
+              to end - what you build, how you stress-test it, how it goes
+              live, and how you watch every call once it does.
+            </p>
+
+            {/* 4 capability summary chips - mirror the section anchors */}
+            <div className="mt-10 grid gap-3 md:grid-cols-4">
+              {FEATURES.map((f, i) => (
                 <a
                   key={f.id}
                   href={`#${f.id}`}
-                  className="rounded-full border border-white/10 bg-white/[0.025] px-3.5 py-1.5 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/65 transition-colors hover:border-white/25 hover:text-white"
+                  className="group rounded-2xl border border-white/15 bg-black/40 p-5 backdrop-blur-md transition-all hover:border-white/30 hover:bg-black/55"
                 >
-                  {f.eyebrow}
+                  <div className="flex items-center justify-between font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-white/60">
+                    <span>{String(i + 1).padStart(2, "0")}</span>
+                    <span className="transition-transform group-hover:translate-x-0.5">
+                      →
+                    </span>
+                  </div>
+                  <div className="mt-3 font-sans text-[15px] font-semibold tracking-tight text-white">
+                    {f.eyebrow}
+                  </div>
                 </a>
               ))}
-            </nav>
+            </div>
           </div>
-        </div>
-      </header>
+        </section>
+      </div>
+
+      {/* Hairline divider before the first detail section */}
+      <div className="mx-4 border-t border-white/[0.06]" />
 
       {FEATURES.map((f, i) => (
         <FeatureDetailSection key={f.id} {...f} showDivider={i > 0} />

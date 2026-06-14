@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { Search, ChevronDown, ArrowUpRight } from "lucide-react";
 import {
   blogPosts,
@@ -118,26 +119,34 @@ function PostThumb({ post }: { post: BlogPost }) {
   );
 }
 
-export function BlogIndex() {
+interface BlogIndexProps {
+  /** Posts to render. Falls back to static `blogPosts` if not provided. */
+  posts?: BlogPost[];
+}
+
+export function BlogIndex({ posts }: BlogIndexProps = {}) {
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("All");
   const [topicFilter, setTopicFilter] = useState("All");
   const [industryFilter, setIndustryFilter] = useState("All");
 
+  const source = posts ?? blogPosts;
+
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return blogPosts.filter((p) => {
+    return source.filter((p) => {
       if (typeFilter !== "All" && p.type !== typeFilter) return false;
-      if (topicFilter !== "All" && p.topic !== topicFilter) return false;
-      if (industryFilter !== "All" && p.industry !== industryFilter)
+      // topic + industry are optional - only filter when both filter and field are set
+      if (topicFilter !== "All" && p.topic && p.topic !== topicFilter) return false;
+      if (industryFilter !== "All" && p.industry && p.industry !== industryFilter)
         return false;
       if (q) {
-        const hay = `${p.title} ${p.description} ${p.type} ${p.topic} ${p.industry}`.toLowerCase();
+        const hay = `${p.title} ${p.description} ${p.type} ${p.topic ?? ""} ${p.industry ?? ""}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
     });
-  }, [search, typeFilter, topicFilter, industryFilter]);
+  }, [search, typeFilter, topicFilter, industryFilter, source]);
 
   return (
     <section
@@ -287,53 +296,50 @@ export function BlogIndex() {
               </div>
             ) : (
               filtered.map((post) => (
-                <article
+                <Link
                   key={post.slug}
-                  className="group grid grid-cols-1 gap-6 py-10 md:grid-cols-[1fr_auto] md:gap-10"
+                  href={`/blog/${post.slug}`}
+                  className="group block cursor-pointer transition-colors hover:bg-white/[0.015]"
                 >
-                  <div>
-                    <p
-                      className="text-[11px] font-medium uppercase tracking-[0.22em]"
-                      style={{ color: INK_FAINT }}
-                    >
-                      {post.type}{" "}
-                      <span style={{ color: "rgba(255,255,255,0.3)" }}>·</span>{" "}
-                      <span style={{ color: INK_MUTED }}>
-                        {formatDate(post.date)}
-                      </span>{" "}
-                      <span style={{ color: "rgba(255,255,255,0.3)" }}>·</span>{" "}
-                      <span style={{ color: INK_MUTED }}>
-                        {post.readTime}
-                      </span>
-                    </p>
-                    <h2
-                      className="mt-4 font-sans text-[22px] font-semibold leading-[1.2] tracking-tight md:text-[24px]"
-                      style={{ color: INK }}
-                    >
-                      <a
-                        href={`/blog/${post.slug}`}
-                        className="transition-colors hover:opacity-70"
+                  <article className="grid grid-cols-1 gap-6 py-10 md:grid-cols-[1fr_auto] md:gap-10">
+                    <div>
+                      <p
+                        className="text-[11px] font-medium uppercase tracking-[0.22em]"
+                        style={{ color: INK_FAINT }}
+                      >
+                        {post.type}{" "}
+                        <span style={{ color: "rgba(255,255,255,0.3)" }}>·</span>{" "}
+                        <span style={{ color: INK_MUTED }}>
+                          {formatDate(post.date)}
+                        </span>{" "}
+                        <span style={{ color: "rgba(255,255,255,0.3)" }}>·</span>{" "}
+                        <span style={{ color: INK_MUTED }}>
+                          {post.readTime}
+                        </span>
+                      </p>
+                      <h2
+                        className="mt-4 font-sans text-[22px] font-semibold leading-[1.2] tracking-tight transition-colors group-hover:text-white md:text-[24px]"
+                        style={{ color: INK }}
                       >
                         {post.title}
-                      </a>
-                    </h2>
-                    <p
-                      className="mt-3 max-w-2xl text-[14.5px] leading-[1.55]"
-                      style={{ color: INK_MUTED }}
-                    >
-                      {post.description}
-                    </p>
-                    <a
-                      href={`/blog/${post.slug}`}
-                      className="mt-4 inline-flex items-center gap-1.5 text-[12.5px] font-medium"
-                      style={{ color: INK }}
-                    >
-                      Read more
-                      <ArrowUpRight size={12} strokeWidth={2.25} />
-                    </a>
-                  </div>
-                  <PostThumb post={post} />
-                </article>
+                      </h2>
+                      <p
+                        className="mt-3 max-w-2xl text-[14.5px] leading-[1.55]"
+                        style={{ color: INK_MUTED }}
+                      >
+                        {post.description}
+                      </p>
+                      <span
+                        className="mt-4 inline-flex items-center gap-1.5 text-[12.5px] font-medium transition-transform group-hover:translate-x-0.5"
+                        style={{ color: INK }}
+                      >
+                        Read more
+                        <ArrowUpRight size={12} strokeWidth={2.25} />
+                      </span>
+                    </div>
+                    <PostThumb post={post} />
+                  </article>
+                </Link>
               ))
             )}
           </div>

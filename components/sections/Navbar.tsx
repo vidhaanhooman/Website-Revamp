@@ -9,15 +9,22 @@ import { Button } from "@/components/ui/Button";
 import { navLinks } from "@/content/nav";
 import { cn } from "@/lib/cn";
 import { LoginModal } from "@/components/sections/LoginModal";
+import { BookDemoModal } from "@/components/sections/BookDemoModal";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [demoOpen, setDemoOpen] = useState(false);
 
   const openLogin = () => {
     setMobileOpen(false);
     setLoginOpen(true);
+  };
+
+  const openDemo = () => {
+    setMobileOpen(false);
+    setDemoOpen(true);
   };
 
   useEffect(() => {
@@ -85,15 +92,14 @@ export function Navbar() {
             "hidden gap-1 p-1.5 lg:flex"
           )}
         >
-          <a href="#demo">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="rounded-full bg-transparent text-white hover:bg-white/10"
-            >
-              Book a Demo
-            </Button>
-          </a>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={openDemo}
+            className="rounded-full bg-transparent text-white hover:bg-white/10"
+          >
+            Book a Demo
+          </Button>
           <Button
             variant="primary"
             size="sm"
@@ -118,11 +124,14 @@ export function Navbar() {
               </a>
             ))}
             <div className="mt-3 grid gap-2">
-              <a href="#demo">
-                <Button variant="outline" size="sm" className="w-full">
-                  Book a Demo
-                </Button>
-              </a>
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full"
+                onClick={openDemo}
+              >
+                Book a Demo
+              </Button>
               <Button
                 variant="primary"
                 size="sm"
@@ -137,6 +146,7 @@ export function Navbar() {
       ) : null}
 
       <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
+      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
     </div>
   );
 }

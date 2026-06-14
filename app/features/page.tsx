@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
-import { FeatureBento } from "@/components/sections/FeatureBento";
+import { Journey } from "@/components/sections/Journey";
 
 export const metadata: Metadata = {
-  title: "Features - HoomanLabs",
+  title: "How it works - HoomanLabs",
   description:
-    "Voice studio, live call console, real-time transcripts, telephony, audit trails. Everything you need to ship a voice agent that picks up."
+    "Build, ship, improve - the 11-step journey from a single prompt to a million calls. The live agent keeps answering while you test the next version."
 };
 
 export default function FeaturesPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-dark text-dark-text">
       <Navbar />
-      <FeatureBento />
+      <Journey />
       <Footer />
     </main>
   );

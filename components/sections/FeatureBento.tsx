@@ -1159,46 +1159,40 @@ export function FeatureBento() {
         </motion.div>
 
         {/* 2 × 2 grid - Build, Simulate, Deploy, Observability.
-            Each card is a Link to its dedicated detail page. Same typography
-            and same spacing across all four for clean visual hierarchy. */}
+            Typography-led overview. Rich mocks live on /features/details. */}
         <div className="mt-4 grid gap-4 md:grid-cols-2 md:auto-rows-fr">
           {[
             {
               eyebrow: "Build",
               title: "Ship a production-ready agent in an afternoon.",
               description:
-                "Describe what you want in plain English or Hindi. Drop in your knowledge base, pick a voice. HoomanLabs writes the prompts, wires up the tools, and remembers every caller across every call - your ops team launches it the same day, no engineers.",
+                "Describe what you want in plain English or Hindi. HoomanLabs writes the prompts, wires up the tools, and remembers every caller - your ops team launches the same day, no engineers.",
               href: "/features/details#build",
-              mock: <MockBuild />,
-              visualClassName:
-                "relative flex flex-1 items-end justify-center px-6 pb-7 md:px-8"
+              cta: "See how it works"
             },
             {
               eyebrow: "Simulate",
-              title: "Run every scenario. Vibe-check the tone. Ship with confidence.",
+              title: "Run every scenario. Vibe-check the tone.",
               description:
-                "Every change runs through 16,000+ conversational scenarios - interruptions, code-switches, noisy lines, off-script asks. Then a side-by-side vibe-check so you hear the difference, not just read the diff. Promote only when the numbers and the vibe both pass.",
+                "Every change runs through 16,000+ conversational scenarios. A side-by-side vibe-check so you hear the difference, not just read the diff.",
               href: "/features/details#simulate",
-              mock: <MockSimulation />,
-              visualClassName: "relative flex-1 px-7 pb-7"
+              cta: "See the simulator"
             },
             {
               eyebrow: "Deploy",
               title: "Live in minutes. Our telephony or yours.",
               description:
-                "Pick a HoomanLabs number and you're routing calls in minutes. Bringing your own line? Plug Plivo, Exotel, Tata, or Twilio straight in - same agent, same SIP, no migration, no procurement.",
+                "Pick a HoomanLabs number and route calls in minutes - or plug your Plivo, Exotel, Tata, or Twilio line straight in. Same agent, same SIP, no migration.",
               href: "/features/details#deploy",
-              mock: <MockDeploy />,
-              visualClassName: "relative flex-1 px-7 pb-7"
+              cta: "See deployment"
             },
             {
               eyebrow: "Observability",
               title: "See exactly what happens, every time.",
               description:
-                "Watch every call in real time - flagged moments, tool calls, audit-grade event log for enterprise QA.",
+                "Watch every call in real time - flagged moments, tool calls, full audit trail. Search across millions of conversations.",
               href: "/features/details#observability",
-              mock: <MockObservability />,
-              visualClassName: "relative flex-1 px-7 pb-7"
+              cta: "See the dashboard"
             }
           ].map((card) => (
             <Link
@@ -1206,27 +1200,30 @@ export function FeatureBento() {
               href={card.href}
               className="group relative block h-full"
             >
-              <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] transition-all duration-300 group-hover:border-white/25 group-hover:bg-white/[0.035]">
+              <article className="relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] p-8 transition-all duration-300 group-hover:border-white/25 group-hover:bg-white/[0.035] md:min-h-[320px] md:p-10">
                 {/* Arrow chip - subtle by default, lights up on hover */}
                 <span className="absolute right-5 top-5 z-10 flex h-7 w-7 items-center justify-center rounded-md border border-white/10 bg-black/30 text-white/45 transition-all duration-300 group-hover:border-white/35 group-hover:bg-black/55 group-hover:text-white">
                   <ArrowUpRight size={13} strokeWidth={2.2} />
                 </span>
 
-                {/* Text block - identical structure on every card */}
-                <div className="p-7 md:p-8">
+                {/* Content block */}
+                <div>
                   <p className="font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
                     {card.eyebrow}
                   </p>
-                  <h3 className="mt-3 max-w-md pr-10 font-sans text-[22px] font-semibold leading-[1.15] tracking-tight text-white md:text-[26px]">
+                  <h3 className="mt-4 max-w-md pr-10 font-sans text-[22px] font-semibold leading-[1.15] tracking-tight text-white md:text-[26px]">
                     {card.title}
                   </h3>
-                  <p className="mt-3 max-w-md text-[14px] leading-[1.55] text-white/65">
+                  <p className="mt-4 max-w-md text-[14.5px] leading-[1.6] text-white/65">
                     {card.description}
                   </p>
                 </div>
 
-                {/* Visual block */}
-                <div className={card.visualClassName}>{card.mock}</div>
+                {/* Quiet CTA at the bottom */}
+                <span className="mt-8 inline-flex items-center gap-1.5 font-sans text-[12.5px] font-medium uppercase tracking-[0.18em] text-white/55 transition-all duration-300 group-hover:gap-2 group-hover:text-white">
+                  {card.cta}
+                  <ArrowUpRight size={13} strokeWidth={2.25} />
+                </span>
               </article>
             </Link>
           ))}

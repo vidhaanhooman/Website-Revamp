@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { heroContent } from "@/content/hero";
-import { customers } from "@/content/customers";
+import { customerLogos } from "@/content/customers";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
@@ -70,14 +70,22 @@ export function Hero() {
                 "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)"
             }}
           >
-            <ul className="marquee-track flex w-max items-center gap-12 whitespace-nowrap py-1 motion-reduce:animate-none">
-              {[...customers, ...customers].map((name, i) => (
+            <ul className="marquee-track flex w-max items-center gap-14 whitespace-nowrap py-1 motion-reduce:animate-none">
+              {[...customerLogos, ...customerLogos].map((logo, i) => (
                 <li
-                  key={`${name}-${i}`}
-                  className="select-none text-[16px] font-medium tracking-snug text-white/65"
-                  aria-hidden={i >= customers.length ? true : undefined}
+                  key={`${logo.name}-${i}`}
+                  className="flex shrink-0 select-none items-center"
+                  aria-hidden={i >= customerLogos.length ? true : undefined}
                 >
-                  {name}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={logo.src}
+                    alt={logo.name}
+                    style={{
+                      width: logo.width ? `${logo.width}px` : undefined
+                    }}
+                    className="h-7 w-auto object-contain opacity-75 brightness-0 invert transition-opacity hover:opacity-100 md:h-8"
+                  />
                 </li>
               ))}
             </ul>
@@ -88,7 +96,7 @@ export function Hero() {
         <div className="absolute inset-0 z-20 flex flex-col items-start justify-center px-6 md:px-12 lg:px-16">
           <motion.h1
             {...fadeUp(0.05)}
-            className="max-w-5xl font-serif text-[clamp(2.75rem,7vw,5.5rem)] font-normal leading-[0.98] tracking-tight text-white drop-shadow-[0_2px_22px_rgba(0,0,0,0.55)]"
+            className="max-w-3xl font-serif text-[clamp(2.25rem,4.6vw,3.75rem)] font-normal leading-[1.02] tracking-tight text-white drop-shadow-[0_2px_22px_rgba(0,0,0,0.55)]"
           >
             {c.headline}
           </motion.h1>
