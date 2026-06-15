@@ -30,6 +30,8 @@ type Card = {
   shotTop: string;
   shotSub: string;
   bg?: string;
+  /** How the bg image fills the shot slot. Default "cover". */
+  fit?: "cover" | "contain";
 };
 
 const BUILD: Card[] = [
@@ -41,7 +43,8 @@ const BUILD: Card[] = [
     body: "Start with a single prompt. Branch into structured, node-based flows the moment you need real control.",
     shotTop: "Prompt -> Flow",
     shotSub: "Builder · Flow canvas",
-    bg: "/journey/01-flow.png"
+    bg: "/journey/Agent%20Flow.png",
+    fit: "contain"
   },
   {
     n: "02",
@@ -71,7 +74,8 @@ const BUILD: Card[] = [
     body: "Define objectives, summaries, outcomes, and structured extraction - then fire webhooks straight into your stack.",
     shotTop: "Analysis + Call Actions",
     shotSub: "Outcomes · Webhooks",
-    bg: "/journey/04-outcomes.png"
+    bg: "/journey/Analysis%20%26%20actions.png",
+    fit: "contain"
   }
 ];
 
@@ -450,7 +454,8 @@ function JourneyCard({ card }: { card: Card }) {
             className="absolute inset-0 transition-[transform,filter] duration-700 ease-out group-hover:scale-[1.04] group-hover:brightness-110"
             style={{
               backgroundImage: `url(${card.bg})`,
-              backgroundSize: "cover",
+              backgroundSize: card.fit === "contain" ? "contain" : "cover",
+              backgroundRepeat: "no-repeat",
               backgroundPosition: "center"
             }}
           />
