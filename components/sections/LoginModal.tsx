@@ -147,13 +147,6 @@ export function LoginModal({ open, onClose }: LoginModalProps) {
                   <GoogleIcon />
                   Continue with Google
                 </button>
-                <button
-                  type="button"
-                  className="flex w-full items-center justify-center gap-2.5 rounded-xl bg-white/[0.05] py-2.5 font-sans text-[13.5px] font-medium text-white transition-colors hover:bg-white/[0.09]"
-                >
-                  <AppleIcon />
-                  Continue with Apple
-                </button>
               </div>
 
               {/* Divider */}
@@ -230,6 +223,17 @@ export function LoginModal({ open, onClose }: LoginModalProps) {
                   </a>
                 </div>
               </form>
+
+              {/* Sign up */}
+              <p className="mt-6 text-center font-sans text-[12.5px] text-white/55">
+                Don&apos;t have an account?{" "}
+                <a
+                  href="/signup"
+                  className="font-medium text-white transition-colors hover:text-white/80"
+                >
+                  Sign up
+                </a>
+              </p>
             </div>
           </div>
 

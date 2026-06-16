@@ -1,9 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { heroContent } from "@/content/hero";
 import { customerLogos } from "@/content/customers";
+import { LoginModal } from "@/components/sections/LoginModal";
+import { BookDemoModal } from "@/components/sections/BookDemoModal";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
@@ -13,6 +16,8 @@ const fadeUp = (delay = 0) => ({
 
 export function Hero() {
   const c = heroContent;
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [demoOpen, setDemoOpen] = useState(false);
 
   return (
     <section className="relative">
@@ -123,23 +128,30 @@ export function Hero() {
             {...fadeUp(0.25)}
             className="mt-8 flex flex-wrap items-center gap-2.5"
           >
-            <a href={c.primary.href}>
-              <button className="inline-flex items-center gap-1.5 rounded-full bg-ink px-5 py-2.5 text-[14px] font-medium text-white shadow-[0_8px_24px_-8px_rgba(0,0,0,0.4)] transition-colors hover:bg-ink-soft">
-                {c.primary.label}
-                <ArrowRight size={14} strokeWidth={2.25} />
-              </button>
-            </a>
-            <a href={c.secondary.href}>
-              <button className="inline-flex items-center gap-1.5 rounded-full border border-white/50 bg-white/20 px-5 py-2.5 text-[14px] font-medium text-white shadow-[0_4px_18px_-6px_rgba(0,0,0,0.35)] backdrop-blur-md transition-colors hover:bg-white/30">
-                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white text-ink">
-                  <Play size={8} fill="currentColor" />
-                </span>
-                {c.secondary.label}
-              </button>
-            </a>
+            <button
+              type="button"
+              onClick={() => setLoginOpen(true)}
+              className="inline-flex items-center gap-1.5 rounded-full bg-ink px-5 py-2.5 text-[14px] font-medium text-white shadow-[0_8px_24px_-8px_rgba(0,0,0,0.4)] transition-colors hover:bg-ink-soft"
+            >
+              {c.primary.label}
+              <ArrowRight size={14} strokeWidth={2.25} />
+            </button>
+            <button
+              type="button"
+              onClick={() => setDemoOpen(true)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/50 bg-white/20 px-5 py-2.5 text-[14px] font-medium text-white shadow-[0_4px_18px_-6px_rgba(0,0,0,0.35)] backdrop-blur-md transition-colors hover:bg-white/30"
+            >
+              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white text-ink">
+                <Play size={8} fill="currentColor" />
+              </span>
+              {c.secondary.label}
+            </button>
           </motion.div>
         </div>
       </motion.div>
+
+      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
+      <BookDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
     </section>
   );
 }

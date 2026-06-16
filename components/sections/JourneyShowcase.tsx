@@ -59,12 +59,12 @@ const PHASES: Phase[] = [
     label: "Ship",
     heading: "Prove it works, put it on a line, and go - inbound or outbound.",
     blurb:
-      "Stress-test against real scenarios and personas before anything goes live. Provision a number or bring your own carrier over SIP, then take inbound or launch outbound campaigns at scale.",
+      "Stress-test against real scenarios and personas before anything goes live. Provision a number or connect your own carrier with SIP trunking, then take inbound or launch outbound campaigns at scale.",
     steps: [
       { title: "Simulate", sub: "Stress-test against real scenarios and personas - code-switching, refusals, edge cases - and hear the difference between versions before anything reaches a customer. (Beta)", node: (active) => <SimulationVisual active={active} /> },
-      { title: "Telephony", sub: "Provision a number in a click or bring your own carrier over SIP - Plivo, Twilio, Exotel, Tata - and map each line to the right agent.", node: (active) => <TelephonyVisual active={active} /> },
-      { title: "Go live", sub: "Take inbound calls in three rings, or launch outbound campaigns to thousands with pacing, retries, and live monitoring.", node: (active) => <BatchCallsVisual active={active} /> },
-      { title: "Webhooks", sub: "The moment a call ends, fire the structured outcome straight into your stack - CRM, Slack, Sheets, anything with a URL - with retries until it lands.", node: (active) => <WebhooksVisual active={active} /> }
+      { title: "Telephony", sub: "Provision a number in a click, or connect your own carrier over a SIP trunk - Plivo, Twilio, Exotel, Tata. Bring-your-own SIP trunking with full inbound and outbound, and map each trunk to the right agent.", node: (active) => <TelephonyVisual active={active} /> },
+      { title: "Webhooks", sub: "The moment a call ends, fire the structured outcome straight into your stack - CRM, Slack, Sheets, anything with a URL - with retries until it lands.", node: (active) => <WebhooksVisual active={active} /> },
+      { title: "Go live", sub: "Take inbound calls in three rings, or launch outbound campaigns to thousands with pacing, retries, and live monitoring.", node: (active) => <BatchCallsVisual active={active} /> }
     ]
   },
   {
@@ -83,7 +83,7 @@ const PHASES: Phase[] = [
   }
 ];
 
-const CYCLE_MS = 3200;
+const CYCLE_MS = 5500;
 
 export function JourneyShowcase() {
   return (

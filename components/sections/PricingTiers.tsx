@@ -71,23 +71,32 @@ function PlanCard({ tier, index }: { tier: PricingTier; index: number }) {
         {tier.blurb}
       </p>
 
-      {/* Rate block - Standard / Premium per minute */}
-      <div className="mt-6 space-y-3">
-        {tier.rates.map((r) => (
-          <div
-            key={r.label}
-            className="flex items-baseline justify-between border-b border-white/[0.06] pb-3 last:border-b-0"
-          >
-            <span className="text-[13px] text-white/55">{r.label}</span>
-            <span className="flex items-baseline gap-0.5">
-              <span className="font-sans text-[26px] font-bold tracking-tight text-white">
-                {r.rate}
+      {/* Rate block - Standard / Premium per minute, or "Custom" when none */}
+      {tier.rates.length > 0 ? (
+        <div className="mt-6 space-y-3">
+          {tier.rates.map((r) => (
+            <div
+              key={r.label}
+              className="flex items-baseline justify-between border-b border-white/[0.06] pb-3 last:border-b-0"
+            >
+              <span className="text-[13px] text-white/55">{r.label}</span>
+              <span className="flex items-baseline gap-0.5">
+                <span className="font-sans text-[26px] font-bold tracking-tight text-white">
+                  {r.rate}
+                </span>
+                <span className="text-[13px] text-white/45">/min</span>
               </span>
-              <span className="text-[13px] text-white/45">/min</span>
-            </span>
-          </div>
-        ))}
-      </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-6 flex items-baseline gap-1.5">
+          <span className="font-sans text-[26px] font-bold tracking-tight text-white">
+            Custom
+          </span>
+          <span className="text-[13px] text-white/45">pricing</span>
+        </div>
+      )}
       {tier.rateNote && (
         <p className="mt-3 text-[12px] leading-[1.5] text-[#F77E5C]/80">
           {tier.rateNote}

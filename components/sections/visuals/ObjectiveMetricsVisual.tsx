@@ -93,6 +93,7 @@ const baseVals = (mode: Mode): Record<Key, number> => ({
 export function ObjectiveMetricsVisual({ active }: { active: boolean }) {
   const [mode, setMode] = useState<Mode>("inbound");
   const [metric, setMetric] = useState<Key>("latency");
+  const [userTouched, setUserTouched] = useState(false);
   const [vals, setVals] = useState<Record<Key, number>>(() => baseVals("inbound"));
   const [series, setSeries] = useState<number[]>(() =>
     Array(N).fill(METRICS.latency.base.inbound)
@@ -113,6 +114,24 @@ export function ObjectiveMetricsVisual({ active }: { active: boolean }) {
   useEffect(() => {
     setSeries(Array(N).fill(valsRef.current[metric]));
   }, [metric]);
+
+  // AUTO-DEMO: flip Inbound/Outbound and rotate the highlighted metric
+  // until the user interacts.
+  useEffect(() => {
+    if (!active || userTouched) return;
+    const modeId = setInterval(
+      () => setMode((m) => (m === "inbound" ? "outbound" : "inbound")),
+      4200
+    );
+    const metricId = setInterval(
+      () => setMetric((k) => KEYS[(KEYS.indexOf(k) + 1) % KEYS.length]),
+      2100
+    );
+    return () => {
+      clearInterval(modeId);
+      clearInterval(metricId);
+    };
+  }, [active, userTouched]);
 
   // stream new readings while active
   useEffect(() => {
@@ -178,7 +197,10 @@ export function ObjectiveMetricsVisual({ active }: { active: boolean }) {
                 <button
                   key={mm}
                   type="button"
-                  onClick={() => setMode(mm)}
+                  onClick={() => {
+                    setUserTouched(true);
+                    setMode(mm);
+                  }}
                   className={
                     "rounded-full px-2.5 py-1 font-sans text-[10px] font-medium capitalize transition-colors " +
                     (mode === mm ? "bg-white text-slate-900" : "text-white/55 hover:text-white/80")
@@ -263,7 +285,10 @@ export function ObjectiveMetricsVisual({ active }: { active: boolean }) {
                 <button
                   key={k}
                   type="button"
-                  onClick={() => setMetric(k)}
+                  onClick={() => {
+                    setUserTouched(true);
+                    setMetric(k);
+                  }}
                   className={
                     "rounded-xl px-2.5 py-2 text-left transition-colors " +
                     (on ? "bg-white/[0.07]" : "bg-white/[0.02] hover:bg-white/[0.04]")

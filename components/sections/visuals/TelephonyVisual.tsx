@@ -94,7 +94,7 @@ export function TelephonyVisual({ active }: { active: boolean }) {
           />
         );
         const anyHover = hover !== null && !hubHover;
-        const busColor = "rgba(255,255,255,0.55)";
+        const busColor = "rgba(51,65,85,0.6)";
         return (
           <svg
             className="absolute inset-0 z-10 h-full w-full"
@@ -116,7 +116,7 @@ export function TelephonyVisual({ active }: { active: boolean }) {
                 ? "#34D399"
                 : focused
                 ? "#F77E5C"
-                : "rgba(255,255,255,0.9)";
+                : "rgba(51,65,85,0.75)";
               const left = c.side === "left";
               const cy = (c.y / 75) * 300;
               const cx = left ? X_CARR_L : X_CARR_R;
@@ -199,6 +199,9 @@ export function TelephonyVisual({ active }: { active: boolean }) {
         </span>
         <span className="mt-3 font-sans text-[14px] font-medium tracking-tight text-white/90">
           Telephony
+        </span>
+        <span className="mt-1 font-mono text-[8.5px] uppercase tracking-[0.16em] text-sky-300/80">
+          SIP trunking
         </span>
       </motion.div>
 

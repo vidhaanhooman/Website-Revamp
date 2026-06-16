@@ -56,6 +56,7 @@ export function DashboardsAlertsVisual({ active }: { active: boolean }) {
 
   const [threshold, setThreshold] = useState(r.thr);
   const [current, setCurrent] = useState(r.current);
+  const [userDragged, setUserDragged] = useState(false);
   const chartRef = useRef<HTMLDivElement>(null);
   const draggingRef = useRef(false);
 
@@ -64,6 +65,31 @@ export function DashboardsAlertsVisual({ active }: { active: boolean }) {
     setThreshold(RULES[ruleId].thr);
     setCurrent(RULES[ruleId].current);
   }, [ruleId]);
+
+  // AUTO-DEMO: drift the threshold down to fire the alert, then recover -
+  // until the user grabs it themselves.
+  useEffect(() => {
+    if (!active || userDragged) return;
+    setThreshold(r.thr);
+    let firing = false;
+    let target = r.thr;
+    const fireTarget = r.current - (r.max - r.min) * 0.06; // dips below the value
+    const flip = setInterval(() => {
+      firing = !firing;
+      target = firing ? fireTarget : r.thr;
+    }, 2600);
+    const ease = setInterval(() => {
+      if (draggingRef.current) return;
+      setThreshold((t) => {
+        const d = target - t;
+        return Math.abs(d) < 0.4 ? target : t + d * 0.1;
+      });
+    }, 30);
+    return () => {
+      clearInterval(flip);
+      clearInterval(ease);
+    };
+  }, [active, userDragged, r]);
 
   // gentle live jitter on the current reading
   useEffect(() => {
@@ -186,6 +212,7 @@ export function DashboardsAlertsVisual({ active }: { active: boolean }) {
               onPointerDown={(e) => {
                 e.preventDefault();
                 draggingRef.current = true;
+                setUserDragged(true);
               }}
             >
               <div

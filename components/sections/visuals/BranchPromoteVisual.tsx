@@ -16,10 +16,23 @@ const CORAL = "#F77E5C";
 
 export function BranchPromoteVisual({ active }: { active: boolean }) {
   const [promoted, setPromoted] = useState(false);
+  const [userActed, setUserActed] = useState(false);
 
   useEffect(() => {
     if (!active) setPromoted(false);
   }, [active]);
+
+  // AUTO-DEMO: promote almost immediately on reveal, then roll back and loop -
+  // until the user clicks.
+  useEffect(() => {
+    if (!active || userActed) return;
+    const first = setTimeout(() => setPromoted(true), 650);
+    const id = setInterval(() => setPromoted((p) => !p), 3000);
+    return () => {
+      clearTimeout(first);
+      clearInterval(id);
+    };
+  }, [active, userActed]);
 
   const rows: Row[] = promoted
     ? [
@@ -87,7 +100,10 @@ export function BranchPromoteVisual({ active }: { active: boolean }) {
                   {cand ? (
                     <motion.button
                       type="button"
-                      onClick={() => setPromoted(true)}
+                      onClick={() => {
+                        setUserActed(true);
+                        setPromoted(true);
+                      }}
                       whileHover={{ scale: 1.04 }}
                       whileTap={{ scale: 0.96 }}
                       className="relative flex items-center gap-1.5 rounded-lg bg-[#16110e] px-3 py-1.5 font-mono text-[13px] font-medium text-[#FF8E6B]"
@@ -160,7 +176,10 @@ export function BranchPromoteVisual({ active }: { active: boolean }) {
                   </span>
                   <motion.button
                     type="button"
-                    onClick={() => setPromoted(false)}
+                    onClick={() => {
+                      setUserActed(true);
+                      setPromoted(false);
+                    }}
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.96 }}
                     className="flex items-center gap-1.5 font-mono text-[11px] text-white/50 hover:text-white/80"

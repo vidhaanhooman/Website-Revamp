@@ -49,7 +49,7 @@ export function ToolsVisual({ active }: { active: boolean }) {
   // Advance forever in one direction while active.
   useEffect(() => {
     if (!active) return;
-    const id = setInterval(() => setFocus((f) => f + 1), 1900);
+    const id = setInterval(() => setFocus((f) => f + 1), 650);
     return () => clearInterval(id);
   }, [active]);
 
@@ -93,7 +93,7 @@ export function ToolsVisual({ active }: { active: boolean }) {
                 transition={
                   noAnim[i]
                     ? { duration: 0 }
-                    : { duration: 1.1, ease: [0.32, 0.72, 0, 1] }
+                    : { duration: 0.38, ease: [0.32, 0.72, 0, 1] }
                 }
               >
                 <div

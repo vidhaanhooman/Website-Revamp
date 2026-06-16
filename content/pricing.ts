@@ -45,11 +45,8 @@ export const tiers: PricingTier[] = [
     id: "enterprise",
     name: "Enterprise",
     blurb: "Lower per-minute rate, dedicated support, annual commitment.",
-    rates: [
-      { label: "Standard agent", rate: "₹5" },
-      { label: "Premium agent", rate: "₹6.75" }
-    ],
-    rateNote: "Price drops further with higher commitment.",
+    rates: [],
+    rateNote: "Custom pricing, tailored to your volume and commitment.",
     features: [
       "Min ₹50K monthly spend",
       "Annual commitment",
