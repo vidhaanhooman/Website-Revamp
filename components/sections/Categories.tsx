@@ -95,7 +95,7 @@ function CardSurface({
 
 function CardCta({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center gap-1.5 self-start rounded-full border border-white/30 bg-white/15 px-4 py-2 font-gilroy text-[12.5px] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/25">
+    <span className="inline-flex items-center gap-1.5 self-start rounded-full border border-white/30 bg-white/15 px-4 py-2 font-sans text-[12.5px] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/25">
       {label}
       <ArrowUpRight size={13} strokeWidth={2.25} />
     </span>
@@ -112,7 +112,7 @@ function CardTitle({ children }: { children: React.ReactNode }) {
 
 function CardBody({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-gilroy text-[13.5px] font-medium leading-[1.5] tracking-[0.005em] text-white/95">
+    <p className="font-sans text-[13.5px] font-medium leading-[1.5] tracking-[0.005em] text-white/95">
       {children}
     </p>
   );

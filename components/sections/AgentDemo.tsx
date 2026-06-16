@@ -406,7 +406,7 @@ export function AgentDemo() {
 
           {/* RIGHT - focused form, Gilroy medium */}
           <form
-            className="flex flex-col font-gilroy font-medium"
+            className="flex flex-col font-sans font-medium"
             onSubmit={(e) => {
               e.preventDefault();
               // eslint-disable-next-line no-console
@@ -424,7 +424,7 @@ export function AgentDemo() {
                   aria-haspopup="listbox"
                   aria-expanded={open}
                   onClick={() => setOpen((v) => !v)}
-                  className="mt-2 flex w-full items-center justify-between border-b border-white/15 bg-transparent py-2.5 text-left font-gilroy text-[15px] font-medium text-white outline-none transition-colors hover:border-white/30"
+                  className="mt-2 flex w-full items-center justify-between border-b border-white/15 bg-transparent py-2.5 text-left font-sans text-[15px] font-medium text-white outline-none transition-colors hover:border-white/30"
                 >
                   <span className="flex items-center gap-2">
                     {active.label}
@@ -463,7 +463,7 @@ export function AgentDemo() {
                                 : "text-white/75 hover:bg-white/[0.04] hover:text-white")
                             }
                           >
-                            <span className="font-gilroy text-[14px] font-medium">
+                            <span className="font-sans text-[14px] font-medium">
                               {u.label}
                             </span>
                             <span className="font-mono text-[11px] tracking-wide text-white/40">
@@ -492,7 +492,7 @@ export function AgentDemo() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your name"
-                  className="mt-2 w-full border-b border-white/15 bg-transparent py-2.5 font-gilroy text-[15px] font-medium text-white placeholder:font-medium placeholder:text-white/30 outline-none transition-colors focus:border-white/50"
+                  className="mt-2 w-full border-b border-white/15 bg-transparent py-2.5 font-sans text-[15px] font-medium text-white placeholder:font-medium placeholder:text-white/30 outline-none transition-colors focus:border-white/50"
                 />
               </div>
 
@@ -505,7 +505,7 @@ export function AgentDemo() {
                   03 · Phone number
                 </label>
                 <div className="mt-2 flex items-center border-b border-white/15 transition-colors focus-within:border-white/50">
-                  <span className="flex shrink-0 items-center gap-1.5 pr-3 font-gilroy text-[15px] font-medium text-white/45">
+                  <span className="flex shrink-0 items-center gap-1.5 pr-3 font-sans text-[15px] font-medium text-white/45">
                     <span className="text-[13px]">🇮🇳</span> +91
                   </span>
                   <input
@@ -515,7 +515,7 @@ export function AgentDemo() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="98765 43210"
-                    className="w-full bg-transparent py-2.5 font-gilroy text-[15px] font-medium tabular-nums text-white placeholder:font-medium placeholder:text-white/30 outline-none"
+                    className="w-full bg-transparent py-2.5 font-sans text-[15px] font-medium tabular-nums text-white placeholder:font-medium placeholder:text-white/30 outline-none"
                   />
                 </div>
               </div>
@@ -529,7 +529,7 @@ export function AgentDemo() {
               </span>
               <button
                 type="submit"
-                className="group/cta inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-ink shadow-[0_8px_24px_-10px_rgba(255,255,255,0.4)] transition-all hover:bg-white/90 hover:shadow-[0_10px_30px_-10px_rgba(255,255,255,0.55)]"
+                className="group/cta inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 font-sans text-[13.5px] font-medium text-ink shadow-[0_8px_24px_-10px_rgba(255,255,255,0.4)] transition-all hover:bg-white/90 hover:shadow-[0_10px_30px_-10px_rgba(255,255,255,0.55)]"
               >
                 Call me now
                 <ArrowRight

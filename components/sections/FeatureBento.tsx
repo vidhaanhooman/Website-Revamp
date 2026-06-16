@@ -50,7 +50,7 @@ function MockBuild() {
             <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
             <span className="h-2.5 w-2.5 rounded-full bg-[#28C841]" />
           </div>
-          <span className="font-gilroy text-[11.5px] font-medium text-white/85">
+          <span className="font-sans text-[11.5px] font-medium text-white/85">
             HoomanLabs No Code Agent Builder
           </span>
           <span className="font-mono text-[10px] text-white/40">100%</span>
@@ -132,12 +132,12 @@ function MockBuild() {
                 <span className="flex h-3.5 w-3.5 items-center justify-center rounded-sm bg-[#34D399] text-[8px] font-bold text-black">
                   ⚡
                 </span>
-                <span className="font-gilroy text-[10px] font-semibold text-white">
+                <span className="font-sans text-[10px] font-semibold text-white">
                   Trigger
                 </span>
               </div>
               <div className="mt-1 border-t border-white/10 pt-1">
-                <div className="font-gilroy text-[9.5px] font-medium text-white/90">
+                <div className="font-sans text-[9.5px] font-medium text-white/90">
                   CRM
                 </div>
                 <div className="font-mono text-[8px] text-white/45">
@@ -162,12 +162,12 @@ function MockBuild() {
                 <span className="flex h-3.5 w-3.5 items-center justify-center rounded-sm bg-[#7257C7] text-[7px] font-bold text-white">
                   AI
                 </span>
-                <span className="font-gilroy text-[10px] font-semibold text-white">
+                <span className="font-sans text-[10px] font-semibold text-white">
                   AI Agent
                 </span>
               </div>
               <div className="mt-1 border-t border-white/10 pt-1">
-                <div className="font-gilroy text-[9.5px] font-medium text-white/90">
+                <div className="font-sans text-[9.5px] font-medium text-white/90">
                   LLM
                 </div>
                 <div className="font-mono text-[8px] text-white/55">
@@ -195,12 +195,12 @@ function MockBuild() {
                 <span className="flex h-3.5 w-3.5 items-center justify-center rounded-sm bg-[#4877D8] text-[9px] font-bold text-white">
                   #
                 </span>
-                <span className="font-gilroy text-[10px] font-semibold text-white">
+                <span className="font-sans text-[10px] font-semibold text-white">
                   Result
                 </span>
               </div>
               <div className="mt-1 border-t border-white/10 pt-1">
-                <div className="font-gilroy text-[9.5px] font-medium text-white/90">
+                <div className="font-sans text-[9.5px] font-medium text-white/90">
                   CRM &amp; More
                 </div>
                 <div className="font-mono text-[8px] text-white/45">
@@ -225,12 +225,12 @@ function MockBuild() {
                 <span className="flex h-3.5 w-3.5 items-center justify-center rounded-sm bg-[#4877D8] text-[9px] font-bold text-white">
                   #
                 </span>
-                <span className="font-gilroy text-[10px] font-semibold text-white">
+                <span className="font-sans text-[10px] font-semibold text-white">
                   Human Handoff
                 </span>
               </div>
               <div className="mt-1 border-t border-white/10 pt-1">
-                <div className="font-gilroy text-[9.5px] font-medium text-white/90">
+                <div className="font-sans text-[9.5px] font-medium text-white/90">
                   Agent
                 </div>
                 <div className="font-mono text-[8px] text-white/45">
@@ -921,7 +921,7 @@ function MockOmniCall() {
  <div className="font-sans text-[9.5px] tracking-[0.04em] text-white/45">
                   Incoming · हिंदी
                 </div>
-                <div className="mt-1 font-gilroy text-[15px] font-semibold text-white">
+                <div className="mt-1 font-sans text-[15px] font-semibold text-white">
                   +91 98765 43210
                 </div>
                 <div className="font-mono text-[10px] text-white/50">
@@ -943,7 +943,7 @@ function MockOmniCall() {
  <div className="font-sans text-[8.5px] tracking-[0.04em] text-white/45">
                     Patient · हिं
                   </div>
-                  <div className="mt-0.5 font-gilroy text-[10.5px] leading-snug text-white/85">
+                  <div className="mt-0.5 font-sans text-[10.5px] leading-snug text-white/85">
                     मेरा अपॉइंटमेंट मंगलवार को?
                   </div>
                 </div>
@@ -951,7 +951,7 @@ function MockOmniCall() {
  <div className="font-sans text-[8.5px] tracking-[0.04em] text-[#7AB6F0]">
                     Maya · EN · 248ms
                   </div>
-                  <div className="mt-0.5 font-gilroy text-[10.5px] leading-snug text-white/90">
+                  <div className="mt-0.5 font-sans text-[10.5px] leading-snug text-white/90">
                     Tuesday 19th, 2:15 PM with Dr. Patel.
                   </div>
                 </div>
@@ -1143,14 +1143,14 @@ export function FeatureBento() {
             <div className="mt-8 flex flex-wrap items-center gap-2">
               <a
                 href="/#agent-demo"
-                className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-ink transition-colors hover:bg-white/85"
+                className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 font-sans text-[13.5px] font-medium text-ink transition-colors hover:bg-white/85"
               >
                 Try a live demo
                 <ArrowUpRight size={14} strokeWidth={2.25} />
               </a>
               <a
                 href="/pricing"
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/30 px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-white backdrop-blur-sm hover:bg-black/50"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/30 px-5 py-2.5 font-sans text-[13.5px] font-medium text-white backdrop-blur-sm hover:bg-black/50"
               >
                 See pricing
               </a>

@@ -346,14 +346,14 @@ export function JourneyBento() {
           <div className="mt-10 inline-flex flex-wrap justify-center gap-3">
             <Link
               href="/signup"
-              className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-ink hover:bg-white/85"
+              className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 font-sans text-[13.5px] font-medium text-ink hover:bg-white/85"
             >
               Build your agent
               <ArrowUpRight size={14} strokeWidth={2.25} />
             </Link>
             <Link
               href="/book-demo"
-              className="inline-flex items-center rounded-full border border-white/30 bg-[#0a0a0d]/40 px-5 py-2.5 font-gilroy text-[13.5px] font-medium text-white backdrop-blur-sm hover:bg-[#0a0a0d]/70"
+              className="inline-flex items-center rounded-full border border-white/30 bg-[#0a0a0d]/40 px-5 py-2.5 font-sans text-[13.5px] font-medium text-white backdrop-blur-sm hover:bg-[#0a0a0d]/70"
             >
               Book a demo
             </Link>
