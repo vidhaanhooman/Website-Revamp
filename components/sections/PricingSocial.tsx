@@ -71,7 +71,7 @@ export function PricingSocial() {
           className="mb-10 text-center font-serif text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.05] tracking-tight text-ink dark:text-dark-text md:mb-14"
         >
           What care &amp; service teams <br className="hidden md:block" />
-          say about <span className="italic">HoomanLabs</span>
+          say about HoomanLabs
         </motion.h2>
 
         {/* Mosaic: row 1 - two stat tiles + wide testimonial */}

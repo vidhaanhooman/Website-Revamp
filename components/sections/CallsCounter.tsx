@@ -107,13 +107,15 @@ export function CallsCounter() {
                 spans the full height of the counter block for more weight */}
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-4 -top-10 bottom-[-40px] hidden w-[46%] bg-contain bg-right bg-no-repeat opacity-95 md:block lg:-right-2 lg:w-[48%]"
+              className="pointer-events-none absolute right-2 top-2 bottom-0 hidden w-[30%] bg-contain bg-right-bottom bg-no-repeat opacity-95 md:block lg:right-4 lg:w-[31%]"
               style={{
                 backgroundImage: "url('/webcounter.png')",
                 maskImage:
-                  "linear-gradient(to right, transparent 0%, black 22%, black 100%)",
+                  "linear-gradient(to right, transparent 0%, black 22%, black 100%), linear-gradient(to bottom, black 60%, transparent 95%)",
+                maskComposite: "intersect",
                 WebkitMaskImage:
-                  "linear-gradient(to right, transparent 0%, black 22%, black 100%)"
+                  "linear-gradient(to right, transparent 0%, black 22%, black 100%), linear-gradient(to bottom, black 60%, transparent 95%)",
+                WebkitMaskComposite: "source-in"
               }}
             />
 

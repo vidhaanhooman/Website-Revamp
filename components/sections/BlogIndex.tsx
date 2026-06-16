@@ -1,349 +1,342 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { Search, ChevronDown, ArrowUpRight } from "lucide-react";
-import {
-  blogPosts,
-  BLOG_TYPES,
-  BLOG_TOPICS,
-  BLOG_INDUSTRIES,
-  type BlogPost
-} from "@/content/blog";
+import { Search, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { blogPosts, BLOG_TYPES, type BlogPost } from "@/content/blog";
 
-const INK = "#FFFFFF";
-const INK_MUTED = "rgba(255,255,255,0.65)";
-const INK_FAINT = "rgba(255,255,255,0.45)";
-const BORDER = "rgba(255,255,255,0.1)";
-const BORDER_STRONG = "rgba(255,255,255,0.18)";
-const SURFACE = "rgba(255,255,255,0.04)";
+const PAGE_BG = "#F6F6F7";
+const INK = "#16151A";
+const INK_MUTED = "rgba(22,21,26,0.6)";
+const INK_FAINT = "rgba(22,21,26,0.42)";
+const CORAL = "#F77E5C";
+const PAGE_SIZE = 9;
 
-function formatDate(iso: string) {
-  const d = new Date(iso);
-  return d.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric"
-  });
-}
+/* Category pill palette - soft tint bg + readable text. */
+const CAT_COLORS: Record<string, { bg: string; fg: string }> = {
+  "Customer story": { bg: "#DCF5E6", fg: "#1B7A4B" },
+  Engineering: { bg: "#E7E0FB", fg: "#5B3FB8" },
+  Product: { bg: "#DDEBFD", fg: "#1F6FC4" },
+  Industry: { bg: "#FCEFD3", fg: "#9A6B14" },
+  News: { bg: "#FBE0EC", fg: "#B23A6E" }
+};
+const DEFAULT_CAT = { bg: "#ECECEF", fg: "#52525B" };
+const catColor = (t: string) => CAT_COLORS[t] ?? DEFAULT_CAT;
 
-function FilterDropdown({
-  label,
-  options,
-  value,
-  onChange
-}: {
-  label: string;
-  options: readonly string[];
-  value: string;
-  onChange: (v: string) => void;
-}) {
-  const [open, setOpen] = useState(false);
+function PageBtn({
+  children,
+  ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <div className="border-b border-white/10">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between py-3.5 text-left"
-        style={{ color: INK }}
-      >
-        <span>
-          <span
- className="block text-[10px] tracking-[0.04em]"
-            style={{ color: INK_FAINT }}
-          >
-            {label}
-          </span>
-          <span
-            className="mt-0.5 block text-[13.5px] font-medium"
-            style={{ color: INK }}
-          >
-            {value}
-          </span>
-        </span>
-        <ChevronDown
-          size={14}
-          className={
-            "shrink-0 transition-transform duration-200 " +
-            (open ? "rotate-180" : "")
-          }
-          style={{ color: INK_FAINT }}
-        />
-      </button>
-      {open ? (
-        <ul className="pb-3" role="listbox">
-          {options.map((opt) => {
-            const active = opt === value;
-            return (
-              <li key={opt}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    onChange(opt);
-                    setOpen(false);
-                  }}
-                  className={
-                    "block w-full rounded-md px-2 py-1.5 text-left text-[13px] transition-colors hover:bg-white/[0.06]"
-                  }
-                  style={{ color: active ? INK : "rgba(255,255,255,0.7)" }}
-                >
-                  {opt}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      ) : null}
-    </div>
+    <button
+      type="button"
+      {...props}
+      className="flex h-9 w-9 items-center justify-center rounded-full border transition-colors disabled:cursor-not-allowed disabled:opacity-35"
+      style={{ color: INK_MUTED, borderColor: "rgba(22,21,26,0.14)" }}
+    >
+      {children}
+    </button>
   );
 }
 
-function PostThumb({ post }: { post: BlogPost }) {
+function Pill({ label }: { label: string }) {
+  const c = catColor(label);
+  return (
+    <span
+      className="inline-flex items-center rounded-full px-2.5 py-[3px] font-sans text-[11px] font-medium"
+      style={{ backgroundColor: c.bg, color: c.fg }}
+    >
+      {label}
+    </span>
+  );
+}
+
+function Thumb({ post, className }: { post: BlogPost; className?: string }) {
   return (
     <div
-      className="hidden h-[120px] w-[260px] shrink-0 overflow-hidden rounded-2xl md:block"
+      className={"relative overflow-hidden " + (className ?? "")}
       style={{
         background: `linear-gradient(135deg, ${post.thumbColor} 0%, ${post.thumbAccent ?? post.thumbColor} 100%)`
       }}
     >
-      {/* Subtle inner gradient overlay for depth */}
       <div
         aria-hidden
-        className="h-full w-full"
+        className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at 80% 0%, rgba(255,255,255,0.18), transparent 60%)"
+            "radial-gradient(ellipse at 75% 0%, rgba(255,255,255,0.22), transparent 60%)"
         }}
       />
     </div>
   );
 }
 
+function MetaRow({ post }: { post: BlogPost }) {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <Pill label={String(post.type)} />
+      {post.topic ? <Pill label={post.topic} /> : null}
+      <span className="font-sans text-[11px]" style={{ color: INK_FAINT }}>
+        {post.readTime}
+      </span>
+    </div>
+  );
+}
+
+/* Grid card - image on top, meta + title + excerpt below. */
+function PostCard({ post }: { post: BlogPost }) {
+  return (
+    <Link href={`/blog/${post.slug}`} className="group block">
+      <Thumb post={post} className="aspect-[16/10] w-full rounded-xl" />
+      <div className="mt-3.5">
+        <MetaRow post={post} />
+        <h3
+          className="mt-2.5 font-sans text-[16.5px] font-semibold leading-[1.3] tracking-tight transition-colors group-hover:opacity-70"
+          style={{ color: INK }}
+        >
+          {post.title}
+        </h3>
+        <p className="mt-2 font-sans text-[13px] leading-[1.55]" style={{ color: INK_MUTED }}>
+          {post.description}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
 interface BlogIndexProps {
-  /** Posts to render. Falls back to static `blogPosts` if not provided. */
   posts?: BlogPost[];
 }
 
 export function BlogIndex({ posts }: BlogIndexProps = {}) {
   const [search, setSearch] = useState("");
-  const [typeFilter, setTypeFilter] = useState("All");
-  const [topicFilter, setTopicFilter] = useState("All");
-  const [industryFilter, setIndustryFilter] = useState("All");
-
+  const [cat, setCat] = useState<string>("All");
+  const [page, setPage] = useState(1);
   const source = posts ?? blogPosts;
+
+  // Back to page 1 whenever the filters change.
+  useEffect(() => {
+    setPage(1);
+  }, [search, cat]);
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     return source.filter((p) => {
-      if (typeFilter !== "All" && p.type !== typeFilter) return false;
-      // topic + industry are optional - only filter when both filter and field are set
-      if (topicFilter !== "All" && p.topic && p.topic !== topicFilter) return false;
-      if (industryFilter !== "All" && p.industry && p.industry !== industryFilter)
-        return false;
+      if (cat !== "All" && p.type !== cat) return false;
       if (q) {
-        const hay = `${p.title} ${p.description} ${p.type} ${p.topic ?? ""} ${p.industry ?? ""}`.toLowerCase();
+        const hay = `${p.title} ${p.description} ${p.type} ${p.topic ?? ""}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
     });
-  }, [search, typeFilter, topicFilter, industryFilter, source]);
+  }, [search, cat, source]);
+
+  const featured = filtered[0];
+  const rest = filtered.slice(1);
+  const promo = source.find((p) => p.type === "Product") ?? source[0];
+
+  const totalPages = Math.max(1, Math.ceil(rest.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages);
+  const pageItems = rest.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
+  const goToPage = (n: number) => {
+    setPage(n);
+    document.getElementById("blog-posts")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
-    <section
-      className="relative min-h-screen"
-      style={{ backgroundColor: "#0a0a0d", color: INK }}
-    >
-      {/* HERO STRIP */}
-      <div className="relative overflow-hidden">
-        {/* Background image — masked to fade out cleanly at the bottom edge */}
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/BlogBG.png')",
-            WebkitMaskImage:
-              "linear-gradient(180deg, black 0%, black 55%, transparent 100%)",
-            maskImage:
-              "linear-gradient(180deg, black 0%, black 55%, transparent 100%)"
-          }}
-        />
-        {/* Scrim — ramps to solid page bg by the bottom so there's no seam */}
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(10,10,13,0.5) 0%, rgba(10,10,13,0.35) 40%, rgba(10,10,13,0.85) 80%, #0a0a0d 100%)"
-          }}
-        />
-
-        <div className="relative mx-auto max-w-[1240px] px-4 pb-12 pt-24 md:pb-16 md:pt-28">
+    <section className="relative" style={{ backgroundColor: PAGE_BG, color: INK }}>
+      {/* HERO */}
+      <div
+        className="relative overflow-hidden"
+        style={{
+          background:
+            "radial-gradient(120% 90% at 50% -10%, #EEEEF1 0%, #F3F3F5 45%, #F6F6F7 100%)"
+        }}
+      >
+        <div className="mx-auto max-w-[1180px] px-5 pb-28 pt-28 text-center md:pb-36 md:pt-32">
           <p
- className="font-sans text-[11px] font-medium tracking-[0.04em]"
-            style={{ color: INK_FAINT }}
+            className="font-mono text-[11px] uppercase tracking-[0.22em]"
+            style={{ color: CORAL }}
           >
-            [Resources] &nbsp; Blog &amp; field notes
+            HoomanLabs Blog
           </p>
-          <div className="mt-6 grid items-end gap-8 md:grid-cols-2 md:gap-14">
-            <h1
-              className="font-serif font-normal leading-[1] tracking-tight drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]"
-              style={{
-                fontSize: "clamp(2.25rem, 5.6vw, 4.5rem)",
-                color: "#FFFFFF"
-              }}
-            >
-              Everything you need,
-              <br />
-              <span style={{ color: "rgba(255,255,255,0.55)" }}>
-                in one place.
-              </span>
-            </h1>
-            <p
-              className="max-w-md text-[15px] leading-[1.6] drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)] md:ml-auto"
-              style={{ color: "rgba(255,255,255,0.78)" }}
-            >
-              Field notes from building voice agents in India - customer
-              stories, engineering deep-dives, and the choices that shape a
-              product. Organized for clarity, built to help you ship faster.
-            </p>
-          </div>
+          <h1
+            className="mx-auto mt-5 max-w-[900px] text-balance font-dmsans font-bold leading-[1.06] tracking-[-0.03em]"
+            style={{ fontSize: "clamp(2.3rem,5vw,3.6rem)", color: INK }}
+          >
+            Voice AI insight that drives real customer impact.
+          </h1>
         </div>
       </div>
 
-      {/* BODY - sidebar + list */}
-      <div className="mx-auto max-w-[1240px] px-4 pb-32">
-        <div className="grid items-start gap-10 md:grid-cols-[260px_1fr] md:gap-16">
-          {/* Sidebar */}
-          <aside className="md:sticky md:top-28 md:self-start">
-            {/* Search */}
-            <div className="relative">
-              <Search
-                size={14}
-                className="absolute left-3 top-1/2 -translate-y-1/2"
-                style={{ color: INK_FAINT }}
-              />
+      {/* BODY */}
+      <div className="mx-auto max-w-[1180px] px-5">
+        {/* Details on top - search + categories + promo (newsletter removed) */}
+        <div className="grid items-start gap-10 border-b pb-12 pt-12 md:grid-cols-[1.3fr_0.85fr] md:gap-14" style={{ borderColor: "rgba(22,21,26,0.1)" }}>
+          {/* Search + category pills */}
+          <div>
+            <div className="relative max-w-md">
+              <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2" style={{ color: INK_FAINT }} />
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search"
-                className="w-full rounded-full border px-9 py-2.5 text-[13.5px] outline-none transition-colors"
-                style={{
-                  backgroundColor: SURFACE,
-                  borderColor: BORDER,
-                  color: INK
-                }}
+                placeholder="Search the blog"
+                className="w-full rounded-full border bg-white px-10 py-2.5 font-sans text-[13.5px] outline-none"
+                style={{ borderColor: "rgba(22,21,26,0.14)", color: INK }}
               />
             </div>
-
-            {/* Filters */}
-            <div className="mt-5 border-t border-white/10">
-              <FilterDropdown
-                label="Type"
-                options={BLOG_TYPES}
-                value={typeFilter}
-                onChange={setTypeFilter}
-              />
-              <FilterDropdown
-                label="Topic"
-                options={BLOG_TOPICS}
-                value={topicFilter}
-                onChange={setTopicFilter}
-              />
-              <FilterDropdown
-                label="Industry"
-                options={BLOG_INDUSTRIES}
-                value={industryFilter}
-                onChange={setIndustryFilter}
-              />
-            </div>
-
-            {/* Reset */}
-            {(typeFilter !== "All" ||
-              topicFilter !== "All" ||
-              industryFilter !== "All" ||
-              search !== "") ? (
-              <button
-                type="button"
-                onClick={() => {
-                  setSearch("");
-                  setTypeFilter("All");
-                  setTopicFilter("All");
-                  setIndustryFilter("All");
-                }}
-                className="mt-5 text-[12px] underline"
-                style={{ color: INK_MUTED }}
-              >
-                Reset filters
-              </button>
-            ) : null}
-
-            <p
- className="mt-8 text-[11px] tracking-[0.04em]"
-              style={{ color: INK_FAINT }}
-            >
-              {filtered.length} {filtered.length === 1 ? "post" : "posts"}
+            <p className="mt-6 font-sans text-[12px] font-medium" style={{ color: INK_FAINT }}>
+              Featured Categories
             </p>
-          </aside>
-
-          {/* Article list */}
-          <div className="divide-y divide-white/10 border-t border-white/10">
-            {filtered.length === 0 ? (
-              <div
-                className="py-20 text-center text-[14px]"
-                style={{ color: INK_MUTED }}
-              >
-                No posts match those filters.
-              </div>
-            ) : (
-              filtered.map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="group block cursor-pointer transition-colors hover:bg-white/[0.015]"
-                >
-                  <article className="grid grid-cols-1 gap-6 py-10 md:grid-cols-[1fr_auto] md:gap-10">
-                    <div>
-                      <p
- className="text-[11px] font-medium tracking-[0.04em]"
-                        style={{ color: INK_FAINT }}
-                      >
-                        {post.type}{" "}
-                        <span style={{ color: "rgba(255,255,255,0.3)" }}>·</span>{" "}
-                        <span style={{ color: INK_MUTED }}>
-                          {formatDate(post.date)}
-                        </span>{" "}
-                        <span style={{ color: "rgba(255,255,255,0.3)" }}>·</span>{" "}
-                        <span style={{ color: INK_MUTED }}>
-                          {post.readTime}
-                        </span>
-                      </p>
-                      <h2
-                        className="mt-4 font-sans text-[22px] font-semibold leading-[1.2] tracking-tight transition-colors group-hover:text-white md:text-[24px]"
-                        style={{ color: INK }}
-                      >
-                        {post.title}
-                      </h2>
-                      <p
-                        className="mt-3 max-w-2xl text-[14.5px] leading-[1.55]"
-                        style={{ color: INK_MUTED }}
-                      >
-                        {post.description}
-                      </p>
-                      <span
-                        className="mt-4 inline-flex items-center gap-1.5 text-[12.5px] font-medium transition-transform group-hover:translate-x-0.5"
-                        style={{ color: INK }}
-                      >
-                        Read more
-                        <ArrowUpRight size={12} strokeWidth={2.25} />
-                      </span>
-                    </div>
-                    <PostThumb post={post} />
-                  </article>
-                </Link>
-              ))
-            )}
+            <div className="mt-3 flex flex-wrap gap-2">
+              {BLOG_TYPES.map((t) => {
+                const on = cat === t;
+                return (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setCat(t)}
+                    className="rounded-full border px-3.5 py-1.5 font-sans text-[13px] transition-colors"
+                    style={
+                      on
+                        ? { backgroundColor: INK, color: "#fff", borderColor: INK }
+                        : { color: INK_MUTED, borderColor: "rgba(22,21,26,0.14)" }
+                    }
+                  >
+                    {t === "All" ? "All posts" : t}
+                  </button>
+                );
+              })}
+            </div>
           </div>
+
+          {/* Promo card */}
+          {promo ? (
+            <Link
+              href={`/blog/${promo.slug}`}
+              className="group block overflow-hidden rounded-2xl"
+              style={{ background: "linear-gradient(150deg,#FCE0D4 0%,#F6E7DC 100%)" }}
+            >
+              <div className="p-5">
+                <div className="flex h-20 items-center justify-center rounded-xl bg-white/60 font-mono text-[10px] uppercase tracking-[0.16em]" style={{ color: INK_FAINT }}>
+                  Voice AI playbook · 2026
+                </div>
+                <h4 className="mt-4 font-sans text-[15px] font-semibold leading-[1.25] tracking-tight" style={{ color: INK }}>
+                  How to build a world-class AI customer service team
+                </h4>
+                <p className="mt-2 font-sans text-[12px] leading-[1.5]" style={{ color: INK_MUTED }}>
+                  Templates and guidance on building a team that uses AI and
+                  humans to their fullest potential.
+                </p>
+                <span
+                  className="mt-4 inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-sans text-[12px] font-medium text-white transition-transform group-hover:translate-x-0.5"
+                  style={{ backgroundColor: CORAL }}
+                >
+                  Learn more
+                  <ArrowUpRight size={12} />
+                </span>
+              </div>
+            </Link>
+          ) : null}
         </div>
+
+        {/* Featured article */}
+        {featured ? (
+          <Link
+            href={`/blog/${featured.slug}`}
+            className="group mt-12 block overflow-hidden rounded-3xl bg-white p-3 shadow-[0_30px_70px_-30px_rgba(20,20,40,0.35)]"
+          >
+            <div className="grid items-center gap-5 md:grid-cols-2">
+              <Thumb post={featured} className="aspect-[4/3] w-full rounded-2xl" />
+              <div className="p-3 md:p-6">
+                <MetaRow post={featured} />
+                <h2
+                  className="mt-4 font-sans font-semibold leading-[1.15] tracking-tight"
+                  style={{ fontSize: "clamp(1.5rem,2.6vw,2rem)", color: INK }}
+                >
+                  {featured.title}
+                </h2>
+                <p
+                  className="mt-3 max-w-md font-sans text-[14px] leading-[1.6]"
+                  style={{ color: INK_MUTED }}
+                >
+                  {featured.description}
+                </p>
+                <span
+                  className="mt-6 inline-flex items-center gap-2 font-sans text-[13px] font-medium"
+                  style={{ color: INK }}
+                >
+                  Read
+                  <span
+                    className="flex h-7 w-7 items-center justify-center rounded-full text-white transition-transform group-hover:translate-x-0.5"
+                    style={{ backgroundColor: CORAL }}
+                  >
+                    <ArrowRight size={13} />
+                  </span>
+                </span>
+              </div>
+            </div>
+          </Link>
+        ) : null}
+
+        {/* All posts */}
+        {rest.length > 0 ? (
+          <div className="pb-28">
+            <div id="blog-posts" className="mt-14 grid gap-x-7 gap-y-10 scroll-mt-24 sm:grid-cols-2 md:grid-cols-3">
+              {pageItems.map((p) => (
+                <PostCard key={p.slug} post={p} />
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 ? (
+              <nav className="mt-16 flex items-center justify-center gap-1.5" aria-label="Blog pagination">
+                <PageBtn
+                  onClick={() => goToPage(safePage - 1)}
+                  disabled={safePage === 1}
+                  aria-label="Previous page"
+                >
+                  <ChevronLeft size={15} />
+                </PageBtn>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => {
+                  const on = n === safePage;
+                  return (
+                    <button
+                      key={n}
+                      type="button"
+                      onClick={() => goToPage(n)}
+                      aria-current={on ? "page" : undefined}
+                      className="flex h-9 min-w-9 items-center justify-center rounded-full border px-3 font-sans text-[13px] font-medium transition-colors"
+                      style={
+                        on
+                          ? { backgroundColor: INK, color: "#fff", borderColor: INK }
+                          : { color: INK_MUTED, borderColor: "rgba(22,21,26,0.14)" }
+                      }
+                    >
+                      {n}
+                    </button>
+                  );
+                })}
+                <PageBtn
+                  onClick={() => goToPage(safePage + 1)}
+                  disabled={safePage === totalPages}
+                  aria-label="Next page"
+                >
+                  <ChevronRight size={15} />
+                </PageBtn>
+              </nav>
+            ) : null}
+          </div>
+        ) : (
+          <div className="py-16" />
+        )}
+
+        {filtered.length === 0 ? (
+          <div className="pb-28 pt-4 text-center font-sans text-[14px]" style={{ color: INK_MUTED }}>
+            No posts match those filters.
+          </div>
+        ) : null}
       </div>
     </section>
   );

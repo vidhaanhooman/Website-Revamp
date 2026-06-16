@@ -130,7 +130,7 @@ export function LoginModal({ open, onClose }: LoginModalProps) {
             <div className="mx-auto w-full max-w-sm">
               <h2
                 id="login-title"
-                className="text-center font-serif text-[26px] font-normal leading-[1.15] tracking-tight text-white md:text-[28px]"
+                className="text-center font-dmsans text-[26px] font-bold leading-[1.15] tracking-[-0.02em] text-white md:text-[28px]"
               >
                 Welcome to HoomanLabs.
               </h2>

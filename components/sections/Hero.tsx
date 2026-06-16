@@ -109,9 +109,7 @@ export function Hero() {
           >
             One prompt to
             <br />
-            <span className="font-display font-normal italic tracking-[-0.01em]">
-              a million calls.
-            </span>
+            a million calls.
           </motion.h1>
 
           <motion.p

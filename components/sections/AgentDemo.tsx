@@ -444,7 +444,7 @@ export function AgentDemo() {
                 {open ? (
                   <ul
                     role="listbox"
-                    className="absolute left-0 right-0 top-[calc(100%+4px)] z-20 overflow-hidden border border-white/10 bg-[#0a0a0a] shadow-[0_20px_40px_-12px_rgba(0,0,0,0.8)]"
+                    className="absolute left-0 right-0 top-[calc(100%+4px)] z-20 overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0a] shadow-[0_20px_40px_-12px_rgba(0,0,0,0.8)]"
                   >
                     {USE_CASES.map((u) => {
                       const isActive = u.id === useCase;

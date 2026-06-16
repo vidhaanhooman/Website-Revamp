@@ -201,7 +201,7 @@ export function BookDemoModal({ open, onClose }: BookDemoModalProps) {
               </p>
               <h2
                 id="demo-title"
-                className="mt-2 font-serif text-[24px] font-normal leading-[1.1] tracking-tight text-white"
+                className="mt-2 font-dmsans text-[24px] font-bold leading-[1.1] tracking-[-0.02em] text-white"
               >
                 Product Demo
               </h2>
@@ -394,7 +394,7 @@ export function BookDemoModal({ open, onClose }: BookDemoModalProps) {
                 Back to time
               </button>
 
-              <h3 className="mt-5 font-serif text-[26px] font-normal leading-[1.1] tracking-tight text-white">
+              <h3 className="mt-5 font-dmsans text-[26px] font-bold leading-[1.1] tracking-[-0.02em] text-white">
                 Your details
               </h3>
               <p className="mt-2 text-[13px] leading-[1.55] text-white/55">

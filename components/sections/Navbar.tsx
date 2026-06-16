@@ -39,8 +39,8 @@ export function Navbar() {
   const pillBase =
     "flex items-center rounded-full border backdrop-blur-md transition-all duration-300 ease-out";
   const pillSurface = scrolled
-    ? "border-dark-edge bg-dark-soft/85 shadow-nav backdrop-blur-xl"
-    : "border-white/15 bg-black/35";
+    ? "border-dark-edge bg-dark-soft/90 shadow-nav backdrop-blur-xl"
+    : "border-white/10 bg-[#0c0c11]/85 backdrop-blur-xl";
 
   return (
     <div className="fixed inset-x-0 top-4 z-50 px-4">
@@ -54,7 +54,7 @@ export function Navbar() {
           className={cn(pillBase, pillSurface, "gap-2 pl-3 pr-2 py-2 md:pl-4 md:py-2")}
         >
           <Link href="/" className="flex shrink-0 items-center pr-1" aria-label="HoomanLabs - back to home">
-            <Wordmark tone="dark" />
+            <Wordmark tone="dark" className="text-white" />
           </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">

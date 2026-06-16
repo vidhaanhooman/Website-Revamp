@@ -15,8 +15,8 @@ export function PricingHero() {
           <span className="text-[13px] text-muted dark:text-dark-muted">
             Pricing
           </span>
-          <h1 className="mt-3 font-serif text-[clamp(2.5rem,5.5vw,4rem)] font-normal leading-[1.02] tracking-tight text-ink dark:text-dark-text">
-            Plans that fit your <span className="italic">call volume</span>{" "}
+          <h1 className="mt-3 font-dmsans text-[clamp(2.5rem,5.5vw,4rem)] font-bold leading-[1.02] tracking-[-0.03em] text-ink dark:text-dark-text">
+            Plans that fit your call volume{" "}
             <br className="hidden md:block" />
             and ops headcount.
           </h1>

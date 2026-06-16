@@ -1,273 +1,131 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  Check,
-  Calendar,
-  CreditCard,
-  Headphones,
-  Sparkles
-} from "lucide-react";
-import { tiers } from "@/content/pricing";
+import { Check } from "lucide-react";
+import { tiers, type PricingTier } from "@/content/pricing";
 
-const TRUSTED_BY = [
-  "Brightside Dental",
-  "Apex Home Services",
-  "RyderHealth",
-  "PharmEasy",
-  "Groww",
-  "Meridian Insurance"
-] as const;
+/* Pricing in the reference 3-tier SaaS layout, but driven by our real
+   per-minute tier data (content/pricing.ts). Highlighted tier sits
+   elevated; rates shown as a Standard/Premium per-minute block. */
 
-const FOOTER_NOTES = [
-  { Icon: Calendar, label: "Free 14-day pilot" },
-  { Icon: CreditCard, label: "No credit card required" },
-  { Icon: Headphones, label: "Stellar India-based support" }
-];
-
-/* Coral accent (matches the Hero sun and AI Agent highlight elsewhere) */
-const CORAL = "#F77E5C";
-const CORAL_BG = "rgba(247,126,92,0.15)";
-const CORAL_SHADOW = "rgba(247,126,92,0.35)";
-
-function TierBurst({ highlight = false }: { highlight?: boolean }) {
-  const color = highlight ? CORAL : "rgba(255,255,255,0.55)";
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
-      {Array.from({ length: 12 }).map((_, i) => {
-        const a = (i / 12) * Math.PI * 2;
-        const x2 = 10 + Math.cos(a) * 9;
-        const y2 = 10 + Math.sin(a) * 9;
-        return (
-          <circle
-            key={i}
-            cx={x2}
-            cy={y2}
-            r={i % 2 === 0 ? 1.1 : 0.7}
-            fill={color}
-            opacity={i % 2 === 0 ? 0.9 : 0.5}
-          />
-        );
-      })}
-      <circle cx="10" cy="10" r="1.4" fill={color} />
-    </svg>
-  );
-}
+const FOOTER_NOTE = "No credit card needed";
 
 export function PricingTiers() {
   return (
-    <section className="relative px-4 py-24 md:py-32">
+    <section className="relative px-6 pb-28 pt-28 md:pt-32">
       <div className="mx-auto max-w-[1240px]">
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0d]">
-          {/* Dotted grid backdrop */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 opacity-60"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, rgba(255,255,255,0.05) 0.8px, transparent 0.8px)",
-              backgroundSize: "14px 14px"
-            }}
-          />
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto max-w-2xl text-center"
+        >
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/40">
+            [01] &nbsp; Pricing
+          </p>
+          <h1 className="mt-5 font-dmsans text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-[1.04] tracking-[-0.03em] text-white">
+            Pay only for the minutes you use.
+          </h1>
+        </motion.div>
 
-          <div className="relative px-6 py-16 md:px-12 md:py-20">
-            {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-15%" }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="mx-auto max-w-3xl text-center font-serif text-[clamp(2.25rem,4.6vw,3.4rem)] font-normal leading-[1.05] tracking-tight text-white"
-            >
-              Pick up every call. In every language.
-            </motion.h1>
-            <p className="mx-auto mt-5 max-w-xl text-center text-[15px] leading-[1.55] text-white/60">
-              Simple, transparent pricing that scales with you. Start with
-              1,000 free credits - no card required.
-            </p>
-
-            {/* Trusted by */}
-            <div className="mx-auto mt-12 max-w-2xl text-center">
- <p className="font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/45">
-                Trusted by India&apos;s best care &amp; service teams
-              </p>
-              <div className="mt-6 grid grid-cols-2 gap-x-12 gap-y-4 md:grid-cols-3">
-                {TRUSTED_BY.map((c) => (
-                  <div
-                    key={c}
-                    className="flex items-center justify-center gap-2 font-sans text-[14px] font-semibold tracking-tight text-white/70"
-                  >
-                    <span className="h-2 w-2 rounded-sm bg-white/35" />
-                    {c}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Tier grid - 2 columns, centered */}
-            <div className="mx-auto mt-14 grid max-w-[920px] gap-5 md:grid-cols-2">
-              {tiers.map((t) => {
-                const isHighlight = !!t.highlight;
-                return (
-                  <motion.article
-                    key={t.id}
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-10%" }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.05,
-                      ease: [0.22, 1, 0.36, 1]
-                    }}
-                    className={
-                      "relative flex flex-col rounded-2xl border bg-[#0d0d12] p-7 transition-colors md:p-8 " +
-                      (isHighlight
-                        ? "border-transparent"
-                        : "border-white/10 hover:border-white/20")
-                    }
-                    style={
-                      isHighlight
-                        ? {
-                            boxShadow: `0 0 0 1px ${CORAL}, 0 30px 60px -30px ${CORAL_SHADOW}`
-                          }
-                        : undefined
-                    }
-                  >
-                    {/* Header */}
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-2.5">
-                        <TierBurst highlight={isHighlight} />
-                        <span className="font-sans text-[15px] font-semibold tracking-tight text-white">
-                          {t.name}
-                        </span>
-                      </div>
-                      {isHighlight ? (
-                        <span
- className="rounded-md px-2 py-[3px] font-sans text-[10px] font-semibold tracking-[0.04em]"
-                          style={{ backgroundColor: CORAL_BG, color: CORAL }}
-                        >
-                          Most popular
-                        </span>
-                      ) : null}
-                    </div>
-
-                    {/* Blurb */}
-                    <p className="mt-3 max-w-sm text-[13.5px] leading-[1.55] text-white/60">
-                      {t.blurb}
-                    </p>
-
-                    {/* Dual rate display */}
-                    <div className="mt-7 space-y-2.5 rounded-xl border border-white/[0.07] bg-white/[0.02] p-4">
-                      {t.rates.map((r, i) => (
-                        <div
-                          key={r.label}
-                          className={
-                            "flex items-baseline justify-between gap-3 " +
-                            (i > 0 ? "border-t border-white/[0.05] pt-2.5" : "")
-                          }
-                        >
-                          <span className="font-sans text-[13px] font-medium text-white/70">
-                            {r.label}
-                          </span>
-                          <span className="flex items-baseline gap-1">
-                            <span className="font-sans text-[28px] font-semibold leading-none tracking-tight text-white">
-                              {r.rate}
-                            </span>
- <span className="font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/45">
-                              /min
-                            </span>
-                          </span>
-                        </div>
-                      ))}
-                      {t.rateNote ? (
-                        <p
-                          className="border-t border-white/[0.05] pt-2.5 font-sans text-[11.5px] italic"
-                          style={{ color: isHighlight ? CORAL : "rgba(255,255,255,0.45)" }}
-                        >
-                          {t.rateNote}
-                        </p>
-                      ) : null}
-                    </div>
-
-                    {/* Features */}
-                    <ul className="mt-6 flex-1 space-y-2">
-                      {t.features.map((f, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-2.5 text-[13.5px] leading-[1.5] text-white/75"
-                        >
-                          <Check
-                            size={13}
-                            strokeWidth={3}
-                            className="mt-[3px] shrink-0"
-                            style={{
-                              color: isHighlight ? CORAL : "rgba(255,255,255,0.45)"
-                            }}
-                          />
-                          <span>{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* CTA */}
-                    <a
-                      href={t.cta.href}
-                      className={
-                        "mt-7 inline-flex w-full items-center justify-center gap-1.5 rounded-full px-5 py-3 font-sans text-[13.5px] font-semibold transition-colors " +
-                        (isHighlight
-                          ? "text-white hover:opacity-90"
-                          : "border border-white/15 bg-white/[0.04] text-white hover:border-white/30 hover:bg-white/[0.08]")
-                      }
-                      style={
-                        isHighlight
-                          ? { backgroundColor: CORAL }
-                          : undefined
-                      }
-                    >
-                      {t.cta.label}
-                    </a>
-                  </motion.article>
-                );
-              })}
-            </div>
-
-            {/* Startup callout */}
-            <p className="mt-10 text-center font-sans text-[13.5px] text-white/60">
-              <Sparkles
-                size={13}
-                strokeWidth={2}
-                className="mr-1.5 inline align-[-2px]"
-                style={{ color: CORAL }}
-              />
-              Early-stage startup?{" "}
-              <a
-                href="/#agent-demo"
-                className="font-medium text-white underline decoration-white/30 underline-offset-2 hover:decoration-white/70"
-              >
-                Apply to our founder program
-              </a>{" "}
-              for 50% off your first six months.
-            </p>
-
-            {/* Footer strip */}
-            <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-10 gap-y-3 border-t border-white/10 pt-8">
-              {FOOTER_NOTES.map(({ Icon, label }) => (
-                <span
-                  key={label}
- className="flex items-center gap-2 font-sans text-[10.5px] font-medium tracking-[0.04em] text-white/55"
-                >
-                  <Icon
-                    size={13}
-                    strokeWidth={1.75}
-                    className="text-white/45"
-                  />
-                  {label}
-                </span>
-              ))}
-            </div>
-          </div>
+        {/* Cards - centered, our two real tiers, equal weight */}
+        <div className="mx-auto mt-16 grid max-w-[880px] grid-cols-1 items-stretch gap-5 md:grid-cols-2">
+          {tiers.map((t, i) => (
+            <PlanCard key={t.id} tier={t} index={i} />
+          ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function PlanCard({ tier, index }: { tier: PricingTier; index: number }) {
+  const hl = tier.highlight;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.05 * index, ease: [0.22, 1, 0.36, 1] }}
+      className={
+        "flex flex-col rounded-3xl px-7 py-8 md:px-8 md:py-10 " +
+        (hl
+          ? "border border-[#F77E5C]/30 bg-white/[0.03]"
+          : "border border-white/10 bg-white/[0.015]")
+      }
+    >
+      {/* Name + blurb */}
+      <div className="flex items-center gap-2.5">
+        <span className="text-[19px] font-semibold tracking-tight text-white">
+          {tier.name}
+        </span>
+        {hl && (
+          <span className="rounded-full bg-[#F77E5C]/15 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[#F77E5C]">
+            Best value
+          </span>
+        )}
+      </div>
+      <p className="mt-2 min-h-[40px] text-[13.5px] leading-[1.5] text-white/50">
+        {tier.blurb}
+      </p>
+
+      {/* Rate block - Standard / Premium per minute */}
+      <div className="mt-6 space-y-3">
+        {tier.rates.map((r) => (
+          <div
+            key={r.label}
+            className="flex items-baseline justify-between border-b border-white/[0.06] pb-3 last:border-b-0"
+          >
+            <span className="text-[13px] text-white/55">{r.label}</span>
+            <span className="flex items-baseline gap-0.5">
+              <span className="font-sans text-[26px] font-bold tracking-tight text-white">
+                {r.rate}
+              </span>
+              <span className="text-[13px] text-white/45">/min</span>
+            </span>
+          </div>
+        ))}
+      </div>
+      {tier.rateNote && (
+        <p className="mt-3 text-[12px] leading-[1.5] text-[#F77E5C]/80">
+          {tier.rateNote}
+        </p>
+      )}
+
+      {/* Divider */}
+      <div className="my-7 h-px w-full bg-white/10" />
+
+      {/* Features */}
+      <ul className="flex-1 space-y-3.5">
+        {tier.features.map((f) => (
+          <li key={f} className="flex items-start gap-2.5">
+            <Check
+              size={15}
+              strokeWidth={2.5}
+              className="mt-0.5 shrink-0 text-white/55"
+            />
+            <span className="text-[13.5px] leading-[1.4] text-white/80">
+              {f}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      {/* CTA */}
+      <Link
+        href={tier.cta.href}
+        className={
+          "mt-8 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-[14px] font-semibold transition-colors " +
+          (hl
+            ? "bg-white text-ink hover:bg-white/90"
+            : "border border-white/15 text-white hover:bg-white/[0.05]")
+        }
+      >
+        {tier.cta.label}
+      </Link>
+      <p className="mt-3 text-center text-[12px] text-white/40">{FOOTER_NOTE}</p>
+    </motion.div>
   );
 }

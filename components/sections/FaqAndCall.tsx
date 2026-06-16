@@ -8,8 +8,8 @@ import { faqs } from "@/content/faqs";
 export function FaqAndCall() {
   return (
     <section
-      className="relative bg-bg-warm px-6 py-20 md:py-28"
-      style={{ backgroundColor: "#FBF6F0", color: "#15131A" }}
+      className="relative px-6 py-20 md:py-28"
+      style={{ backgroundColor: "#F6F6F7", color: "#15131A" }}
     >
       <div className="mx-auto max-w-[1240px]">
         <div className="grid items-start gap-10 md:grid-cols-[300px_1fr] md:gap-14">

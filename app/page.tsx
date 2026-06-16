@@ -19,7 +19,7 @@ export default function Home() {
         <CallsCounter />
         <JourneyShowcase />
       </div>
-      <div className="relative bg-bg-warm text-ink">
+      <div className="relative bg-[#F6F6F7] text-ink">
         <Testimonials />
         <CtaBanner />
         <FaqAndCall />

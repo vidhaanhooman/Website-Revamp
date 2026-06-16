@@ -4,9 +4,17 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
-import { AnalysisActionsVisual } from "@/components/sections/visuals/AnalysisActionsVisual";
 import { ToolsVisual } from "@/components/sections/visuals/ToolsVisual";
-import { ContextMemoryVisual } from "@/components/sections/visuals/ContextMemoryVisual";
+import { WebhooksVisual } from "@/components/sections/visuals/WebhooksVisual";
+import { AnalysisVisual } from "@/components/sections/visuals/AnalysisVisual";
+import { MemoryRecallVisual } from "@/components/sections/visuals/MemoryRecallVisual";
+import { SimulationVisual } from "@/components/sections/visuals/SimulationVisual";
+import { BatchCallsVisual } from "@/components/sections/visuals/BatchCallsVisual";
+import { SubjectiveMetricsVisual } from "@/components/sections/visuals/SubjectiveMetricsVisual";
+import { ObjectiveMetricsVisual } from "@/components/sections/visuals/ObjectiveMetricsVisual";
+import { DashboardsAlertsVisual } from "@/components/sections/visuals/DashboardsAlertsVisual";
+import { TelephonyVisual } from "@/components/sections/visuals/TelephonyVisual";
+import { BranchPromoteVisual } from "@/components/sections/visuals/BranchPromoteVisual";
 
 /* Build / Ship / Improve as large alternating feature rows.
    The visual panel cycles through every card in the phase, synced with
@@ -40,36 +48,37 @@ const PHASES: Phase[] = [
       "Start with a single prompt or a full node-based flow. Pull live context before every call, connect tools that take real action, then feed structured outcomes straight into your stack.",
     steps: [
       { title: "Prompt & flow", sub: "Start with a single prompt, then branch into structured, node-based flows the moment a conversation needs real control - no rebuild required.", visual: "/journey/Agent%20Flow.png" },
-      { title: "Context & memory", sub: "Pull live context before the call connects: pre-call APIs, your CRM, past-conversation history, and indexed knowledge libraries the agent can cite.", node: (active) => <ContextMemoryVisual active={active} /> },
+      { title: "Context & memory", sub: "Pull live context before the call connects: pre-call APIs, your CRM, past-conversation history, and indexed knowledge libraries the agent can cite.", node: (active) => <MemoryRecallVisual active={active} /> },
       { title: "Tools", sub: "Wire any REST or GraphQL endpoint as a tool so the agent books, updates, verifies, and calculates in real time - not just talks.", node: (active) => <ToolsVisual active={active} /> },
-      { title: "Analysis & actions", sub: "Define objectives, summaries, outcomes, and structured extraction, then fire webhooks that push the result straight into your stack.", node: (active) => <AnalysisActionsVisual active={active} /> }
+      { title: "Analysis", sub: "Define objectives, summaries, outcomes, and structured extraction the moment a call ends - the analysis your team actually reads.", node: (active) => <AnalysisVisual active={active} /> }
     ]
   },
   {
     id: "ship",
-    range: "05 – 07",
+    range: "05 – 08",
     label: "Ship",
     heading: "Prove it works, put it on a line, and go - inbound or outbound.",
     blurb:
       "Stress-test against real scenarios and personas before anything goes live. Provision a number or bring your own carrier over SIP, then take inbound or launch outbound campaigns at scale.",
     steps: [
-      { title: "Simulate", sub: "Stress-test against real scenarios and personas - code-switching, refusals, edge cases - and hear the difference between versions before anything reaches a customer. (Beta)", visual: "/journey/05-simulate.png" },
-      { title: "Telephony", sub: "Provision a number in a click or bring your own carrier over SIP - Plivo, Twilio, Exotel, Tata - and map each line to the right agent.", visual: "/journey/06-telephony.png" },
-      { title: "Go live", sub: "Take inbound calls in three rings, or launch outbound campaigns to thousands with pacing, retries, and live monitoring.", visual: "/journey/07-golive.png" }
+      { title: "Simulate", sub: "Stress-test against real scenarios and personas - code-switching, refusals, edge cases - and hear the difference between versions before anything reaches a customer. (Beta)", node: (active) => <SimulationVisual active={active} /> },
+      { title: "Telephony", sub: "Provision a number in a click or bring your own carrier over SIP - Plivo, Twilio, Exotel, Tata - and map each line to the right agent.", node: (active) => <TelephonyVisual active={active} /> },
+      { title: "Go live", sub: "Take inbound calls in three rings, or launch outbound campaigns to thousands with pacing, retries, and live monitoring.", node: (active) => <BatchCallsVisual active={active} /> },
+      { title: "Webhooks", sub: "The moment a call ends, fire the structured outcome straight into your stack - CRM, Slack, Sheets, anything with a URL - with retries until it lands.", node: (active) => <WebhooksVisual active={active} /> }
     ]
   },
   {
     id: "improve",
-    range: "08 – 11",
+    range: "09 – 12",
     label: "Improve",
     heading: "Measure everything objective and subjective - break nothing.",
     blurb:
       "Track hard numbers and human judgment on every call. Build dashboards, set alerts, and improve on a new version - A/B tested against the live one, promoting only the winner.",
     steps: [
-      { title: "Objective metrics", sub: "Real-time inbound and outbound dashboards down to per-turn latency, talk ratio, pacing, and end-of-utterance accuracy on every call.", visual: "/journey/08-metrics.png" },
-      { title: "Subjective metrics", sub: "Run LLM-as-judge metrics on a schedule to score empathy, policy adherence, and whether the call actually resolved - and catch a regression the moment it appears. (Beta)", visual: "/journey/09-quality.png" },
-      { title: "Dashboards & alerts", sub: "Build the dashboards you need and set threshold or ratio alerts on the metrics that matter, routed to Slack or on-call. (Beta)", visual: "/journey/10-alerts.png" },
-      { title: "Branch · A/B · promote", sub: "Change on a new version, A/B test it against the live one, and promote only the winner - production never breaks while you improve.", visual: "/journey/11-branch.png" }
+      { title: "Objective metrics", sub: "Real-time inbound and outbound dashboards down to per-turn latency, talk ratio, pacing, and end-of-utterance accuracy on every call.", node: (active) => <ObjectiveMetricsVisual active={active} /> },
+      { title: "Subjective metrics", sub: "Run LLM-as-judge metrics on a schedule to score empathy, policy adherence, and whether the call actually resolved - and catch a regression the moment it appears. (Beta)", node: (active) => <SubjectiveMetricsVisual active={active} /> },
+      { title: "Dashboards & alerts", sub: "Build the dashboards you need and set threshold or ratio alerts on the metrics that matter, routed to Slack or on-call. (Beta)", node: (active) => <DashboardsAlertsVisual active={active} /> },
+      { title: "Branch · A/B · promote", sub: "Change on a new version, A/B test it against the live one, and promote only the winner - production never breaks while you improve.", node: (active) => <BranchPromoteVisual active={active} /> }
     ]
   }
 ];
@@ -99,8 +108,8 @@ export function JourneyShowcase() {
 
         {/* Phase rows */}
         <div className="mt-16 space-y-24 md:mt-20 md:space-y-32">
-          {PHASES.map((p, i) => (
-            <PhaseRow key={p.id} phase={p} flip={i % 2 === 1} />
+          {PHASES.map((p) => (
+            <PhaseRow key={p.id} phase={p} />
           ))}
         </div>
       </div>
@@ -108,7 +117,7 @@ export function JourneyShowcase() {
   );
 }
 
-function PhaseRow({ phase, flip }: { phase: Phase; flip: boolean }) {
+function PhaseRow({ phase }: { phase: Phase }) {
   const [active, setActive] = useState(0);
   const [stopped, setStopped] = useState(false);
   const count = phase.steps.length;
@@ -136,15 +145,10 @@ function PhaseRow({ phase, flip }: { phase: Phase; flip: boolean }) {
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       id={phase.id}
-      className={
-        "grid grid-cols-1 items-center gap-10 lg:gap-14 " +
-        (flip
-          ? "lg:grid-cols-[0.9fr_1.25fr]" // text left (small), visual right (wide)
-          : "lg:grid-cols-[1.25fr_0.9fr]") // visual left (wide), text right (small)
-      }
+      className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[0.9fr_1.25fr] lg:gap-14"
     >
-      {/* Visual - crossfades between the phase's cards */}
-      <div className={flip ? "lg:order-2" : ""}>
+      {/* Visual - always on the right */}
+      <div className="lg:order-2">
         <VisualPanel
           steps={phase.steps}
           active={active}
@@ -152,8 +156,8 @@ function PhaseRow({ phase, flip }: { phase: Phase; flip: boolean }) {
         />
       </div>
 
-      {/* Text */}
-      <div className={flip ? "lg:order-1" : ""}>
+      {/* Text - always on the left */}
+      <div className="lg:order-1">
         <div className="flex items-center gap-2.5 text-white">
           <MapPin size={18} strokeWidth={1.75} className="text-white/80" />
           <span className="font-sans text-[20px] font-medium tracking-tight md:text-[22px]">
@@ -244,7 +248,7 @@ function VisualPanel({
   label: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0d]">
+    <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0d] select-none">
       <div className="relative aspect-[4/3] w-full">
         {steps.map((s, idx) =>
           s.node ? (
@@ -252,7 +256,7 @@ function VisualPanel({
               key={s.title}
               className={
                 "absolute inset-0 transition-opacity duration-700 ease-out " +
-                (idx === active ? "opacity-100" : "opacity-0")
+                (idx === active ? "opacity-100" : "pointer-events-none opacity-0")
               }
             >
               {s.node(idx === active)}
@@ -264,10 +268,11 @@ function VisualPanel({
               alt={`${label} - ${s.title}`}
               fill
               unoptimized
+              draggable={false}
               sizes="(max-width: 1024px) 92vw, 640px"
               className={
                 "object-cover transition-opacity duration-700 ease-out " +
-                (idx === active ? "opacity-100" : "opacity-0")
+                (idx === active ? "opacity-100" : "pointer-events-none opacity-0")
               }
               priority={idx === 0}
             />
