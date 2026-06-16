@@ -41,7 +41,7 @@ type Carrier = {
 // 4:3 panel). Centred → spans x 36.5–63.5%, y ~32–68%.
 const HUB_L = 37;
 const HUB_R = 63;
-const EDGE = 6; // carrier-circle half-width in % — where its trunk begins
+const EDGE = 6; // carrier-circle half-width in % - where its trunk begins
 
 const CARRIERS: Carrier[] = [
   { id: "plivo", name: "Plivo", x: 15, y: 25, side: "left", logo: "/Brand/Plivo.svg", number: "+91 80 4567 1201" },

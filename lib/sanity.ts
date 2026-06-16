@@ -1,7 +1,7 @@
 import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 
-/* Minimal source shape — the builder accepts asset refs, full image objects,
+/* Minimal source shape - the builder accepts asset refs, full image objects,
    or asset _id strings. Typing as unknown avoids a deep import that breaks
    under newer @sanity/image-url versions. */
 type SanityImageSource = unknown;

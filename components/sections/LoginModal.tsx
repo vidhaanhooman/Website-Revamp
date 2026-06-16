@@ -125,7 +125,7 @@ export function LoginModal({ open, onClose }: LoginModalProps) {
         </button>
 
         <div className="grid md:grid-cols-2">
-          {/* ─── LEFT — sign-in form ────────────────────────── */}
+          {/* ─── LEFT - sign-in form ────────────────────────── */}
           <div className="flex flex-col justify-center px-7 py-12 md:px-12 md:py-14">
             <div className="mx-auto w-full max-w-sm">
               <h2
@@ -237,7 +237,7 @@ export function LoginModal({ open, onClose }: LoginModalProps) {
             </div>
           </div>
 
-          {/* ─── RIGHT — image + testimonial (desktop only) ─── */}
+          {/* ─── RIGHT - image + testimonial (desktop only) ─── */}
           <div className="relative hidden min-h-[560px] overflow-hidden md:block">
             {/* Background image */}
             <div
@@ -255,7 +255,7 @@ export function LoginModal({ open, onClose }: LoginModalProps) {
               }}
             />
 
-            {/* HoomanLabs wordmark — sits above the mountain in the sky area */}
+            {/* HoomanLabs wordmark - sits above the mountain in the sky area */}
             <div className="absolute left-1/2 top-[22%] z-10 -translate-x-1/2 drop-shadow-[0_2px_18px_rgba(0,0,0,0.45)]">
               <Wordmark tone="dark" size={34} />
             </div>

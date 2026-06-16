@@ -49,7 +49,7 @@ const components: PortableTextComponents = {
     h1: ({ children }) => (
       <h1
         style={{ color: "#16151A" }}
-        className="mt-12 font-serif text-[36px] font-normal leading-[1.1] tracking-tight md:text-[44px]"
+        className="mt-12 font-dmsans text-[32px] font-bold leading-[1.1] tracking-[-0.025em] md:text-[40px]"
       >
         {children}
       </h1>
@@ -57,7 +57,7 @@ const components: PortableTextComponents = {
     h2: ({ children }) => (
       <h2
         style={{ color: "#16151A" }}
-        className="mt-12 font-serif text-[30px] font-normal leading-[1.15] tracking-tight md:text-[36px]"
+        className="mt-12 font-dmsans text-[26px] font-bold leading-[1.15] tracking-[-0.02em] md:text-[32px]"
       >
         {children}
       </h2>
@@ -167,7 +167,7 @@ export default async function PostPage({ params }: PageProps) {
 
         <h1
           style={{ color: "#16151A" }}
-          className="mt-5 font-serif text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.05] tracking-tight"
+          className="mt-5 font-dmsans text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-[-0.03em]"
         >
           {post.title}
         </h1>

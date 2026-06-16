@@ -17,13 +17,13 @@ export function CtaBanner() {
           <div className="relative grid items-stretch gap-0 md:grid-cols-[1.05fr_0.95fr]">
             {/* LEFT - copy */}
             <div className="relative z-10 flex flex-col justify-center px-8 py-12 sm:px-10 sm:py-14 md:px-14 md:py-16">
- <p className="font-sans text-[11px] font-medium tracking-[0.04em] text-white/55">
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/45">
                 Try HoomanLabs
               </p>
-              <h2 className="mt-5 max-w-md font-sans text-[clamp(2.2rem,4.2vw,3.1rem)] font-semibold leading-[1.02] tracking-tight text-white">
+              <h2 className="mt-5 max-w-md font-dmsans text-[clamp(1.85rem,3.6vw,2.75rem)] font-bold leading-[1.08] tracking-[-0.025em] text-white">
                 See HoomanLabs answer your line in under five minutes.
               </h2>
-              <p className="mt-5 max-w-md text-[15px] font-medium leading-[1.6] text-white/65">
+              <p className="mt-5 max-w-md text-[15px] leading-[1.6] text-white/60">
                 Infrastructure-grade voice agents built for the calls that
                 drive your business forward.
               </p>

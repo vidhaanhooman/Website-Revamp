@@ -11,7 +11,7 @@ export function L2Hero() {
           "radial-gradient(120% 80% at 80% -5%, #FAF4EA 0%, #F4EDDF 45%, #EEE5D4 100%)"
       }}
     >
-      {/* HERO_BG — swap for <Image fill /> (1600x900) */}
+      {/* HERO_BG - swap for <Image fill /> (1600x900) */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"

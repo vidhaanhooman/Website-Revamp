@@ -107,7 +107,7 @@ export function SubjectiveMetricsVisual({ active }: { active: boolean }) {
             transition={{ duration: 0.4, delay: 1.1 }}
             className="mt-5 font-sans text-[10.5px] text-white/35"
           >
-            Regression in policy adherence — alert routed to #voice-quality
+            Regression in policy adherence, alert routed to #voice-quality
           </motion.div>
         </motion.div>
       </div>

@@ -107,7 +107,7 @@ export function ContextMemoryVisual({ active }: { active: boolean }) {
                 LENSKART AI AGENT
               </div>
               <p className="mt-1 font-sans text-[12px] leading-snug text-white/85">
-                Our new sunglass collection just dropped — perfect with your
+                Our new sunglass collection just dropped, perfect with your
                 Cloudscape tee.
               </p>
             </div>

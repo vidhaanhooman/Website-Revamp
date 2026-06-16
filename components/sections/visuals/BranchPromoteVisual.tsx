@@ -190,7 +190,7 @@ export function BranchPromoteVisual({ active }: { active: boolean }) {
                 </>
               ) : (
                 <span className="font-sans text-[11px] text-white/40">
-                  Candidate is A/B testing at 10% — promote to ship to everyone.
+                  Candidate is A/B testing at 10%. Promote to ship to everyone.
                 </span>
               )}
             </div>

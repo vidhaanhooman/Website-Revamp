@@ -47,23 +47,23 @@ const PHASES: Phase[] = [
     blurb:
       "Start with a single prompt or a full node-based flow. Pull live context before every call, connect tools that take real action, then feed structured outcomes straight into your stack.",
     steps: [
-      { title: "Prompt & flow", sub: "Start with a single prompt, then branch into structured, node-based flows the moment a conversation needs real control - no rebuild required.", visual: "/journey/Agent%20Flow.png" },
+      { title: "Prompt & flow", sub: "Start with a single prompt, then branch into structured, node-based flows the moment a conversation needs real control, no rebuild required.", visual: "/journey/Agent%20Flow.png" },
       { title: "Context & memory", sub: "Pull live context before the call connects: pre-call APIs, your CRM, past-conversation history, and indexed knowledge libraries the agent can cite.", node: (active) => <MemoryRecallVisual active={active} /> },
-      { title: "Tools", sub: "Wire any REST or GraphQL endpoint as a tool so the agent books, updates, verifies, and calculates in real time - not just talks.", node: (active) => <ToolsVisual active={active} /> },
-      { title: "Analysis", sub: "Define objectives, summaries, outcomes, and structured extraction the moment a call ends - the analysis your team actually reads.", node: (active) => <AnalysisVisual active={active} /> }
+      { title: "Tools", sub: "Wire any REST or GraphQL endpoint as a tool so the agent books, updates, verifies, and calculates in real time, not just talks.", node: (active) => <ToolsVisual active={active} /> },
+      { title: "Analysis", sub: "Define objectives, summaries, outcomes, and structured extraction the moment a call ends, the analysis your team actually reads.", node: (active) => <AnalysisVisual active={active} /> }
     ]
   },
   {
     id: "ship",
     range: "05 – 08",
     label: "Ship",
-    heading: "Prove it works, put it on a line, and go - inbound or outbound.",
+    heading: "Prove it works, put it on a line, and go, inbound or outbound.",
     blurb:
       "Stress-test against real scenarios and personas before anything goes live. Provision a number or connect your own carrier with SIP trunking, then take inbound or launch outbound campaigns at scale.",
     steps: [
-      { title: "Simulate", sub: "Stress-test against real scenarios and personas - code-switching, refusals, edge cases - and hear the difference between versions before anything reaches a customer. (Beta)", node: (active) => <SimulationVisual active={active} /> },
-      { title: "Telephony", sub: "Provision a number in a click, or connect your own carrier over a SIP trunk - Plivo, Twilio, Exotel, Tata. Bring-your-own SIP trunking with full inbound and outbound, and map each trunk to the right agent.", node: (active) => <TelephonyVisual active={active} /> },
-      { title: "Webhooks", sub: "The moment a call ends, fire the structured outcome straight into your stack - CRM, Slack, Sheets, anything with a URL - with retries until it lands.", node: (active) => <WebhooksVisual active={active} /> },
+      { title: "Simulate", sub: "Stress-test against real scenarios and personas, code-switching, refusals, edge cases, and hear the difference between versions before anything reaches a customer. (Beta)", node: (active) => <SimulationVisual active={active} /> },
+      { title: "Telephony", sub: "Provision a number in a click, or connect your own carrier over a SIP trunk, Plivo, Twilio, Exotel, Tata. Bring-your-own SIP trunking with full inbound and outbound, and map each trunk to the right agent.", node: (active) => <TelephonyVisual active={active} /> },
+      { title: "Webhooks", sub: "The moment a call ends, fire the structured outcome straight into your stack, CRM, Slack, Sheets, anything with a URL, with retries until it lands.", node: (active) => <WebhooksVisual active={active} /> },
       { title: "Go live", sub: "Take inbound calls in three rings, or launch outbound campaigns to thousands with pacing, retries, and live monitoring.", node: (active) => <BatchCallsVisual active={active} /> }
     ]
   },
@@ -71,14 +71,14 @@ const PHASES: Phase[] = [
     id: "improve",
     range: "09 – 12",
     label: "Improve",
-    heading: "Measure everything objective and subjective - break nothing.",
+    heading: "Measure everything objective and subjective, break nothing.",
     blurb:
-      "Track hard numbers and human judgment on every call. Build dashboards, set alerts, and improve on a new version - A/B tested against the live one, promoting only the winner.",
+      "Track hard numbers and human judgment on every call. Build dashboards, set alerts, and improve on a new version, A/B tested against the live one, promoting only the winner.",
     steps: [
       { title: "Objective metrics", sub: "Real-time inbound and outbound dashboards down to per-turn latency, talk ratio, pacing, and end-of-utterance accuracy on every call.", node: (active) => <ObjectiveMetricsVisual active={active} /> },
-      { title: "Subjective metrics", sub: "Run LLM-as-judge metrics on a schedule to score empathy, policy adherence, and whether the call actually resolved - and catch a regression the moment it appears. (Beta)", node: (active) => <SubjectiveMetricsVisual active={active} /> },
+      { title: "Subjective metrics", sub: "Run LLM-as-judge metrics on a schedule to score empathy, policy adherence, and whether the call actually resolved, and catch a regression the moment it appears. (Beta)", node: (active) => <SubjectiveMetricsVisual active={active} /> },
       { title: "Dashboards & alerts", sub: "Build the dashboards you need and set threshold or ratio alerts on the metrics that matter, routed to Slack or on-call. (Beta)", node: (active) => <DashboardsAlertsVisual active={active} /> },
-      { title: "Branch · A/B · promote", sub: "Change on a new version, A/B test it against the live one, and promote only the winner - production never breaks while you improve.", node: (active) => <BranchPromoteVisual active={active} /> }
+      { title: "Branch · A/B · promote", sub: "Change on a new version, A/B test it against the live one, and promote only the winner, production never breaks while you improve.", node: (active) => <BranchPromoteVisual active={active} /> }
     ]
   }
 ];
@@ -100,9 +100,9 @@ export function JourneyShowcase() {
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/40">
             Core capabilities
           </p>
-          <h2 className="mt-4 font-serif text-[clamp(1.85rem,3.4vw,2.75rem)] font-normal leading-[1.1] tracking-tight text-white">
+          <h2 className="mt-4 font-dmsans text-[clamp(1.85rem,3.6vw,2.75rem)] font-bold leading-[1.08] tracking-[-0.025em] text-white">
             Everything you need, from{" "}
-            <em className="not-italic italic text-white/50">prompt to production.</em>
+            <em className="font-display font-normal italic text-white/50">prompt to production.</em>
           </h2>
         </motion.div>
 
@@ -147,7 +147,7 @@ function PhaseRow({ phase }: { phase: Phase }) {
       id={phase.id}
       className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[0.9fr_1.25fr] lg:gap-14"
     >
-      {/* Visual - always on the right */}
+      {/* Visual, always on the right */}
       <div className="lg:order-2">
         <VisualPanel
           steps={phase.steps}
@@ -156,7 +156,7 @@ function PhaseRow({ phase }: { phase: Phase }) {
         />
       </div>
 
-      {/* Text - always on the left */}
+      {/* Text, always on the left */}
       <div className="lg:order-1">
         <div className="flex items-center gap-2.5 text-white">
           <MapPin size={18} strokeWidth={1.75} className="text-white/80" />
@@ -168,15 +168,15 @@ function PhaseRow({ phase }: { phase: Phase }) {
           </span>
         </div>
 
-        <h3 className="mt-4 max-w-md font-serif text-[clamp(1.6rem,2.6vw,2.2rem)] font-normal leading-[1.12] tracking-tight text-white">
+        <h3 className="mt-4 max-w-md font-dmsans text-[clamp(1.2rem,1.7vw,1.5rem)] font-bold leading-[1.2] tracking-[-0.02em] text-white">
           {phase.heading}
         </h3>
 
-        <p className="mt-4 max-w-md text-[14.5px] leading-[1.65] text-white/60">
+        <p className="mt-4 max-w-md text-[15px] leading-[1.6] text-white/60">
           {phase.blurb}
         </p>
 
-        {/* Stepped capability list - clean titles, top progress bar on active */}
+        {/* Stepped capability list, clean titles, top progress bar on active */}
         <ul className="mt-8">
           {phase.steps.map((s, idx) => {
             const isActive = idx === active;
@@ -214,7 +214,7 @@ function PhaseRow({ phase }: { phase: Phase }) {
                   >
                     {s.title}
                   </span>
-                  {/* Detail - expands only when this step is active */}
+                  {/* Detail, expands only when this step is active */}
                   <motion.div
                     initial={false}
                     animate={{
@@ -265,7 +265,7 @@ function VisualPanel({
             <Image
               key={s.visual}
               src={s.visual as string}
-              alt={`${label} - ${s.title}`}
+              alt={`${label}, ${s.title}`}
               fill
               unoptimized
               draggable={false}

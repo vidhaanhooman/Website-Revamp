@@ -30,7 +30,7 @@ const BUILD: Card[] = [
     n: "02",
     label: "Context & memory",
     title: "It knows who's calling",
-    body: "Pull live context before the call - pre-call APIs, CRM, past-conversation history, and knowledge libraries.",
+    body: "Pull live context before the call, pre-call APIs, CRM, past-conversation history, and knowledge libraries.",
     shotTop: "Context",
     shotSub: "Pre-call API · History · Knowledge"
   },
@@ -38,7 +38,7 @@ const BUILD: Card[] = [
     n: "03",
     label: "Tools",
     title: "It takes action mid-call",
-    body: "Connect tools so the agent books, updates, verifies, and calculates in real time - not just talks.",
+    body: "Connect tools so the agent books, updates, verifies, and calculates in real time, not just talks.",
     shotTop: "Tools",
     shotSub: "Tool builder"
   },
@@ -46,7 +46,7 @@ const BUILD: Card[] = [
     n: "04",
     label: "Analysis & actions",
     title: "It feeds your systems",
-    body: "Define objectives, summaries, outcomes, and structured extraction - then fire webhooks straight into your stack.",
+    body: "Define objectives, summaries, outcomes, and structured extraction, then fire webhooks straight into your stack.",
     shotTop: "Analysis + Call Actions",
     shotSub: "Outcomes · Webhooks"
   }
@@ -58,7 +58,7 @@ const SHIP: Card[] = [
     label: "Simulate",
     beta: true,
     title: "Hear it before they do",
-    body: "Stress-test against real scenarios and personas - code-switching, refusals, edge cases - before anything goes live.",
+    body: "Stress-test against real scenarios and personas, code-switching, refusals, edge cases, before anything goes live.",
     shotTop: "Simulation",
     shotSub: "Scenario · persona editor"
   },
@@ -125,42 +125,42 @@ export function L2Journey() {
         <div className="max-w-[32ch] pb-4 pt-24 lg:pt-28">
           <Pill>How it works</Pill>
           <h2 className="mt-6 font-sans text-[clamp(38px,4.6vw,62px)] font-semibold leading-[1.02] tracking-[-0.02em] text-[#1B1209]">
-            From a single prompt to a million calls - and{" "}
+            From a single prompt to a million calls, and{" "}
             <em className="font-medium not-italic italic text-[#E25B12]">
               better every week.
             </em>
           </h2>
           <p className="mt-6 max-w-[48ch] text-[19px] leading-[1.55] text-[#6B6052]">
             Build the agent, ship it on your numbers, then let the data sharpen
-            it - on a new version, without ever touching the one that&apos;s live.
+            it, on a new version, without ever touching the one that&apos;s live.
           </p>
         </div>
 
         <Phase
-          idx="01 - 04"
+          idx="01-04"
           title="Build"
           note="Start simple, add depth only where the conversation needs it."
           cards={BUILD}
         />
 
         <Phase
-          idx="05 - 07"
+          idx="05-07"
           title="Ship"
-          note="Prove it works, put it on a line, and go - inbound or outbound."
+          note="Prove it works, put it on a line, and go, inbound or outbound."
           cards={SHIP}
         />
 
         <Phase
-          idx="08 - 11"
+          idx="08-11"
           title="Improve"
-          note="Measure what's objective and what's subjective - then close the loop, safely."
+          note="Measure what's objective and what's subjective, then close the loop, safely."
           cards={IMPROVE}
           beforeGrid={
             <div className="my-1.5 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <SplitCard
                 k="Objective · Insights"
                 bold="The hard numbers."
-                rest=" Latency, pickup, connect rate, talk ratio, pacing, EOU accuracy, interruptions - measured on every call."
+                rest=" Latency, pickup, connect rate, talk ratio, pacing, EOU accuracy, interruptions, measured on every call."
               />
               <SplitCard
                 k="Subjective · QA"
@@ -182,7 +182,7 @@ export function L2Journey() {
           </h2>
           <p className="mx-auto mt-3.5 max-w-[52ch] text-[16px] leading-[1.55] text-[#6B6052]">
             Every change happens on its own version. The live agent keeps
-            answering while you test the next one - so getting better never
+            answering while you test the next one, so getting better never
             means going down.
           </p>
 
@@ -278,7 +278,7 @@ function Phase({
 function JourneyCard({ card }: { card: Card }) {
   return (
     <article className="flex flex-col overflow-hidden rounded-[18px] border border-[rgba(27,18,9,0.12)] bg-[#FBF6EC]">
-      {/* DARK SHOT — drop screenshot via inline style background or swap for <Image fill /> */}
+      {/* DARK SHOT, drop screenshot via inline style background or swap for <Image fill /> */}
       <div
         className="relative flex aspect-[16/10] items-center justify-center overflow-hidden border-b border-[rgba(27,18,9,0.12)] bg-[#100C07]"
         style={

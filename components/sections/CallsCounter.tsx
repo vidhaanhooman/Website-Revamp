@@ -124,7 +124,7 @@ export function CallsCounter() {
               Live · ticking now
             </p>
             <div
-              className="mt-4 font-sans font-bold leading-[0.95] tracking-tight text-white"
+              className="mt-4 font-dmsans font-bold leading-[0.95] tracking-[-0.03em] text-white"
               style={{ fontSize: "clamp(2.75rem, 7vw, 5.5rem)" }}
               aria-live="polite"
             >

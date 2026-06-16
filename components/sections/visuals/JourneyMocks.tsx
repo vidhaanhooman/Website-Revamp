@@ -164,7 +164,7 @@ function MockContext() {
           </div>
         </div>
       </Widget>
-      <Bubble side="agent" text="Welcome back, Ravi — calling about your loan?" />
+      <Bubble side="agent" text="Welcome back, Ravi, calling about your loan?" />
     </Frame>
   );
 }

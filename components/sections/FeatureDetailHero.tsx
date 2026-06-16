@@ -26,7 +26,7 @@ export function FeatureDetailHero({
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/FeaturePageHeader.png')" }}
       />
-      {/* Dark scrim — keeps copy readable on any portion of the image */}
+      {/* Dark scrim - keeps copy readable on any portion of the image */}
       <div
         aria-hidden
         className="absolute inset-0"
@@ -35,7 +35,7 @@ export function FeatureDetailHero({
             "linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.75) 100%)"
         }}
       />
-      {/* Bottom fade — eases into the dark page surface below */}
+      {/* Bottom fade - eases into the dark page surface below */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#000]"

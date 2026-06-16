@@ -324,7 +324,7 @@ export function AgentDemo() {
         </div>
 
         <div className="mb-14 max-w-2xl">
-          <h2 className="font-sans text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.05] tracking-tight text-white">
+          <h2 className="font-dmsans text-[clamp(1.85rem,3.6vw,2.75rem)] font-bold leading-[1.08] tracking-[-0.025em] text-white">
             Hear it before you build it.
           </h2>
           <p className="mt-4 text-[15px] leading-[1.6] text-white/60">

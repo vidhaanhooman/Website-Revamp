@@ -110,7 +110,7 @@ export function Hero() {
 
           <motion.h1
             {...fadeUp(0.05)}
-            className="font-dmsans text-[clamp(2rem,4.6vw,4rem)] font-bold leading-[1.04] tracking-[-0.03em] text-white drop-shadow-[0_2px_22px_rgba(0,0,0,0.55)]"
+            className="font-dmsans text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-[1.04] tracking-[-0.03em] text-white drop-shadow-[0_2px_22px_rgba(0,0,0,0.55)]"
           >
             One prompt to
             <br />

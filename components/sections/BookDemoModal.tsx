@@ -179,7 +179,7 @@ export function BookDemoModal({ open, onClose }: BookDemoModalProps) {
 
         {step === "calendar" ? (
           <div className="grid md:grid-cols-[260px_1fr_280px]">
-            {/* ─── LEFT — host info ─────────────────────────────── */}
+            {/* ─── LEFT - host info ─────────────────────────────── */}
             <div className="border-b border-white/10 p-7 md:border-b-0 md:border-r md:p-8">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink">
                 <svg
@@ -232,7 +232,7 @@ export function BookDemoModal({ open, onClose }: BookDemoModalProps) {
               </p>
             </div>
 
-            {/* ─── MIDDLE — calendar ─────────────────────────────── */}
+            {/* ─── MIDDLE - calendar ─────────────────────────────── */}
             <div className="border-b border-white/10 p-7 md:border-b-0 md:border-r md:p-8">
               <div className="flex items-center justify-between">
                 <div className="font-sans">
@@ -317,7 +317,7 @@ export function BookDemoModal({ open, onClose }: BookDemoModalProps) {
               </div>
             </div>
 
-            {/* ─── RIGHT — time slots ────────────────────────────── */}
+            {/* ─── RIGHT - time slots ────────────────────────────── */}
             <div className="p-7 md:p-8">
               {/* pr-12 leaves clearance for the absolute-positioned close
                   button so the 12h/24h toggle doesn't sit underneath it */}
